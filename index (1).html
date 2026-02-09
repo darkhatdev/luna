@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0D0B1A">
+    <meta name="description" content="Luna — Multilingual emotional intelligence for the unusually minded">
+    <title>Luna 🦋</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Quicksand:wght@300;400;500;600&display=swap');
+
+        :root {
+            --void: #0D0B1A;
+            --deep: #110F24;
+            --night: #1A1735;
+            --twilight: #2A2650;
+            --moth-glow: #C8E6A0;
+            --moth-wing: #8FBC6A;
+            --moth-body: #D4C99E;
+            --moon: #F5F0E8;
+            --moonlight: rgba(245, 240, 232, 0.08);
+            --star: #E8E4D9;
+            --purple-soft: #6C4AB6;
+            --purple-glow: rgba(108, 74, 182, 0.3);
+            --green-safe: #A8E6CF;
+            --warmth: #F5DEB3;
+            --text-primary: #E8E4D9;
+            --text-soft: rgba(232, 228, 217, 0.7);
+            --text-whisper: rgba(232, 228, 217, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            background: var(--void);
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-primary);
+            cursor: default;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*           STARFIELD BACKGROUND          */
+        /* ═══════════════════════════════════════ */
+
+        .starfield {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--star);
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*              MOON                       */
+        /* ═══════════════════════════════════════ */
+
+        .moon {
+            position: fixed;
+            top: 8%;
+            right: 12%;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 40%, var(--moon), #D4CFC4);
+            box-shadow:
+                0 0 40px rgba(245, 240, 232, 0.15),
+                0 0 80px rgba(245, 240, 232, 0.08),
+                0 0 160px rgba(245, 240, 232, 0.04);
+            z-index: 1;
+            opacity: 0;
+            animation: moonrise 3s ease-out 0.5s forwards;
+        }
+
+        .moon::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(180, 175, 165, 0.3);
+        }
+
+        .moon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 55%;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(180, 175, 165, 0.2);
+        }
+
+        @keyframes moonrise {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*           LUNA MOTH (SVG)               */
+        /* ═══════════════════════════════════════ */
+
+        .moth-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+            z-index: 10;
+            opacity: 0;
+            animation: mothAppear 2s ease-out 1.5s forwards;
+        }
+
+        @keyframes mothAppear {
+            from { opacity: 0; transform: translate(-50%, -55%) scale(0.8); }
+            to { opacity: 1; transform: translate(-50%, -60%) scale(1); }
+        }
+
+        .moth-svg {
+            width: 180px;
+            height: 220px;
+            filter: drop-shadow(0 0 30px rgba(200, 230, 160, 0.25));
+            animation: mothFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes mothFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-8px) rotate(0.5deg); }
+            50% { transform: translateY(-3px) rotate(-0.5deg); }
+            75% { transform: translateY(-10px) rotate(0.3deg); }
+        }
+
+        .moth-wing-left, .moth-wing-right {
+            animation: wingBreathe 4s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        .moth-wing-right {
+            animation-delay: 0.1s;
+        }
+
+        @keyframes wingBreathe {
+            0%, 100% { transform: scaleX(1); }
+            50% { transform: scaleX(0.97); }
+        }
+
+        .moth-glow-circle {
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.15; r: 70; }
+            50% { opacity: 0.25; r: 80; }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*         GOLDEN TRAIL PARTICLES          */
+        /* ═══════════════════════════════════════ */
+
+        .trail-particle {
+            position: fixed;
+            border-radius: 50%;
+            background: var(--moth-glow);
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*              TEXT CONTENT               */
+        /* ═══════════════════════════════════════ */
+
+        .content {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 12vh;
+            z-index: 20;
+        }
+
+        .title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 3.5rem;
+            letter-spacing: 0.3em;
+            color: var(--moon);
+            opacity: 0;
+            animation: textFadeIn 2s ease-out 2.5s forwards;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-soft);
+            letter-spacing: 0.15em;
+            margin-top: 1rem;
+            opacity: 0;
+            animation: textFadeIn 2s ease-out 3.5s forwards;
+        }
+
+        .dedication {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 300;
+            font-size: 0.75rem;
+            color: var(--text-whisper);
+            letter-spacing: 0.2em;
+            margin-top: 2rem;
+            opacity: 0;
+            animation: textFadeIn 2s ease-out 4.5s forwards;
+            text-transform: uppercase;
+        }
+
+        @keyframes textFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*             ENTER BUTTON                */
+        /* ═══════════════════════════════════════ */
+
+        .enter-btn {
+            margin-top: 2.5rem;
+            padding: 0.8rem 2.5rem;
+            background: transparent;
+            border: 1px solid rgba(200, 230, 160, 0.3);
+            border-radius: 30px;
+            color: var(--moth-glow);
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 400;
+            font-size: 0.85rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            cursor: pointer;
+            opacity: 0;
+            animation: textFadeIn 2s ease-out 5.5s forwards;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enter-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(200, 230, 160, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .enter-btn:hover {
+            border-color: rgba(200, 230, 160, 0.6);
+            box-shadow: 0 0 25px rgba(200, 230, 160, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .enter-btn:hover::before {
+            opacity: 1;
+        }
+
+        .enter-btn:active {
+            transform: translateY(0);
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*          HAND TOGGLE (L/R)              */
+        /* ═══════════════════════════════════════ */
+
+        .hand-toggle {
+            position: fixed;
+            bottom: 20px;
+            z-index: 30;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: textFadeIn 2s ease-out 6s forwards;
+        }
+
+        .hand-toggle.left-mode {
+            left: 20px;
+        }
+
+        .hand-toggle.right-mode {
+            right: 20px;
+        }
+
+        .hand-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: var(--text-whisper);
+            text-transform: uppercase;
+        }
+
+        .toggle-switch {
+            width: 44px;
+            height: 24px;
+            background: var(--night);
+            border: 1px solid rgba(200, 230, 160, 0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--moth-glow);
+            transition: transform 0.3s ease;
+            box-shadow: 0 0 8px rgba(200, 230, 160, 0.3);
+        }
+
+        .toggle-switch.right::after {
+            transform: translateX(20px);
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*           SENSORY CONTROLS              */
+        /* ═══════════════════════════════════════ */
+
+        .sensory-controls {
+            position: fixed;
+            top: 20px;
+            z-index: 30;
+            display: flex;
+            gap: 12px;
+            opacity: 0;
+            animation: textFadeIn 2s ease-out 6s forwards;
+        }
+
+        .left-mode .sensory-controls {
+            right: 20px;
+        }
+
+        .right-mode .sensory-controls {
+            left: 20px;
+        }
+
+        .sensory-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(26, 23, 53, 0.8);
+            border: 1px solid rgba(200, 230, 160, 0.15);
+            color: var(--text-whisper);
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .sensory-btn:hover {
+            border-color: rgba(200, 230, 160, 0.4);
+            color: var(--moth-glow);
+        }
+
+        .sensory-btn.active {
+            border-color: rgba(200, 230, 160, 0.5);
+            color: var(--moth-glow);
+            background: rgba(200, 230, 160, 0.08);
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*          REDUCE MOTION                  */
+        /* ═══════════════════════════════════════ */
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .moth-svg {
+                animation: none;
+            }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*           RESPONSIVE                    */
+        /* ═══════════════════════════════════════ */
+
+        @media (max-width: 600px) {
+            .title {
+                font-size: 2.5rem;
+                letter-spacing: 0.2em;
+            }
+            .tagline {
+                font-size: 0.95rem;
+                padding: 0 2rem;
+                text-align: center;
+            }
+            .moth-svg {
+                width: 140px;
+                height: 170px;
+            }
+            .moon {
+                width: 50px;
+                height: 50px;
+                top: 6%;
+                right: 8%;
+            }
+            .content {
+                padding-bottom: 10vh;
+            }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*         SCREEN READER ONLY              */
+        /* ═══════════════════════════════════════ */
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="sr-only">Luna — Multilingual emotional intelligence for the unusually minded</h1>
+
+    <!-- Starfield -->
+    <div class="starfield" id="starfield" aria-hidden="true"></div>
+
+    <!-- Moon -->
+    <div class="moon" aria-hidden="true"></div>
+
+    <!-- Luna Moth -->
+    <div class="moth-container" aria-hidden="true">
+        <svg class="moth-svg" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+            <!-- Glow -->
+            <circle class="moth-glow-circle" cx="100" cy="120" r="70" fill="rgba(200, 230, 160, 0.15)" />
+
+            <!-- Left hindwing (tail) -->
+            <g class="moth-wing-left">
+                <path d="M95 140 Q60 180 50 220 Q55 225 65 220 Q80 195 95 160 Z"
+                      fill="url(#tailGrad)" opacity="0.9"/>
+            </g>
+
+            <!-- Right hindwing (tail) -->
+            <g class="moth-wing-right">
+                <path d="M105 140 Q140 180 150 220 Q145 225 135 220 Q120 195 105 160 Z"
+                      fill="url(#tailGrad)" opacity="0.9"/>
+            </g>
+
+            <!-- Left forewing -->
+            <g class="moth-wing-left">
+                <path d="M90 110 Q30 85 20 60 Q18 50 25 48 Q45 55 65 75 Q78 90 90 110 Z"
+                      fill="url(#wingGrad)" opacity="0.95"/>
+                <!-- Wing eyespot -->
+                <circle cx="50" cy="72" r="8" fill="rgba(13, 11, 26, 0.4)"/>
+                <circle cx="50" cy="72" r="5" fill="rgba(108, 74, 182, 0.3)"/>
+                <circle cx="50" cy="72" r="2" fill="rgba(200, 230, 160, 0.5)"/>
+                <!-- Wing vein lines -->
+                <path d="M88 108 Q55 88 28 55" stroke="rgba(200, 230, 160, 0.15)" stroke-width="0.5" fill="none"/>
+                <path d="M85 105 Q60 90 35 65" stroke="rgba(200, 230, 160, 0.1)" stroke-width="0.5" fill="none"/>
+            </g>
+
+            <!-- Right forewing -->
+            <g class="moth-wing-right">
+                <path d="M110 110 Q170 85 180 60 Q182 50 175 48 Q155 55 135 75 Q122 90 110 110 Z"
+                      fill="url(#wingGrad)" opacity="0.95"/>
+                <!-- Wing eyespot -->
+                <circle cx="150" cy="72" r="8" fill="rgba(13, 11, 26, 0.4)"/>
+                <circle cx="150" cy="72" r="5" fill="rgba(108, 74, 182, 0.3)"/>
+                <circle cx="150" cy="72" r="2" fill="rgba(200, 230, 160, 0.5)"/>
+                <!-- Wing vein lines -->
+                <path d="M112 108 Q145 88 172 55" stroke="rgba(200, 230, 160, 0.15)" stroke-width="0.5" fill="none"/>
+                <path d="M115 105 Q140 90 165 65" stroke="rgba(200, 230, 160, 0.1)" stroke-width="0.5" fill="none"/>
+            </g>
+
+            <!-- Body -->
+            <ellipse cx="100" cy="115" rx="6" ry="30" fill="var(--moth-body)"/>
+            <ellipse cx="100" cy="115" rx="4" ry="28" fill="url(#bodyGrad)"/>
+
+            <!-- Head -->
+            <circle cx="100" cy="82" r="5" fill="var(--moth-body)"/>
+
+            <!-- Antennae -->
+            <path d="M97 80 Q85 60 78 50" stroke="var(--moth-body)" stroke-width="1" fill="none" opacity="0.7"/>
+            <path d="M103 80 Q115 60 122 50" stroke="var(--moth-body)" stroke-width="1" fill="none" opacity="0.7"/>
+            <!-- Feathered tips -->
+            <path d="M78 50 Q73 45 70 47 Q74 50 78 50 Z" fill="var(--moth-body)" opacity="0.5"/>
+            <path d="M78 50 Q75 43 72 44 Q75 48 78 50 Z" fill="var(--moth-body)" opacity="0.4"/>
+            <path d="M122 50 Q127 45 130 47 Q126 50 122 50 Z" fill="var(--moth-body)" opacity="0.5"/>
+            <path d="M122 50 Q125 43 128 44 Q125 48 122 50 Z" fill="var(--moth-body)" opacity="0.4"/>
+
+            <!-- Eyes -->
+            <circle cx="97" cy="80" r="1.5" fill="rgba(13, 11, 26, 0.8)"/>
+            <circle cx="103" cy="80" r="1.5" fill="rgba(13, 11, 26, 0.8)"/>
+
+            <!-- Gradients -->
+            <defs>
+                <linearGradient id="wingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#8FBC6A"/>
+                    <stop offset="40%" stop-color="#A8D48A"/>
+                    <stop offset="70%" stop-color="#C8E6A0"/>
+                    <stop offset="100%" stop-color="#B8D890"/>
+                </linearGradient>
+                <linearGradient id="tailGrad" x1="0%" y1="0%" x2="50%" y2="100%">
+                    <stop offset="0%" stop-color="#8FBC6A"/>
+                    <stop offset="50%" stop-color="#C8E6A0"/>
+                    <stop offset="100%" stop-color="#A8D48A" stop-opacity="0.6"/>
+                </linearGradient>
+                <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#D4C99E"/>
+                    <stop offset="100%" stop-color="#BFB58A"/>
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+    <!-- Sensory Controls -->
+    <div class="sensory-controls" id="sensoryControls" role="toolbar" aria-label="Sensory settings">
+        <button class="sensory-btn" id="soundToggle" aria-label="Toggle sound" title="Sound">🔇</button>
+        <button class="sensory-btn" id="motionToggle" aria-label="Toggle motion" title="Reduce motion">✦</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="title">Luna</div>
+        <div class="tagline">Unusual minds. Unusual paths. Unusual flight.</div>
+        <div class="dedication">For the Blue Butterfly Child</div>
+        <button class="enter-btn" id="enterBtn">Enter the Garden</button>
+    </div>
+
+    <!-- Hand Toggle -->
+    <div class="hand-toggle left-mode" id="handToggle">
+        <span class="hand-label" id="handLabel">Left</span>
+        <div class="toggle-switch" id="toggleSwitch" role="switch" aria-checked="true" aria-label="Switch between left-hand and right-hand layout" tabindex="0"></div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════
+        //           STARFIELD
+        // ═══════════════════════════════════════
+
+        (function createStars() {
+            const field = document.getElementById('starfield');
+            const count = 120;
+
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 2 + 0.5;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.opacity = Math.random() * 0.6 + 0.1;
+
+                // Gentle twinkle
+                const duration = Math.random() * 4 + 3;
+                const delay = Math.random() * 5;
+                star.style.animation = `twinkle ${duration}s ease-in-out ${delay}s infinite`;
+
+                field.appendChild(star);
+            }
+
+            // Add twinkle keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes twinkle {
+                    0%, 100% { opacity: var(--start-opacity, 0.3); }
+                    50% { opacity: var(--end-opacity, 0.8); }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Set random opacities for each star
+            field.querySelectorAll('.star').forEach(s => {
+                const start = parseFloat(s.style.opacity);
+                s.style.setProperty('--start-opacity', start);
+                s.style.setProperty('--end-opacity', Math.min(start + 0.4, 1));
+            });
+        })();
+
+        // ═══════════════════════════════════════
+        //        GOLDEN TRAIL PARTICLES
+        // ═══════════════════════════════════════
+
+        (function createTrail() {
+            const mothContainer = document.querySelector('.moth-container');
+            
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'trail-particle';
+                const size = Math.random() * 3 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Position near the moth's tail area
+                const rect = mothContainer.getBoundingClientRect();
+                const x = rect.left + rect.width / 2 + (Math.random() - 0.5) * 30;
+                const y = rect.top + rect.height * 0.7 + Math.random() * 20;
+                
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                
+                document.body.appendChild(particle);
+                
+                // Animate
+                const drift = (Math.random() - 0.5) * 40;
+                const fall = Math.random() * 60 + 30;
+                
+                particle.animate([
+                    { opacity: 0.6, transform: 'translate(0, 0) scale(1)' },
+                    { opacity: 0, transform: `translate(${drift}px, ${fall}px) scale(0)` }
+                ], {
+                    duration: Math.random() * 2000 + 1500,
+                    easing: 'ease-out'
+                }).onfinish = () => particle.remove();
+                
+            }, 300);
+        })();
+
+        // ═══════════════════════════════════════
+        //           HAND TOGGLE (L/R)
+        // ═══════════════════════════════════════
+
+        const handToggle = document.getElementById('handToggle');
+        const toggleSwitch = document.getElementById('toggleSwitch');
+        const handLabel = document.getElementById('handLabel');
+        const sensoryControls = document.getElementById('sensoryControls');
+        let isLeftHand = true; // Default: left-hand
+
+        function setHandMode(leftHand) {
+            isLeftHand = leftHand;
+            if (leftHand) {
+                handToggle.className = 'hand-toggle left-mode';
+                sensoryControls.style.right = '20px';
+                sensoryControls.style.left = 'auto';
+                handLabel.textContent = 'Left';
+                toggleSwitch.classList.remove('right');
+                toggleSwitch.setAttribute('aria-checked', 'true');
+            } else {
+                handToggle.className = 'hand-toggle right-mode';
+                sensoryControls.style.left = '20px';
+                sensoryControls.style.right = 'auto';
+                handLabel.textContent = 'Right';
+                toggleSwitch.classList.add('right');
+                toggleSwitch.setAttribute('aria-checked', 'false');
+            }
+            localStorage.setItem('luna-hand', leftHand ? 'left' : 'right');
+        }
+
+        toggleSwitch.addEventListener('click', () => setHandMode(!isLeftHand));
+        toggleSwitch.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setHandMode(!isLeftHand);
+            }
+        });
+
+        // Load saved preference
+        const savedHand = localStorage.getItem('luna-hand');
+        if (savedHand === 'right') setHandMode(false);
+
+        // ═══════════════════════════════════════
+        //          MOTION TOGGLE
+        // ═══════════════════════════════════════
+
+        const motionToggle = document.getElementById('motionToggle');
+        let reducedMotion = false;
+
+        motionToggle.addEventListener('click', () => {
+            reducedMotion = !reducedMotion;
+            motionToggle.classList.toggle('active', reducedMotion);
+            document.body.style.setProperty('--motion', reducedMotion ? 'paused' : 'running');
+            
+            document.querySelectorAll('.moth-svg, .star, .moth-glow-circle').forEach(el => {
+                el.style.animationPlayState = reducedMotion ? 'paused' : 'running';
+            });
+        });
+
+        // ═══════════════════════════════════════
+        //          ENTER BUTTON
+        // ═══════════════════════════════════════
+
+        document.getElementById('enterBtn').addEventListener('click', () => {
+            // Future: transition to the garden / lesson screen
+            document.body.style.transition = 'opacity 1s ease';
+            document.body.style.opacity = '0';
+            
+            setTimeout(() => {
+                // Placeholder until we build the next screen
+                document.body.style.opacity = '1';
+                document.body.innerHTML = `
+                    <div style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100vh;
+                        background: #0D0B1A;
+                        font-family: 'Cormorant Garamond', serif;
+                        color: #E8E4D9;
+                        text-align: center;
+                        padding: 2rem;
+                    ">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🦋</div>
+                        <div style="font-size: 1.8rem; font-weight: 300; margin-bottom: 1rem;">
+                            The garden is growing.
+                        </div>
+                        <div style="font-size: 1rem; font-weight: 300; color: rgba(232,228,217,0.6); font-style: italic; max-width: 400px; line-height: 1.8;">
+                            Luna is being built with love, pattern recognition, and nylon strings.
+                        </div>
+                        <div style="margin-top: 2rem; font-size: 0.75rem; color: rgba(232,228,217,0.3); letter-spacing: 0.2em;">
+                            © 2026 MAXIMUS GLIXIA / DARKHATDEV
+                        </div>
+                        <div style="margin-top: 0.5rem; font-size: 0.65rem; color: rgba(200,230,160,0.4); letter-spacing: 0.15em;">
+                            非常道 — THE UNUSUAL PATH
+                        </div>
+                    </div>
+                `;
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
