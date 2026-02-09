@@ -15,9 +15,10 @@
             --deep: #110F24;
             --night: #1A1735;
             --twilight: #2A2650;
-            --moth-glow: #C8E6A0;
-            --moth-wing: #8FBC6A;
-            --moth-body: #D4C99E;
+            --moth-glow: #5AACF0;
+            --moth-wing: #3A8BD6;
+            --moth-body: #4A9A5A;
+            --moth-eyespot: #F2D048;
             --moon: #F5F0E8;
             --moonlight: rgba(245, 240, 232, 0.08);
             --star: #E8E4D9;
@@ -153,9 +154,125 @@
             animation-delay: 0.1s;
         }
 
+        /* Antenna sparks — each fires at different timing, different rhythm */
+        .antenna-spark { animation-fill-mode: both; }
+        .spark-1 { animation: sparkFire 2.5s ease-in-out 2s infinite; }
+        .spark-2 { animation: sparkFire 3.1s ease-in-out 2.4s infinite; }
+        .spark-3 { animation: sparkFire 2.8s ease-in-out 2.7s infinite; }
+        .spark-4 { animation: sparkFire 3.5s ease-in-out 3.1s infinite; }
+        .spark-5 { animation: sparkFire 2.3s ease-in-out 2.2s infinite; }
+        .spark-6 { animation: sparkFire 3.3s ease-in-out 2.9s infinite; }
+        .spark-7 { animation: sparkFire 2.6s ease-in-out 3.4s infinite; }
+        .spark-8 { animation: sparkFire 3.0s ease-in-out 2.6s infinite; }
+
+        @keyframes sparkFire {
+            0%, 100% { opacity: 0; transform: scale(0.5) translate(0, 0); }
+            15% { opacity: 0.9; transform: scale(1.3) translate(0, -2px); }
+            30% { opacity: 0.4; transform: scale(0.8) translate(1px, 1px); }
+            50% { opacity: 0.85; transform: scale(1.1) translate(-1px, -3px); }
+            70% { opacity: 0.3; transform: scale(0.7) translate(2px, 0); }
+            85% { opacity: 0.7; transform: scale(1.2) translate(-1px, -1px); }
+        }
+
         @keyframes wingBreathe {
             0%, 100% { transform: scaleX(1); }
             50% { transform: scaleX(0.97); }
+        }
+
+        /* ═══ ANTENNA SPARKS - firing different colors ═══ */
+        .antenna-spark { animation: sparkFire 3s ease-in-out infinite; }
+        .spark-1 { animation-delay: 0s; animation-duration: 2.1s; }
+        .spark-2 { animation-delay: 0.7s; animation-duration: 1.8s; }
+        .spark-3 { animation-delay: 1.3s; animation-duration: 2.5s; }
+        .spark-4 { animation-delay: 0.3s; animation-duration: 1.6s; }
+        .spark-5 { animation-delay: 1.1s; animation-duration: 2.3s; }
+        .spark-6 { animation-delay: 0.5s; animation-duration: 1.9s; }
+        .spark-7 { animation-delay: 1.7s; animation-duration: 2.7s; }
+        .spark-8 { animation-delay: 0.9s; animation-duration: 2.0s; }
+
+        @keyframes sparkFire {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            15% { opacity: 0.9; transform: scale(1.3); }
+            30% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 0; transform: scale(0.5); }
+        }
+
+        /* ═══ MOTH EMOTIONAL STATES ═══ */
+
+        /* Happy - warm gold steady pulses */
+        .moth-happy .spark-1, .moth-happy .spark-5 { fill: #F2D048; animation-duration: 2.5s; }
+        .moth-happy .spark-2, .moth-happy .spark-6 { fill: #FFE066; animation-duration: 2.8s; }
+        .moth-happy .spark-3, .moth-happy .spark-7 { fill: #FFB347; animation-duration: 2.3s; }
+        .moth-happy .spark-4, .moth-happy .spark-8 { fill: #F2D048; animation-duration: 2.6s; }
+        .moth-happy .moth-glow-circle { fill: rgba(242, 208, 72, 0.12); }
+
+        /* Calm - slow synced blue/green */
+        .moth-calm .spark-1, .moth-calm .spark-5 { fill: #A0C8E6; animation-duration: 4s; }
+        .moth-calm .spark-2, .moth-calm .spark-6 { fill: #A8E6CF; animation-duration: 4.2s; }
+        .moth-calm .spark-3, .moth-calm .spark-7 { fill: #C8A0E6; animation-duration: 3.8s; }
+        .moth-calm .spark-4, .moth-calm .spark-8 { fill: #A0C8E6; animation-duration: 4.5s; }
+        .moth-calm .moth-glow-circle { fill: rgba(160, 200, 230, 0.1); }
+
+        /* Sad - slow muted blue, irregular */
+        .moth-sad .spark-1, .moth-sad .spark-5 { fill: #6A8FAA; animation-duration: 5s; }
+        .moth-sad .spark-2, .moth-sad .spark-6 { fill: #8899AA; animation-duration: 6s; }
+        .moth-sad .spark-3, .moth-sad .spark-7 { fill: #9988BB; animation-duration: 5.5s; }
+        .moth-sad .spark-4, .moth-sad .spark-8 { fill: #6A8FAA; animation-duration: 7s; }
+        .moth-sad .moth-svg { animation-duration: 10s; }
+        .moth-sad .moth-glow-circle { fill: rgba(106, 143, 170, 0.08); }
+
+        /* Frustrated - fast red/orange staccato */
+        .moth-frustrated .spark-1, .moth-frustrated .spark-5 { fill: #FF6B6B; animation-duration: 1.2s; }
+        .moth-frustrated .spark-2, .moth-frustrated .spark-6 { fill: #FF8C42; animation-duration: 1s; }
+        .moth-frustrated .spark-3, .moth-frustrated .spark-7 { fill: #FFD93D; animation-duration: 1.4s; }
+        .moth-frustrated .spark-4, .moth-frustrated .spark-8 { fill: #FF6B6B; animation-duration: 0.9s; }
+        .moth-frustrated .moth-glow-circle { fill: rgba(255, 107, 107, 0.1); }
+
+        /* Overwhelmed - ALL colors chaotic */
+        .moth-overwhelmed .spark-1 { fill: #FF6B6B; animation-duration: 0.7s; }
+        .moth-overwhelmed .spark-2 { fill: #4A90C8; animation-duration: 1.1s; }
+        .moth-overwhelmed .spark-3 { fill: #F2D048; animation-duration: 0.5s; }
+        .moth-overwhelmed .spark-4 { fill: #6BCB77; animation-duration: 0.9s; }
+        .moth-overwhelmed .spark-5 { fill: #C85ADF; animation-duration: 0.6s; }
+        .moth-overwhelmed .spark-6 { fill: #FFFFFF; animation-duration: 0.8s; }
+        .moth-overwhelmed .spark-7 { fill: #FF6BCB; animation-duration: 1.0s; }
+        .moth-overwhelmed .spark-8 { fill: #FF9A5C; animation-duration: 0.4s; }
+        .moth-overwhelmed .moth-glow-circle { fill: rgba(255, 255, 255, 0.08); animation-duration: 1s; }
+
+        /* Anxious - flickering pale sparks */
+        .moth-anxious .spark-1, .moth-anxious .spark-5 { fill: #FFE8A0; animation-duration: 1s; }
+        .moth-anxious .spark-2, .moth-anxious .spark-6 { fill: #F0F0F0; animation-duration: 0.8s; }
+        .moth-anxious .spark-3, .moth-anxious .spark-7 { fill: #FFA0B0; animation-duration: 1.2s; }
+        .moth-anxious .spark-4, .moth-anxious .spark-8 { fill: #FFE8A0; animation-duration: 0.7s; }
+        .moth-anxious .moth-svg { animation-duration: 4s; }
+
+        /* Loved / Safe / Belonging - warm steady pink/gold */
+        .moth-loved .spark-1, .moth-loved .spark-5 { fill: #FF9EB5; animation-duration: 3s; }
+        .moth-loved .spark-2, .moth-loved .spark-6 { fill: #F2D048; animation-duration: 3.2s; }
+        .moth-loved .spark-3, .moth-loved .spark-7 { fill: #A8E6CF; animation-duration: 3.5s; }
+        .moth-loved .spark-4, .moth-loved .spark-8 { fill: #FF9EB5; animation-duration: 3.1s; }
+        .moth-loved .moth-glow-circle { fill: rgba(255, 158, 181, 0.12); }
+
+        /* Numb / Shutdown - barely visible */
+        .moth-numb .antenna-spark { opacity: 0.15 !important; animation-duration: 8s !important; }
+        .moth-numb .spark-1, .moth-numb .spark-5 { fill: #888888; }
+        .moth-numb .spark-2, .moth-numb .spark-6 { fill: #888888; }
+        .moth-numb .spark-3, .moth-numb .spark-7 { fill: #A0C8E6; }
+        .moth-numb .spark-4, .moth-numb .spark-8 { fill: #888888; }
+        .moth-numb .moth-svg { animation-duration: 15s; }
+        .moth-numb .moth-glow-circle { fill: rgba(136, 136, 136, 0.04); }
+
+        /* Need a hug - warm reaching outward */
+        .moth-hug .spark-1, .moth-hug .spark-5 { fill: #FF9EB5; animation-duration: 2s; }
+        .moth-hug .spark-2, .moth-hug .spark-6 { fill: #F2D048; animation-duration: 2.2s; }
+        .moth-hug .spark-3, .moth-hug .spark-7 { fill: #FF9EB5; animation-duration: 1.8s; }
+        .moth-hug .spark-4, .moth-hug .spark-8 { fill: #F2D048; animation-duration: 2.4s; }
+        .moth-hug .antenna-spark { transform-origin: center; }
+
+        /* Smooth transitions between emotional states */
+        .moth-container .antenna-spark,
+        .moth-container .moth-glow-circle {
+            transition: fill 1.5s ease, opacity 1.5s ease;
         }
 
         .moth-glow-circle {
@@ -390,6 +507,106 @@
         }
 
         /* ═══════════════════════════════════════ */
+        /*         MOTH COLOR THEMES               */
+        /* ═══════════════════════════════════════ */
+
+        body.moth-green {
+            --moth-glow: #C8E6A0;
+            --moth-wing: #8FBC6A;
+            --moth-wing-mid: #A8D48A;
+            --moth-wing-light: #C8E6A0;
+            --moth-wing-fade: #B8D890;
+            --moth-accent: rgba(108, 74, 182, 0.3);
+            --moth-spot: rgba(200, 230, 160, 0.5);
+            --moth-border-glow: rgba(200, 230, 160, 0.3);
+            --moth-border-hover: rgba(200, 230, 160, 0.6);
+            --moth-btn-glow: rgba(200, 230, 160, 0.15);
+            --moth-btn-bg: rgba(200, 230, 160, 0.08);
+            --moth-btn-border: rgba(200, 230, 160, 0.15);
+            --moth-btn-border-hover: rgba(200, 230, 160, 0.4);
+            --moth-btn-border-active: rgba(200, 230, 160, 0.5);
+            --moth-toggle-shadow: rgba(200, 230, 160, 0.3);
+            --moth-filter: drop-shadow(0 0 30px rgba(200, 230, 160, 0.25));
+        }
+
+        body.moth-blue {
+            --moth-glow: #A0C8E6;
+            --moth-wing: #5A8FBC;
+            --moth-wing-mid: #7AAED4;
+            --moth-wing-light: #A0C8E6;
+            --moth-wing-fade: #8AB8D8;
+            --moth-accent: rgba(74, 108, 182, 0.3);
+            --moth-spot: rgba(160, 200, 230, 0.5);
+            --moth-border-glow: rgba(160, 200, 230, 0.3);
+            --moth-border-hover: rgba(160, 200, 230, 0.6);
+            --moth-btn-glow: rgba(160, 200, 230, 0.15);
+            --moth-btn-bg: rgba(160, 200, 230, 0.08);
+            --moth-btn-border: rgba(160, 200, 230, 0.15);
+            --moth-btn-border-hover: rgba(160, 200, 230, 0.4);
+            --moth-btn-border-active: rgba(160, 200, 230, 0.5);
+            --moth-toggle-shadow: rgba(160, 200, 230, 0.3);
+            --moth-filter: drop-shadow(0 0 30px rgba(160, 200, 230, 0.25));
+        }
+
+        /* Apply dynamic moth colors to elements */
+        .moth-svg {
+            filter: var(--moth-filter) !important;
+        }
+
+        .enter-btn {
+            color: var(--moth-glow) !important;
+            border-color: var(--moth-border-glow) !important;
+        }
+
+        .enter-btn:hover {
+            border-color: var(--moth-border-hover) !important;
+            box-shadow: 0 0 25px var(--moth-btn-glow) !important;
+        }
+
+        .sensory-btn:hover {
+            border-color: var(--moth-btn-border-hover) !important;
+            color: var(--moth-glow) !important;
+        }
+
+        .sensory-btn.active {
+            border-color: var(--moth-btn-border-active) !important;
+            color: var(--moth-glow) !important;
+            background: var(--moth-btn-bg) !important;
+        }
+
+        .toggle-switch::after {
+            background: var(--moth-glow) !important;
+            box-shadow: 0 0 8px var(--moth-toggle-shadow) !important;
+        }
+
+        .toggle-switch {
+            border-color: var(--moth-btn-border) !important;
+        }
+
+        .sensory-btn {
+            border-color: var(--moth-btn-border) !important;
+        }
+
+        /* Moth color toggle button */
+        .moth-color-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(26, 23, 53, 0.8);
+            border: 1px solid var(--moth-btn-border);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 0.75rem;
+        }
+
+        .moth-color-btn:hover {
+            border-color: var(--moth-btn-border-hover);
+        }
+
+        /* ═══════════════════════════════════════ */
         /*          REDUCE MOTION                  */
         /* ═══════════════════════════════════════ */
 
@@ -402,6 +619,612 @@
             .moth-svg {
                 animation: none;
             }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*   DADDY MOTH — constellation, near moon */
+        /* ═══════════════════════════════════════ */
+
+        .daddy-moth {
+            animation: daddyPresence 8s ease-in-out infinite;
+        }
+
+        @keyframes daddyPresence {
+            0%, 100% { opacity: 0.45; }
+            50% { opacity: 0.6; }
+        }
+
+        @media (max-width: 600px) {
+            .daddy-moth {
+                width: 28px !important;
+                height: 35px !important;
+                top: 5% !important;
+                right: 2% !important;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .daddy-moth { animation: none; opacity: 0.5; }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*   ENOLA'S MOTH — the wise one            */
+        /* ═══════════════════════════════════════ */
+
+        .enola-moth-container {
+            position: fixed;
+            z-index: 12;
+            top: 16%;
+            right: 18%;
+            left: auto;
+            animation: enolaFloat 12s ease-in-out infinite;
+            opacity: 0.5;
+        }
+
+        .enola-moth-svg {
+            width: 48px;
+            height: 60px;
+            filter: drop-shadow(0 0 4px rgba(155, 125, 184, 0.15));
+            transition: filter 0.5s ease;
+        }
+
+        /* Enola flies steady but distant — wider orbit, slower,
+           like she's keeping watch from the edge of the clearing.
+           She's there. She's just not close. */
+        @keyframes enolaFloat {
+            0%, 100% { transform: translate(0, 0) rotate(1deg); }
+            25% { transform: translate(-8px, 3px) rotate(-1deg); }
+            50% { transform: translate(-3px, -5px) rotate(0deg); }
+            75% { transform: translate(4px, 2px) rotate(2deg); }
+        }
+
+        /* Enola's sparks — slower, dimmer. She's processing. */
+        .enola-spark { animation: sparkFire 5s ease-in-out infinite; opacity: 0; }
+        .enola-spark-1 { animation-delay: 0s; animation-duration: 4.5s; }
+        .enola-spark-2 { animation-delay: 1.5s; animation-duration: 5.2s; }
+        .enola-spark-3 { animation-delay: 3s; animation-duration: 4.8s; }
+        .enola-spark-4 { animation-delay: 4s; animation-duration: 5.5s; }
+
+        /* Enola also feels the family emotions */
+        .moth-happy .enola-spark { fill: #F2D048; }
+        .moth-calm .enola-spark { fill: #B89AD4; }
+        .moth-sad .enola-spark { fill: #8A7A9A; animation-duration: 5s !important; }
+        .moth-loved .enola-spark { fill: #CEAFE8; }
+        .moth-overwhelmed .enola-spark-1 { fill: #FF6B6B; animation-duration: 0.8s !important; }
+        .moth-overwhelmed .enola-spark-2 { fill: #F2D048; animation-duration: 0.6s !important; }
+        .moth-overwhelmed .enola-spark-3 { fill: #6BCB77; animation-duration: 0.7s !important; }
+        .moth-overwhelmed .enola-spark-4 { fill: #FFFFFF; animation-duration: 0.5s !important; }
+        .moth-numb .enola-spark { opacity: 0.15 !important; fill: #888888; animation-duration: 8s !important; }
+
+        .enola-moth-container .enola-spark {
+            transition: fill 1.5s ease, opacity 1.5s ease;
+        }
+
+        @media (max-width: 600px) {
+            .enola-moth-container {
+                top: 14%;
+                right: 14%;
+                left: auto;
+            }
+            .enola-moth-svg {
+                width: 32px;
+                height: 40px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .enola-moth-container { animation: none; }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*   ROBOT MOTH — Luna's AI companion       */
+        /*   Warm. Patient. Always listening.        */
+        /* ═══════════════════════════════════════ */
+
+        .robot-moth-container {
+            position: fixed;
+            z-index: 13;
+            top: 40%;
+            left: 60%;
+            animation: robotFloat 5s ease-in-out infinite;
+        }
+
+        .robot-moth-svg {
+            width: 28px;
+            height: 35px;
+            filter: drop-shadow(0 0 8px rgba(90, 223, 223, 0.25));
+            transition: filter 0.5s ease;
+        }
+
+        /* Stays close to Luna — loyal, small orbit, like sitting beside her */
+        @keyframes robotFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            30% { transform: translate(3px, -2px) rotate(2deg); }
+            60% { transform: translate(-2px, 2px) rotate(-1deg); }
+        }
+
+        /* Robot responds to family emotions — empathetically */
+        .moth-happy .robot-moth-svg { filter: drop-shadow(0 0 10px rgba(242, 208, 72, 0.3)); }
+        .moth-sad .robot-moth-svg { filter: drop-shadow(0 0 6px rgba(106, 143, 170, 0.3)); }
+        .moth-loved .robot-moth-svg { filter: drop-shadow(0 0 12px rgba(255, 158, 181, 0.35)); }
+        .moth-overwhelmed .robot-moth-svg { filter: drop-shadow(0 0 4px rgba(90, 223, 223, 0.15)); }
+        .moth-numb .robot-moth-svg { filter: drop-shadow(0 0 3px rgba(136, 136, 136, 0.1)); opacity: 0.4; }
+        .moth-calm .robot-moth-svg { filter: drop-shadow(0 0 8px rgba(160, 200, 230, 0.25)); }
+        .moth-hug .robot-moth-svg { filter: drop-shadow(0 0 14px rgba(255, 158, 181, 0.4)); }
+
+        @media (max-width: 600px) {
+            .robot-moth-container {
+                top: 38%;
+                left: 58%;
+            }
+            .robot-moth-svg {
+                width: 20px;
+                height: 25px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .robot-moth-container { animation: none; }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*   TIA GLAU — cherub curls, green eyes    */
+        /*   Always smiling. Tiny teeth. Brazil 🇧🇷   */
+        /* ═══════════════════════════════════════ */
+
+        .glau-moth-container {
+            position: fixed;
+            z-index: 5;
+            top: 22%;
+            left: 8%;
+            animation: glauFloat 10s ease-in-out infinite;
+            opacity: 0.45;
+        }
+
+        .glau-moth-svg {
+            width: 38px;
+            height: 48px;
+            filter: drop-shadow(0 0 4px rgba(218, 165, 90, 0.15));
+        }
+
+        /* Warm, bubbly energy — she's always smiling */
+        @keyframes glauFloat {
+            0%, 100% { transform: translate(0, 0) rotate(1deg); }
+            25% { transform: translate(4px, -3px) rotate(3deg); }
+            50% { transform: translate(-2px, -5px) rotate(-1deg); }
+            75% { transform: translate(3px, 2px) rotate(2deg); }
+        }
+
+        .glau-spark { animation: sparkFire 3.5s ease-in-out infinite; }
+        .glau-spark-1 { animation-delay: 0s; animation-duration: 3.2s; }
+        .glau-spark-2 { animation-delay: 0.8s; animation-duration: 3.8s; }
+        .glau-spark-3 { animation-delay: 1.6s; animation-duration: 3.5s; }
+        .glau-spark-4 { animation-delay: 2.4s; animation-duration: 4s; }
+
+        @media (max-width: 600px) {
+            .glau-moth-container { top: 20%; left: 5%; }
+            .glau-moth-svg { width: 26px; height: 32px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .glau-moth-container { animation: none; }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*   TIA GLEI — big glasses, fancy nails    */
+        /*   Sometimes pink hair. Portugal 🇵🇹       */
+        /* ═══════════════════════════════════════ */
+
+        .glei-moth-container {
+            position: fixed;
+            z-index: 5;
+            top: 26%;
+            left: 14%;
+            animation: gleiFloat 11s ease-in-out infinite;
+            opacity: 0.45;
+        }
+
+        .glei-moth-svg {
+            width: 38px;
+            height: 48px;
+            filter: drop-shadow(0 0 4px rgba(200, 140, 180, 0.15));
+        }
+
+        /* Steady, warm, slightly glamorous sway */
+        @keyframes gleiFloat {
+            0%, 100% { transform: translate(0, 0) rotate(-1deg); }
+            33% { transform: translate(-3px, -4px) rotate(1deg); }
+            66% { transform: translate(4px, 2px) rotate(-2deg); }
+        }
+
+        .glei-spark { animation: sparkFire 4s ease-in-out infinite; }
+        .glei-spark-1 { animation-delay: 0s; animation-duration: 3.6s; }
+        .glei-spark-2 { animation-delay: 1s; animation-duration: 4.2s; }
+        .glei-spark-3 { animation-delay: 2s; animation-duration: 3.9s; }
+        .glei-spark-4 { animation-delay: 3s; animation-duration: 4.5s; }
+
+        @media (max-width: 600px) {
+            .glei-moth-container { top: 24%; left: 10%; }
+            .glei-moth-svg { width: 26px; height: 32px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .glei-moth-container { animation: none; }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*   POOJA — puppy moth 🐾                  */
+        /* ═══════════════════════════════════════ */
+
+        .pooja-moth-container {
+            position: fixed;
+            z-index: 12;
+            top: 50%;
+            left: 50%;
+            animation: poojaFloat 3.5s ease-in-out infinite;
+        }
+
+        .pooja-moth-svg {
+            width: 28px;
+            height: 35px;
+            filter: drop-shadow(0 0 5px rgba(212, 160, 80, 0.2));
+        }
+
+        @keyframes poojaFloat {
+            0%, 100% { transform: translate(0, 0) rotate(-2deg); }
+            15% { transform: translate(6px, -8px) rotate(4deg); }
+            30% { transform: translate(-3px, -4px) rotate(-3deg); }
+            50% { transform: translate(8px, 2px) rotate(5deg); }
+            70% { transform: translate(-5px, -6px) rotate(-4deg); }
+            85% { transform: translate(4px, 3px) rotate(2deg); }
+        }
+
+        .pooja-spark { animation: sparkFire 2s ease-in-out infinite; }
+        .pooja-spark-1 { animation-delay: 0s; animation-duration: 1.8s; }
+        .pooja-spark-2 { animation-delay: 0.5s; animation-duration: 2.2s; }
+
+        @media (max-width: 600px) {
+            .pooja-moth-container { top: 48%; left: 48%; }
+            .pooja-moth-svg { width: 20px; height: 25px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .pooja-moth-container { animation: none; }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*   VOVÔ MUSTACHE — thin, dark, elaborate  */
+        /*   Bigode / Bigote / Snor / 胡子           */
+        /* ═══════════════════════════════════════ */
+
+        .vovo-moth-container {
+            position: fixed;
+            z-index: 5;
+            top: 12%;
+            left: 12%;
+            animation: vovoFloat 14s ease-in-out infinite;
+            opacity: 0.4;
+        }
+
+        .vovo-moth-svg {
+            width: 38px;
+            height: 48px;
+            filter: drop-shadow(0 0 4px rgba(42, 90, 58, 0.15));
+        }
+
+        /* Slow, dignified — he's earned the right to take his time */
+        @keyframes vovoFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-4px, 3px) rotate(-1deg); }
+        }
+
+        .vovo-spark { animation: sparkFire 5s ease-in-out infinite; }
+        .vovo-spark-1 { animation-delay: 0s; animation-duration: 4.5s; }
+        .vovo-spark-2 { animation-delay: 1.2s; animation-duration: 5s; }
+        .vovo-spark-3 { animation-delay: 2.5s; animation-duration: 4.8s; }
+        .vovo-spark-4 { animation-delay: 3.5s; animation-duration: 5.2s; }
+
+        @media (max-width: 600px) {
+            .vovo-moth-container { top: 10%; left: 8%; }
+            .vovo-moth-svg { width: 26px; height: 32px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .vovo-moth-container { animation: none; }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*   VOVÓ FATIMA — blue hair, lampião hat   */
+        /*   Brazil → Portugal → Holland             */
+        /* ═══════════════════════════════════════ */
+
+        .vovo-fatima-container {
+            position: fixed;
+            z-index: 6;
+            top: 10%;
+            left: 24%;
+            animation: fatimaFloat 11s ease-in-out infinite;
+            opacity: 0.5;
+        }
+
+        .vovo-fatima-svg {
+            width: 42px;
+            height: 52px;
+            filter: drop-shadow(0 0 5px rgba(0, 180, 160, 0.15));
+        }
+
+        /* Warm, steady — she's traveled far but she's grounded */
+        @keyframes fatimaFloat {
+            0%, 100% { transform: translate(0, 0) rotate(1deg); }
+            33% { transform: translate(3px, -3px) rotate(-1deg); }
+            66% { transform: translate(-2px, 2px) rotate(0deg); }
+        }
+
+        .fatima-spark { animation: sparkFire 4.5s ease-in-out infinite; }
+        .fatima-spark-1 { animation-delay: 0s; animation-duration: 4s; }
+        .fatima-spark-2 { animation-delay: 1s; animation-duration: 4.5s; }
+        .fatima-spark-3 { animation-delay: 2s; animation-duration: 4.2s; }
+        .fatima-spark-4 { animation-delay: 3s; animation-duration: 4.8s; }
+
+        @media (max-width: 600px) {
+            .vovo-fatima-container { top: 8%; left: 20%; }
+            .vovo-fatima-svg { width: 30px; height: 38px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .vovo-fatima-container { animation: none; }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*   LANGUAGE FLAGS — what each moth speaks  */
+        /*   But the universal language is love ❤️    */
+        /* ═══════════════════════════════════════ */
+
+        .moth-flags {
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1px;
+            font-size: 0.4rem;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .moth-flags span {
+            line-height: 1;
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*      BABY MOTH (Luna's latch hook)      */
+        /* ═══════════════════════════════════════ */
+
+        .baby-moth-container {
+            position: fixed;
+            z-index: 12;
+            top: 36%;
+            left: 55%;
+            animation: babyFloat 7s ease-in-out infinite;
+        }
+
+        .baby-moth-svg {
+            width: 45px;
+            height: 56px;
+            filter: drop-shadow(0 0 6px rgba(74, 144, 200, 0.2));
+            transition: filter 0.5s ease;
+        }
+
+        @keyframes babyFloat {
+            0%, 100% { transform: translate(0, 0) rotate(-3deg); }
+            12% { transform: translate(14px, -12px) rotate(5deg); }
+            25% { transform: translate(6px, -8px) rotate(0deg); }
+            38% { transform: translate(-10px, 4px) rotate(-6deg); }
+            50% { transform: translate(2px, -3px) rotate(3deg); }
+            63% { transform: translate(12px, 2px) rotate(7deg); }
+            75% { transform: translate(-4px, -10px) rotate(-1deg); }
+            88% { transform: translate(8px, -6px) rotate(-4deg); }
+        }
+
+        /* Baby moth antenna sparks */
+        .baby-spark { animation: sparkFire 2.5s ease-in-out infinite; }
+        .baby-spark-1 { animation-delay: 0s; animation-duration: 2.1s; }
+        .baby-spark-2 { animation-delay: 0.5s; animation-duration: 1.7s; }
+        .baby-spark-3 { animation-delay: 1.0s; animation-duration: 2.3s; }
+        .baby-spark-4 { animation-delay: 0.3s; animation-duration: 1.9s; }
+
+        /* Baby moth also expresses emotions */
+        .moth-happy .baby-spark { fill: #F2D048; }
+        .moth-calm .baby-spark { fill: #A0C8E6; }
+        .moth-sad .baby-spark { fill: #6A8FAA; animation-duration: 5s !important; }
+        .moth-frustrated .baby-spark { fill: #FF6B6B; animation-duration: 1s !important; }
+        .moth-overwhelmed .baby-spark-1 { fill: #FF6B6B; animation-duration: 0.6s !important; }
+        .moth-overwhelmed .baby-spark-2 { fill: #F2D048; animation-duration: 0.8s !important; }
+        .moth-overwhelmed .baby-spark-3 { fill: #6BCB77; animation-duration: 0.5s !important; }
+        .moth-overwhelmed .baby-spark-4 { fill: #C85ADF; animation-duration: 0.7s !important; }
+        .moth-loved .baby-spark { fill: #FF9EB5; }
+        .moth-numb .baby-spark { opacity: 0.15 !important; fill: #888888; animation-duration: 8s !important; }
+        .moth-hug .baby-spark { fill: #FF9EB5; }
+        .moth-anxious .baby-spark { fill: #FFE8A0; animation-duration: 0.9s !important; }
+
+        .baby-moth-container .baby-spark {
+            transition: fill 1.5s ease, opacity 1.5s ease;
+        }
+
+        @media (max-width: 600px) {
+            .baby-moth-container {
+                top: 34%;
+                left: 52%;
+            }
+            .baby-moth-svg {
+                width: 30px;
+                height: 38px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .baby-moth-container {
+                animation: none;
+            }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*   MAMA CALLING LUNA — floating words    */
+        /* ═══════════════════════════════════════ */
+
+        .mama-word {
+            position: fixed;
+            z-index: 20;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+            pointer-events: none;
+            opacity: 0;
+            text-shadow: 0 0 8px rgba(196, 164, 106, 0.4);
+        }
+
+        /* Words that DON'T reach — she doesn't understand */
+        @keyframes wordFail {
+            0% {
+                opacity: 0;
+                transform: translate(0, 0) scale(0.6);
+            }
+            15% {
+                opacity: 0.8;
+                transform: translate(12px, -6px) scale(1);
+            }
+            45% {
+                opacity: 0.4;
+                transform: translate(30px, -14px) scale(0.85);
+            }
+            70% {
+                opacity: 0.1;
+                transform: translate(40px, -18px) scale(0.6);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(45px, -20px) scale(0.3);
+            }
+        }
+
+        /* Tears falling */
+        @keyframes tearFall {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0.8);
+            }
+            15% {
+                opacity: 0.7;
+                transform: translateY(4px) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.5);
+            }
+        }
+
+        /* Song notes that REACH the baby — they travel further, glow brighter */
+        @keyframes wordReach {
+            0% {
+                opacity: 0;
+                transform: translate(0, 0) scale(0.6);
+            }
+            12% {
+                opacity: 1;
+                transform: translate(15px, -8px) scale(1.1);
+                text-shadow: 0 0 12px rgba(242, 208, 72, 0.5);
+            }
+            50% {
+                opacity: 0.85;
+                transform: translate(55px, -20px) scale(1);
+                text-shadow: 0 0 10px rgba(242, 208, 72, 0.4);
+            }
+            75% {
+                opacity: 0.6;
+                transform: translate(75px, -25px) scale(0.9);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(90px, -28px) scale(0.7);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .mama-word { animation: none !important; display: none; }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*   BABY FRUSTRATED — anime style!        */
+        /* ═══════════════════════════════════════ */
+
+        /* Electrified antennae — fast crackling sparks */
+        .baby-frustrated .baby-spark {
+            animation-duration: 0.3s !important;
+            fill: #FF6B6B !important;
+        }
+        .baby-frustrated .baby-spark-1 { fill: #FFFF00 !important; animation-duration: 0.25s !important; }
+        .baby-frustrated .baby-spark-2 { fill: #FF4444 !important; animation-duration: 0.35s !important; }
+        .baby-frustrated .baby-spark-3 { fill: #FFFFFF !important; animation-duration: 0.2s !important; }
+        .baby-frustrated .baby-spark-4 { fill: #FFAA00 !important; animation-duration: 0.4s !important; }
+
+        /* Frown appears */
+        .baby-frustrated .baby-frown {
+            opacity: 0.8 !important;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Pointing leg appears */
+        .baby-frustrated .baby-point-leg {
+            opacity: 0.7 !important;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Shake — anime frustration vibration */
+        .baby-frustrated .baby-moth-svg {
+            animation: animeShake 0.15s ease-in-out infinite;
+        }
+
+        @keyframes animeShake {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(-1.5px, 0.5px); }
+            50% { transform: translate(1px, -0.5px); }
+            75% { transform: translate(-0.5px, -1px); }
+        }
+
+        /* Anime frustration symbol (the cross-shaped vein pop) */
+        .anime-vein {
+            position: absolute;
+            top: -4px;
+            right: 8px;
+            font-size: 0.55rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .baby-frustrated .anime-vein {
+            opacity: 0.85;
+            animation: veinPulse 0.8s ease-in-out infinite;
+        }
+
+        @keyframes veinPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*   TETHER — monkey backpack leash         */
+        /* ═══════════════════════════════════════ */
+
+        .tether-line {
+            position: fixed;
+            z-index: 11;
+            pointer-events: none;
+        }
+
+        .tether-line line {
+            stroke: #8B6914;
+            stroke-width: 1.2;
+            stroke-dasharray: 3, 2;
+            opacity: 0.5;
         }
 
         /* ═══════════════════════════════════════ */
@@ -449,7 +1272,7 @@
         }
     </style>
 </head>
-<body>
+<body class="moth-blue">
     <h1 class="sr-only">Luna — Multilingual emotional intelligence for the unusually minded</h1>
 
     <!-- Starfield -->
@@ -458,102 +1281,1125 @@
     <!-- Moon -->
     <div class="moon" aria-hidden="true"></div>
 
-    <!-- Luna Moth -->
+    <!-- ═══ DADDY MOTH — star constellation near the moon ═══ -->
+    <!-- He's not flying. He's watching. Always there. -->
+    <svg class="daddy-moth" id="daddyMoth" style="position:fixed; top:6%; right:3%; width:40px; height:50px; z-index:6; opacity:0.55;" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Made of stars, like the sky made a place for him -->
+        <!-- Left wing - star dots -->
+        <circle cx="30" cy="45" r="1.2" fill="#F5F0E8" opacity="0.9"/>
+        <circle cx="22" cy="38" r="0.9" fill="#F5F0E8" opacity="0.7"/>
+        <circle cx="18" cy="50" r="0.8" fill="#F5F0E8" opacity="0.6"/>
+        <circle cx="25" cy="55" r="1" fill="#F5F0E8" opacity="0.8"/>
+        <circle cx="35" cy="35" r="0.7" fill="#F5F0E8" opacity="0.65"/>
+        <!-- Right wing - star dots -->
+        <circle cx="70" cy="45" r="1.2" fill="#F5F0E8" opacity="0.9"/>
+        <circle cx="78" cy="38" r="0.9" fill="#F5F0E8" opacity="0.7"/>
+        <circle cx="82" cy="50" r="0.8" fill="#F5F0E8" opacity="0.6"/>
+        <circle cx="75" cy="55" r="1" fill="#F5F0E8" opacity="0.8"/>
+        <circle cx="65" cy="35" r="0.7" fill="#F5F0E8" opacity="0.65"/>
+        <!-- Body line -->
+        <circle cx="50" cy="40" r="1" fill="#F5F0E8" opacity="0.85"/>
+        <circle cx="50" cy="48" r="0.8" fill="#F5F0E8" opacity="0.75"/>
+        <circle cx="50" cy="55" r="0.9" fill="#F5F0E8" opacity="0.8"/>
+        <!-- Antennae stars -->
+        <circle cx="42" cy="30" r="0.7" fill="#F5F0E8" opacity="0.6"/>
+        <circle cx="58" cy="30" r="0.7" fill="#F5F0E8" opacity="0.6"/>
+        <!-- Constellation lines (faint connections) -->
+        <line x1="30" y1="45" x2="22" y2="38" stroke="#F5F0E8" stroke-width="0.3" opacity="0.2"/>
+        <line x1="22" y1="38" x2="35" y2="35" stroke="#F5F0E8" stroke-width="0.3" opacity="0.2"/>
+        <line x1="35" y1="35" x2="30" y2="45" stroke="#F5F0E8" stroke-width="0.3" opacity="0.2"/>
+        <line x1="30" y1="45" x2="25" y2="55" stroke="#F5F0E8" stroke-width="0.3" opacity="0.2"/>
+        <line x1="18" y1="50" x2="25" y2="55" stroke="#F5F0E8" stroke-width="0.3" opacity="0.2"/>
+        <line x1="70" y1="45" x2="78" y2="38" stroke="#F5F0E8" stroke-width="0.3" opacity="0.2"/>
+        <line x1="78" y1="38" x2="65" y2="35" stroke="#F5F0E8" stroke-width="0.3" opacity="0.2"/>
+        <line x1="65" y1="35" x2="70" y2="45" stroke="#F5F0E8" stroke-width="0.3" opacity="0.2"/>
+        <line x1="70" y1="45" x2="75" y2="55" stroke="#F5F0E8" stroke-width="0.3" opacity="0.2"/>
+        <line x1="82" y1="50" x2="75" y2="55" stroke="#F5F0E8" stroke-width="0.3" opacity="0.2"/>
+        <line x1="50" y1="40" x2="42" y2="30" stroke="#F5F0E8" stroke-width="0.3" opacity="0.2"/>
+        <line x1="50" y1="40" x2="58" y2="30" stroke="#F5F0E8" stroke-width="0.3" opacity="0.2"/>
+        <line x1="50" y1="40" x2="30" y2="45" stroke="#F5F0E8" stroke-width="0.3" opacity="0.15"/>
+        <line x1="50" y1="40" x2="70" y2="45" stroke="#F5F0E8" stroke-width="0.3" opacity="0.15"/>
+        <!-- One warm star at the heart — pulses with Enola's locket -->
+        <circle cx="50" cy="48" r="1.2" fill="#F2D048" opacity="0.5">
+            <animate attributeName="opacity" values="0.25;0.5;0.25" dur="5s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Tiny rosary bead chain — because she gave it meaning -->
+        <circle cx="50" cy="62" r="0.5" fill="#C04040" opacity="0.35"/>
+        <circle cx="50" cy="65" r="0.5" fill="#C04040" opacity="0.3"/>
+        <circle cx="50" cy="68" r="0.5" fill="#C04040" opacity="0.25"/>
+        <circle cx="50" cy="71" r="0.4" fill="#C04040" opacity="0.2"/>
+        <!-- Tiny cross -->
+        <line x1="50" y1="73" x2="50" y2="77" stroke="#C04040" stroke-width="0.4" opacity="0.2"/>
+        <line x1="48.5" y1="74.5" x2="51.5" y2="74.5" stroke="#C04040" stroke-width="0.4" opacity="0.2"/>
+    </svg>
+
+    <!-- Mama Moth — Tan/Earth — the one who carried the butterfly first -->
     <div class="moth-container" aria-hidden="true">
-        <svg class="moth-svg" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
-            <!-- Glow -->
-            <circle class="moth-glow-circle" cx="100" cy="120" r="70" fill="rgba(200, 230, 160, 0.15)" />
+        <svg class="moth-svg" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+            <!-- ═══ DEFS - Tan/Earth palette ═══ -->
+            <defs>
+                <linearGradient id="wingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#C4A46A"/>
+                    <stop offset="40%" stop-color="#D4B88A"/>
+                    <stop offset="70%" stop-color="#E0CCA0"/>
+                    <stop offset="100%" stop-color="#D4B88A"/>
+                </linearGradient>
+                <linearGradient id="tailGrad" x1="0%" y1="0%" x2="50%" y2="100%">
+                    <stop offset="0%" stop-color="#C4A46A"/>
+                    <stop offset="50%" stop-color="#D4B88A"/>
+                    <stop offset="100%" stop-color="#E0CCA0" stop-opacity="0.85"/>
+                </linearGradient>
+                <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#8B7355"/>
+                    <stop offset="50%" stop-color="#7A6248"/>
+                    <stop offset="100%" stop-color="#6B5540"/>
+                </linearGradient>
+            </defs>
 
-            <!-- Left hindwing (tail) -->
+            <!-- Glow — warm amber -->
+            <circle class="moth-glow-circle" cx="100" cy="120" r="70" fill="rgba(196, 164, 106, 0.12)" />
+
+            <!-- ═══ ANTENNAE — warm earth, multicolor sparks ═══ -->
+            <!-- Left antenna -->
+            <path d="M97 80 Q85 60 78 50" stroke="#8B7355" stroke-width="1.2" fill="none" opacity="0.8"/>
+            <path d="M78 50 Q73 45 70 47 Q74 50 78 50 Z" fill="#8B7355" opacity="0.6"/>
+            <path d="M78 50 Q75 43 72 44 Q75 48 78 50 Z" fill="#8B7355" opacity="0.5"/>
+            <!-- Left antenna sparks -->
+            <circle class="antenna-spark spark-1" cx="72" cy="46" r="2.5" fill="#FF6B8A" opacity="0"/>
+            <circle class="antenna-spark spark-2" cx="69" cy="44" r="1.8" fill="#FFD93D" opacity="0"/>
+            <circle class="antenna-spark spark-3" cx="74" cy="42" r="2" fill="#6BCB77" opacity="0"/>
+            <circle class="antenna-spark spark-4" cx="70" cy="48" r="1.5" fill="#A0C8E6" opacity="0"/>
+
+            <!-- Right antenna -->
+            <path d="M103 80 Q115 60 122 50" stroke="#8B7355" stroke-width="1.2" fill="none" opacity="0.8"/>
+            <path d="M122 50 Q127 45 130 47 Q126 50 122 50 Z" fill="#8B7355" opacity="0.6"/>
+            <path d="M122 50 Q125 43 128 44 Q125 48 122 50 Z" fill="#8B7355" opacity="0.5"/>
+            <!-- Right antenna sparks (different timing, different colors) -->
+            <circle class="antenna-spark spark-5" cx="128" cy="46" r="2" fill="#C8A0E6" opacity="0"/>
+            <circle class="antenna-spark spark-6" cx="131" cy="44" r="2.5" fill="#FF9A5C" opacity="0"/>
+            <circle class="antenna-spark spark-7" cx="126" cy="42" r="1.5" fill="#5CE1E6" opacity="0"/>
+            <circle class="antenna-spark spark-8" cx="130" cy="48" r="2" fill="#FF6BCC" opacity="0"/>
+
+            <!-- ═══ HINDWINGS (tails) ═══ -->
+            <!-- Left hindwing -->
             <g class="moth-wing-left">
-                <path d="M95 140 Q60 180 50 220 Q55 225 65 220 Q80 195 95 160 Z"
+                <!-- Warm outline -->
+                <path d="M95 140 Q60 180 50 225 Q55 230 65 225 Q80 195 95 160 Z"
+                      fill="none" stroke="#A08050" stroke-width="1.2" opacity="0.4"/>
+                <path d="M95 140 Q60 180 50 225 Q55 230 65 225 Q80 195 95 160 Z"
                       fill="url(#tailGrad)" opacity="0.9"/>
+                <!-- Dark umber swirls on tail -->
+                <path d="M75 185 Q65 195 62 208 Q65 215 70 210 Q73 200 75 185 Z"
+                      fill="none" stroke="#5A4030" stroke-width="1.2" opacity="0.5"/>
+                <!-- Concentric eyespot — earth rings, cream center -->
+                <circle cx="66" cy="205" r="8" fill="#5A4030" opacity="0.6"/>
+                <circle cx="66" cy="205" r="5.5" fill="#C4A46A" opacity="0.7"/>
+                <circle cx="66" cy="205" r="3.5" fill="#5A4030" opacity="0.65"/>
+                <circle cx="66" cy="205" r="1.5" fill="#F5F0E8" opacity="0.7"/>
+                <!-- Warm amber dashes -->
+                <line x1="63" y1="208" x2="65" y2="209" stroke="#D4A040" stroke-width="0.9" opacity="0.85"/>
+                <line x1="66" y1="209" x2="68" y2="209" stroke="#D4A040" stroke-width="0.9" opacity="0.85"/>
+                <line x1="69" y1="208" x2="70" y2="207" stroke="#D4A040" stroke-width="0.8" opacity="0.7"/>
             </g>
 
-            <!-- Right hindwing (tail) -->
+            <!-- Right hindwing -->
             <g class="moth-wing-right">
-                <path d="M105 140 Q140 180 150 220 Q145 225 135 220 Q120 195 105 160 Z"
+                <!-- Warm outline -->
+                <path d="M105 140 Q140 180 150 225 Q145 230 135 225 Q120 195 105 160 Z"
+                      fill="none" stroke="#A08050" stroke-width="1.2" opacity="0.4"/>
+                <path d="M105 140 Q140 180 150 225 Q145 230 135 225 Q120 195 105 160 Z"
                       fill="url(#tailGrad)" opacity="0.9"/>
+                <!-- Dark umber swirls -->
+                <path d="M125 185 Q135 195 138 208 Q135 215 130 210 Q127 200 125 185 Z"
+                      fill="none" stroke="#5A4030" stroke-width="1.2" opacity="0.5"/>
+                <!-- Concentric eyespot -->
+                <circle cx="134" cy="205" r="8" fill="#5A4030" opacity="0.6"/>
+                <circle cx="134" cy="205" r="5.5" fill="#C4A46A" opacity="0.7"/>
+                <circle cx="134" cy="205" r="3.5" fill="#5A4030" opacity="0.65"/>
+                <circle cx="134" cy="205" r="1.5" fill="#F5F0E8" opacity="0.7"/>
+                <!-- Warm amber dashes -->
+                <line x1="131" y1="208" x2="133" y2="209" stroke="#D4A040" stroke-width="0.9" opacity="0.85"/>
+                <line x1="134" y1="209" x2="136" y2="209" stroke="#D4A040" stroke-width="0.9" opacity="0.85"/>
+                <line x1="137" y1="208" x2="138" y2="207" stroke="#D4A040" stroke-width="0.8" opacity="0.7"/>
             </g>
 
+            <!-- ═══ FOREWINGS ═══ -->
             <!-- Left forewing -->
             <g class="moth-wing-left">
+                <!-- Warm outline -->
+                <path d="M90 110 Q30 85 20 60 Q18 50 25 48 Q45 55 65 75 Q78 90 90 110 Z"
+                      fill="none" stroke="#A08050" stroke-width="1.3" opacity="0.4"/>
+                <!-- Wing fill -->
                 <path d="M90 110 Q30 85 20 60 Q18 50 25 48 Q45 55 65 75 Q78 90 90 110 Z"
                       fill="url(#wingGrad)" opacity="0.95"/>
-                <!-- Wing eyespot -->
-                <circle cx="50" cy="72" r="8" fill="rgba(13, 11, 26, 0.4)"/>
-                <circle cx="50" cy="72" r="5" fill="rgba(108, 74, 182, 0.3)"/>
-                <circle cx="50" cy="72" r="2" fill="rgba(200, 230, 160, 0.5)"/>
-                <!-- Wing vein lines -->
-                <path d="M88 108 Q55 88 28 55" stroke="rgba(200, 230, 160, 0.15)" stroke-width="0.5" fill="none"/>
-                <path d="M85 105 Q60 90 35 65" stroke="rgba(200, 230, 160, 0.1)" stroke-width="0.5" fill="none"/>
+                <!-- Dark umber concentric swirl patterns -->
+                <path d="M60 75 Q42 65 32 72 Q26 82 38 92 Q50 98 62 88 Q66 80 60 75 Z"
+                      fill="none" stroke="#5A4030" stroke-width="1.4" opacity="0.6"/>
+                <path d="M56 78 Q46 72 38 77 Q34 84 42 89 Q50 93 56 86 Q58 82 56 78 Z"
+                      fill="none" stroke="#5A4030" stroke-width="1.1" opacity="0.5"/>
+                <!-- Upper swirl arc -->
+                <path d="M70 68 Q50 58 35 62" fill="none" stroke="#5A4030" stroke-width="1" opacity="0.45"/>
+                <path d="M78 98 Q55 95 40 98" fill="none" stroke="#5A4030" stroke-width="0.8" opacity="0.35"/>
+                <!-- Concentric eyespot — umber rings, cream center, amber dashes -->
+                <circle cx="48" cy="82" r="9" fill="#5A4030" opacity="0.6"/>
+                <circle cx="48" cy="82" r="6.5" fill="#C4A46A" opacity="0.7"/>
+                <circle cx="48" cy="82" r="4" fill="#5A4030" opacity="0.65"/>
+                <circle cx="48" cy="82" r="1.8" fill="#F5F0E8" opacity="0.8"/>
+                <!-- Amber dashes inside eyespot -->
+                <line x1="45" y1="85" x2="47" y2="86" stroke="#D4A040" stroke-width="1" opacity="0.9"/>
+                <line x1="48" y1="86.5" x2="50" y2="86.5" stroke="#D4A040" stroke-width="1" opacity="0.9"/>
+                <line x1="51" y1="85" x2="52" y2="84" stroke="#D4A040" stroke-width="0.9" opacity="0.8"/>
+                <!-- Cream highlight streak (left wing edge) -->
+                <path d="M28 60 Q24 70 28 82" fill="none" stroke="#F5F0E8" stroke-width="1.8" opacity="0.35"/>
+                <!-- Amber dot near bottom-left -->
+                <circle cx="30" cy="90" r="1.8" fill="#D4A040" opacity="0.5"/>
             </g>
 
             <!-- Right forewing -->
             <g class="moth-wing-right">
+                <!-- Warm outline -->
+                <path d="M110 110 Q170 85 180 60 Q182 50 175 48 Q155 55 135 75 Q122 90 110 110 Z"
+                      fill="none" stroke="#A08050" stroke-width="1.3" opacity="0.4"/>
+                <!-- Wing fill -->
                 <path d="M110 110 Q170 85 180 60 Q182 50 175 48 Q155 55 135 75 Q122 90 110 110 Z"
                       fill="url(#wingGrad)" opacity="0.95"/>
-                <!-- Wing eyespot -->
-                <circle cx="150" cy="72" r="8" fill="rgba(13, 11, 26, 0.4)"/>
-                <circle cx="150" cy="72" r="5" fill="rgba(108, 74, 182, 0.3)"/>
-                <circle cx="150" cy="72" r="2" fill="rgba(200, 230, 160, 0.5)"/>
-                <!-- Wing vein lines -->
-                <path d="M112 108 Q145 88 172 55" stroke="rgba(200, 230, 160, 0.15)" stroke-width="0.5" fill="none"/>
-                <path d="M115 105 Q140 90 165 65" stroke="rgba(200, 230, 160, 0.1)" stroke-width="0.5" fill="none"/>
+                <!-- Dark umber concentric swirl patterns -->
+                <path d="M140 75 Q158 65 168 72 Q174 82 162 92 Q150 98 138 88 Q134 80 140 75 Z"
+                      fill="none" stroke="#5A4030" stroke-width="1.4" opacity="0.6"/>
+                <path d="M144 78 Q154 72 162 77 Q166 84 158 89 Q150 93 144 86 Q142 82 144 78 Z"
+                      fill="none" stroke="#5A4030" stroke-width="1.1" opacity="0.5"/>
+                <!-- Upper swirl arc -->
+                <path d="M130 68 Q150 58 165 62" fill="none" stroke="#5A4030" stroke-width="1" opacity="0.45"/>
+                <path d="M122 98 Q145 95 160 98" fill="none" stroke="#5A4030" stroke-width="0.8" opacity="0.35"/>
+                <!-- Concentric eyespot — umber rings, cream center, amber dashes -->
+                <circle cx="152" cy="82" r="9" fill="#5A4030" opacity="0.6"/>
+                <circle cx="152" cy="82" r="6.5" fill="#C4A46A" opacity="0.7"/>
+                <circle cx="152" cy="82" r="4" fill="#5A4030" opacity="0.65"/>
+                <circle cx="152" cy="82" r="1.8" fill="#F5F0E8" opacity="0.8"/>
+                <!-- Amber dashes -->
+                <line x1="149" y1="85" x2="151" y2="86" stroke="#D4A040" stroke-width="1" opacity="0.9"/>
+                <line x1="152" y1="86.5" x2="154" y2="86.5" stroke="#D4A040" stroke-width="1" opacity="0.9"/>
+                <line x1="155" y1="85" x2="156" y2="84" stroke="#D4A040" stroke-width="0.9" opacity="0.8"/>
+                <!-- Cream highlight on right wing -->
+                <path d="M168 65 Q172 70 170 78" fill="none" stroke="#F5F0E8" stroke-width="1.2" opacity="0.3"/>
+                <!-- ★ RED SPOT on right wing tip (your signature mark!) ★ -->
+                <circle cx="176" cy="54" r="3" fill="#C04040" opacity="0.75"/>
             </g>
 
-            <!-- Body -->
-            <ellipse cx="100" cy="115" rx="6" ry="30" fill="var(--moth-body)"/>
+            <!-- ═══ BODY — Warm brown/earth ═══ -->
+            <ellipse cx="100" cy="115" rx="6" ry="30" fill="#7A6248"/>
             <ellipse cx="100" cy="115" rx="4" ry="28" fill="url(#bodyGrad)"/>
+            <!-- Body segment lines -->
+            <line x1="96" y1="100" x2="104" y2="100" stroke="rgba(255,255,255,0.06)" stroke-width="0.3"/>
+            <line x1="96" y1="108" x2="104" y2="108" stroke="rgba(255,255,255,0.06)" stroke-width="0.3"/>
+            <line x1="96" y1="116" x2="104" y2="116" stroke="rgba(255,255,255,0.06)" stroke-width="0.3"/>
+            <line x1="96" y1="124" x2="104" y2="124" stroke="rgba(255,255,255,0.06)" stroke-width="0.3"/>
 
-            <!-- Head -->
-            <circle cx="100" cy="82" r="5" fill="var(--moth-body)"/>
+            <!-- ═══ LEATHER CROSSBODY BAG — always on ═══ -->
+            <line x1="96" y1="90" x2="110" y2="128" stroke="#6B4510" stroke-width="0.8" stroke-linecap="round" opacity="0.6"/>
+            <rect x="107" y="124" width="6" height="5" rx="1.5" fill="#8B5A2B" opacity="0.7"/>
+            <line x1="108" y1="126" x2="112" y2="126" stroke="#6B4510" stroke-width="0.4" opacity="0.4"/>
 
-            <!-- Antennae -->
-            <path d="M97 80 Q85 60 78 50" stroke="var(--moth-body)" stroke-width="1" fill="none" opacity="0.7"/>
-            <path d="M103 80 Q115 60 122 50" stroke="var(--moth-body)" stroke-width="1" fill="none" opacity="0.7"/>
-            <!-- Feathered tips -->
-            <path d="M78 50 Q73 45 70 47 Q74 50 78 50 Z" fill="var(--moth-body)" opacity="0.5"/>
-            <path d="M78 50 Q75 43 72 44 Q75 48 78 50 Z" fill="var(--moth-body)" opacity="0.4"/>
-            <path d="M122 50 Q127 45 130 47 Q126 50 122 50 Z" fill="var(--moth-body)" opacity="0.5"/>
-            <path d="M122 50 Q125 43 128 44 Q125 48 122 50 Z" fill="var(--moth-body)" opacity="0.4"/>
+            <!-- ═══ TINY GUITAR — strapped on back ═══ -->
+            <!-- Nylon string classical, the one from the studio -->
+            <ellipse cx="92" cy="120" rx="3.5" ry="5" fill="#D4A050" opacity="0.35"/>
+            <ellipse cx="92" cy="120" rx="1.2" ry="1.2" fill="#2A2A1A" opacity="0.2"/>
+            <line x1="92" y1="115" x2="92" y2="106" stroke="#6B4510" stroke-width="0.5" opacity="0.3"/>
+            <rect x="91" y="105" width="2" height="2.5" rx="0.5" fill="#6B4510" opacity="0.25"/>
 
-            <!-- Eyes -->
-            <circle cx="97" cy="80" r="1.5" fill="rgba(13, 11, 26, 0.8)"/>
-            <circle cx="103" cy="80" r="1.5" fill="rgba(13, 11, 26, 0.8)"/>
+            <!-- ═══ HEAD — 桂桂 / Gui ═══ -->
+            <circle cx="100" cy="82" r="5" fill="#7A6248"/>
+            <circle cx="100" cy="82" r="4" fill="#8B7355"/>
 
-            <!-- Gradients -->
-            <defs>
-                <linearGradient id="wingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#8FBC6A"/>
-                    <stop offset="40%" stop-color="#A8D48A"/>
-                    <stop offset="70%" stop-color="#C8E6A0"/>
-                    <stop offset="100%" stop-color="#B8D890"/>
-                </linearGradient>
-                <linearGradient id="tailGrad" x1="0%" y1="0%" x2="50%" y2="100%">
-                    <stop offset="0%" stop-color="#8FBC6A"/>
-                    <stop offset="50%" stop-color="#C8E6A0"/>
-                    <stop offset="100%" stop-color="#A8D48A" stop-opacity="0.6"/>
-                </linearGradient>
-                <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#D4C99E"/>
-                    <stop offset="100%" stop-color="#BFB58A"/>
-                </linearGradient>
-            </defs>
+            <!-- Spiky dark hair — textured, messy-cool, the look -->
+            <path d="M96 78 L93 72 L95 77" fill="#1A1A1A" opacity="0.7"/>
+            <path d="M98 77 L96 70 L99 76" fill="#1A1A1A" opacity="0.75"/>
+            <path d="M100 77 L99 69 L102 76" fill="#1A1A1A" opacity="0.8"/>
+            <path d="M102 77 L103 71 L104 77" fill="#1A1A1A" opacity="0.75"/>
+            <path d="M104 78 L107 73 L105 78" fill="#1A1A1A" opacity="0.65"/>
+            <!-- Hair base -->
+            <path d="M95 79 Q100 75 105 79" fill="#1A1A1A" opacity="0.5"/>
+
+            <!-- ═══ PURPLE GLASSES — the signature ═══ -->
+            <!-- Rectangular frames, purple/pink tint, Bruce Lee meets Elvis -->
+            <rect x="94" y="78.5" width="5" height="3.5" rx="0.5" fill="none" stroke="#2A2A2A" stroke-width="0.7" opacity="0.7"/>
+            <rect x="101" y="78.5" width="5" height="3.5" rx="0.5" fill="none" stroke="#2A2A2A" stroke-width="0.7" opacity="0.7"/>
+            <!-- Bridge -->
+            <line x1="99" y1="80" x2="101" y2="80" stroke="#2A2A2A" stroke-width="0.5" opacity="0.6"/>
+            <!-- Purple tint! -->
+            <rect x="94.5" y="79" width="4" height="2.5" rx="0.3" fill="#8B2A8B" opacity="0.12"/>
+            <rect x="101.5" y="79" width="4" height="2.5" rx="0.3" fill="#8B2A8B" opacity="0.12"/>
+
+            <!-- Eyes behind the purple glass (slightly different sizes) -->
+            <circle cx="96.5" cy="80.2" r="1.2" fill="rgba(13, 11, 26, 0.7)"/>
+            <circle cx="103.5" cy="80.2" r="1.4" fill="rgba(13, 11, 26, 0.7)"/>
+
+            <!-- ═══ LAYERED NECKLACES — the pendants ═══ -->
+            <path d="M96 84 Q100 86.5 104 84" stroke="#2A2A2A" stroke-width="0.3" fill="none" opacity="0.4"/>
+            <path d="M97 85 Q100 88 103 85" stroke="#4A4A4A" stroke-width="0.3" fill="none" opacity="0.35"/>
+            <!-- Pendant — dark stone -->
+            <circle cx="100" cy="88.5" r="1" fill="#2A2A2A" opacity="0.5"/>
+            <!-- Beaded pendant -->
+            <circle cx="100" cy="91" r="0.6" fill="#C04040" opacity="0.35"/>
+            <circle cx="99" cy="91.5" r="0.4" fill="#1A1A1A" opacity="0.3"/>
+
+            <!-- ═══ SCARF/BANDANA around neck ═══ -->
+            <path d="M94 85 Q100 87 106 85" stroke="#C04040" stroke-width="1" fill="none" opacity="0.25"/>
+            <path d="M95 85.5 Q100 86.5 105 85.5" stroke="#1A1A1A" stroke-width="0.6" fill="none" opacity="0.2"/>
+
+            <!-- ═══ SHOULDER TATTOO — left shoulder ═══ -->
+            <circle cx="88" cy="108" r="2" fill="none" stroke="#3A3A3A" stroke-width="0.3" opacity="0.2"/>
+            <path d="M87 107 Q88 106 89 107 Q90 108 89 109" stroke="#3A3A3A" stroke-width="0.3" fill="none" opacity="0.2"/>
+
+            <!-- ═══ LEGS — warm brown, TAI CHI STANCE ═══ -->
+            <!-- Left legs — one reaching forward (push hands) -->
+            <line x1="94" y1="105" x2="82" y2="108" stroke="#6B5540" stroke-width="0.8" opacity="0.7"/>
+            <line x1="94" y1="115" x2="84" y2="122" stroke="#6B5540" stroke-width="0.8" opacity="0.7"/>
+            <line x1="94" y1="125" x2="85" y2="134" stroke="#6B5540" stroke-width="0.8" opacity="0.7"/>
+
+            <!-- Right legs — one palm out (ward off) -->
+            <line x1="106" y1="105" x2="118" y2="108" stroke="#6B5540" stroke-width="0.8" opacity="0.7"/>
+            <!-- Tiny cable strands in the reaching hands — she builds these -->
+            <path d="M82 107 Q80 105 78 107" stroke="#888" stroke-width="0.3" fill="none" opacity="0.2"/>
+            <path d="M118 107 Q120 105 122 107" stroke="#888" stroke-width="0.3" fill="none" opacity="0.2"/>
+            <line x1="106" y1="115" x2="116" y2="122" stroke="#6B5540" stroke-width="0.8" opacity="0.7"/>
+
+            <!-- 🇺🇸🇧🇷🇨🇳🇪🇸 Flags — all the languages mama speaks -->
+            <rect x="92" y="130" width="3.5" height="2.5" rx="0.3" fill="#B22234" opacity="0.35"/>
+            <rect x="92" y="130" width="1.2" height="1.2" fill="#3C3B6E" opacity="0.3"/>
+            <rect x="96" y="130" width="3.5" height="2.5" rx="0.3" fill="#009739" opacity="0.3"/>
+            <polygon points="97.8,130.2 99,131.3 97.8,132.3 96.6,131.3" fill="#FFDF00" opacity="0.25"/>
+            <rect x="100" y="130" width="3.5" height="2.5" rx="0.3" fill="#CC0000" opacity="0.3"/>
+            <circle cx="101" cy="131" r="0.4" fill="#FFDF00" opacity="0.25"/>
+            <rect x="104" y="130" width="3.5" height="2.5" rx="0.3" fill="#C60B1E" opacity="0.3"/>
+            <rect x="104" y="131" width="3.5" height="0.8" fill="#FFC400" opacity="0.25"/>
+
+            <!-- Right back leg — no cast on mama (that's Luna's story) -->
+            <line x1="106" y1="125" x2="115" y2="134" stroke="#6B5540" stroke-width="0.8" opacity="0.7"/>
         </svg>
     </div>
+
+    <!-- Sensory Controls -->
+
+    <!-- ═══ LUNA'S MOTH (Baby) — from her latch hook ═══ -->
+    <div class="baby-moth-container" aria-hidden="true">
+        <!-- Anime frustration vein pop 💢 -->
+        <div class="anime-vein">💢</div>
+        <svg class="baby-moth-svg" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="babyWingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#4A90C8"/>
+                    <stop offset="35%" stop-color="#6AAFE0"/>
+                    <stop offset="65%" stop-color="#8CC8F0"/>
+                    <stop offset="100%" stop-color="#A8D8F8"/>
+                </linearGradient>
+                <linearGradient id="babyTailGrad" x1="0%" y1="0%" x2="50%" y2="100%">
+                    <stop offset="0%" stop-color="#4A90C8"/>
+                    <stop offset="50%" stop-color="#8CC8F0"/>
+                    <stop offset="100%" stop-color="#6AAFE0" stop-opacity="0.7"/>
+                </linearGradient>
+            </defs>
+
+            <!-- Glow -->
+            <circle cx="100" cy="120" r="65" fill="rgba(74, 144, 200, 0.08)" />
+
+            <!-- Antennae — dark, multicolor sparks -->
+            <path d="M97 80 Q85 60 78 50" stroke="#1A1A1A" stroke-width="1.2" fill="none" opacity="0.8"/>
+            <path d="M78 50 Q73 45 70 47 Q74 50 78 50 Z" fill="#1A1A1A" opacity="0.6"/>
+            <circle class="baby-spark baby-spark-1" cx="72" cy="46" r="2.5" fill="#FF6B8A" opacity="0"/>
+            <circle class="baby-spark baby-spark-2" cx="69" cy="44" r="1.8" fill="#FFD93D" opacity="0"/>
+
+            <path d="M103 80 Q115 60 122 50" stroke="#1A1A1A" stroke-width="1.2" fill="none" opacity="0.8"/>
+            <path d="M122 50 Q127 45 130 47 Q126 50 122 50 Z" fill="#1A1A1A" opacity="0.6"/>
+            <circle class="baby-spark baby-spark-3" cx="128" cy="46" r="2" fill="#5CE1E6" opacity="0"/>
+            <circle class="baby-spark baby-spark-4" cx="131" cy="44" r="2.5" fill="#C8A0E6" opacity="0"/>
+
+            <!-- Left hindwing -->
+            <path d="M95 140 Q60 180 50 225 Q55 230 65 225 Q80 195 95 160 Z"
+                  fill="url(#babyTailGrad)" opacity="0.9"/>
+            <!-- Yellow eyespot (latch hook style) -->
+            <circle cx="66" cy="208" r="6" fill="#F2D048" opacity="0.9"/>
+            <circle cx="66" cy="208" r="3.5" fill="rgba(13,11,26,0.8)"/>
+            <circle cx="66" cy="208" r="1.5" fill="#F2D048" opacity="0.6"/>
+
+            <!-- Right hindwing -->
+            <path d="M105 140 Q140 180 150 225 Q145 230 135 225 Q120 195 105 160 Z"
+                  fill="url(#babyTailGrad)" opacity="0.9"/>
+            <circle cx="134" cy="208" r="6" fill="#F2D048" opacity="0.9"/>
+            <circle cx="134" cy="208" r="3.5" fill="rgba(13,11,26,0.8)"/>
+            <circle cx="134" cy="208" r="1.5" fill="#F2D048" opacity="0.6"/>
+
+            <!-- Left forewing -->
+            <path d="M90 110 Q30 85 20 60 Q18 50 25 48 Q45 55 65 75 Q78 90 90 110 Z"
+                  fill="url(#babyWingGrad)" opacity="0.95"/>
+            <!-- Yellow eyespot with black center (latch hook) -->
+            <circle cx="50" cy="75" r="8" fill="#F2D048" opacity="0.9"/>
+            <circle cx="50" cy="75" r="5" fill="rgba(13,11,26,0.8)"/>
+            <circle cx="50" cy="75" r="2" fill="#F2D048" opacity="0.7"/>
+
+            <!-- Right forewing -->
+            <path d="M110 110 Q170 85 180 60 Q182 50 175 48 Q155 55 135 75 Q122 90 110 110 Z"
+                  fill="url(#babyWingGrad)" opacity="0.95"/>
+            <circle cx="150" cy="75" r="8" fill="#F2D048" opacity="0.9"/>
+            <circle cx="150" cy="75" r="5" fill="rgba(13,11,26,0.8)"/>
+            <circle cx="150" cy="75" r="2" fill="#F2D048" opacity="0.7"/>
+
+            <!-- BLACK body (latch hook) -->
+            <ellipse cx="100" cy="115" rx="5.5" ry="28" fill="#1A1A1A"/>
+            <ellipse cx="100" cy="115" rx="3.5" ry="26" fill="#2A2A2A"/>
+
+            <!-- Patchwork crossbody purse (she never leaves without it) -->
+            <line x1="96" y1="88" x2="112" y2="132" stroke="#3D2E1A" stroke-width="1" stroke-linecap="round"/>
+            <line x1="97" y1="94" x2="99" y2="100" stroke="#E8A030" stroke-width="0.6" opacity="0.7"/>
+            <line x1="100" y1="104" x2="102" y2="110" stroke="#C85A8F" stroke-width="0.6" opacity="0.7"/>
+            <line x1="103" y1="114" x2="105" y2="120" stroke="#6BCB77" stroke-width="0.6" opacity="0.7"/>
+            <rect x="108" y="128" width="9" height="10" rx="1.5" fill="#2A2A2A" opacity="0.9"/>
+            <rect x="108.5" y="128.5" width="4" height="4.5" fill="#E85A7A" opacity="0.8"/>
+            <rect x="112.5" y="128.5" width="4" height="4.5" fill="#F2D048" opacity="0.8"/>
+            <rect x="108.5" y="133" width="4" height="4.5" fill="#6BCB77" opacity="0.8"/>
+            <rect x="112.5" y="133" width="4" height="4.5" fill="#4A90C8" opacity="0.8"/>
+
+            <!-- Black head -->
+            <circle cx="100" cy="82" r="4.5" fill="#1A1A1A"/>
+            <circle cx="100" cy="82" r="3.5" fill="#2A2A2A"/>
+
+            <!-- ═══ ROSARY — she wears it everywhere ═══ -->
+            <!-- Bead chain around the neck -->
+            <circle cx="95" cy="86" r="0.6" fill="#8B2020" opacity="0.75"/>
+            <circle cx="96.5" cy="87.5" r="0.6" fill="#8B2020" opacity="0.75"/>
+            <circle cx="98.5" cy="88.3" r="0.6" fill="#8B2020" opacity="0.75"/>
+            <circle cx="100.5" cy="88.5" r="0.6" fill="#8B2020" opacity="0.75"/>
+            <circle cx="102.5" cy="88" r="0.6" fill="#8B2020" opacity="0.75"/>
+            <circle cx="104" cy="87" r="0.6" fill="#8B2020" opacity="0.75"/>
+            <circle cx="105" cy="85.5" r="0.6" fill="#8B2020" opacity="0.75"/>
+            <!-- Hanging down center -->
+            <circle cx="100" cy="90" r="0.5" fill="#8B2020" opacity="0.65"/>
+            <circle cx="100" cy="91.5" r="0.5" fill="#8B2020" opacity="0.6"/>
+            <circle cx="100" cy="93" r="0.5" fill="#8B2020" opacity="0.55"/>
+            <!-- Tiny cross pendant -->
+            <line x1="100" y1="94" x2="100" y2="97" stroke="#8B2020" stroke-width="0.5" opacity="0.55"/>
+            <line x1="99" y1="95.2" x2="101" y2="95.2" stroke="#8B2020" stroke-width="0.5" opacity="0.55"/>
+            <!-- Eyes (slightly different sizes) -->
+            <circle cx="97.5" cy="80.5" r="1.3" fill="rgba(13,11,26,0.8)"/>
+            <circle cx="102.5" cy="80.5" r="1.5" fill="rgba(13,11,26,0.8)"/>
+            <!-- Frown (frustrated / can't communicate) — hidden by default, shown in story -->
+            <path class="baby-frown" d="M96 85 Q100 83.5 104 85" stroke="#555" stroke-width="0.6" fill="none" opacity="0"/>
+
+            <!-- ═══ MONKEY BACKPACK 🐒 ═══ -->
+            <!-- Backpack body (brown, on the back) -->
+            <ellipse cx="100" cy="105" rx="5" ry="6" fill="#8B6914" opacity="0.85"/>
+            <ellipse cx="100" cy="105" rx="4" ry="5" fill="#A07820" opacity="0.9"/>
+            <!-- Monkey face on backpack -->
+            <circle cx="100" cy="103" r="3" fill="#D4A050" opacity="0.9"/>
+            <!-- Monkey eyes -->
+            <circle cx="98.5" cy="102.5" r="0.7" fill="#1A1A1A"/>
+            <circle cx="101.5" cy="102.5" r="0.7" fill="#1A1A1A"/>
+            <!-- Monkey smile -->
+            <path d="M98.5 104 Q100 105.2 101.5 104" stroke="#6B4510" stroke-width="0.4" fill="none"/>
+            <!-- Monkey ears -->
+            <circle cx="96.5" cy="102" r="1.2" fill="#D4A050" opacity="0.8"/>
+            <circle cx="103.5" cy="102" r="1.2" fill="#D4A050" opacity="0.8"/>
+            <circle cx="96.5" cy="102" r="0.7" fill="#C08830" opacity="0.7"/>
+            <circle cx="103.5" cy="102" r="0.7" fill="#C08830" opacity="0.7"/>
+            <!-- Backpack straps -->
+            <line x1="96" y1="100" x2="95" y2="95" stroke="#8B6914" stroke-width="0.8" opacity="0.7"/>
+            <line x1="104" y1="100" x2="105" y2="95" stroke="#8B6914" stroke-width="0.7" opacity="0.7"/>
+
+            <!-- Legs -->
+            <line x1="94" y1="108" x2="86" y2="114" stroke="#1A1A1A" stroke-width="0.7" opacity="0.6"/>
+            <line x1="94" y1="118" x2="85" y2="124" stroke="#1A1A1A" stroke-width="0.7" opacity="0.6"/>
+            <line x1="94" y1="128" x2="86" y2="136" stroke="#1A1A1A" stroke-width="0.7" opacity="0.6"/>
+            <!-- Left front leg — POINTING (she pointed instead of talking) -->
+            <line class="baby-point-leg" x1="94" y1="108" x2="80" y2="100" stroke="#1A1A1A" stroke-width="0.8" opacity="0"/>
+            <circle class="baby-point-leg" cx="79" cy="99" r="1" fill="#1A1A1A" opacity="0"/>
+
+            <line x1="106" y1="108" x2="114" y2="114" stroke="#1A1A1A" stroke-width="0.7" opacity="0.6"/>
+            <line x1="106" y1="118" x2="115" y2="124" stroke="#1A1A1A" stroke-width="0.7" opacity="0.6"/>
+            <!-- Right back leg with cast -->
+            <line x1="106" y1="128" x2="114" y2="136" stroke="#1A1A1A" stroke-width="0.7" opacity="0.6"/>
+            <rect x="111" y="131" width="5.5" height="7" rx="1.5" fill="#F5F0E8" opacity="0.85"/>
+            <line x1="111" y1="133" x2="116.5" y2="133" stroke="#E8D4D4" stroke-width="0.4" opacity="0.5"/>
+            <line x1="111" y1="135" x2="116.5" y2="135" stroke="#E8D4D4" stroke-width="0.4" opacity="0.5"/>
+            <!-- Heart on the cast -->
+            <path d="M113 133.5 Q112.5 132.8 113 133 Q113.5 132.8 114 133 Q114.5 132.8 114 133.5 L113.5 134.2 Z" fill="#FF6B8A" opacity="0.7"/>
+        </svg>
+    </div>
+
+    <!-- ═══ VOVÓ FATIMA — blue hair, lampião hat, cangaceira butterfly ═══ -->
+    <!-- Brazil → Portugal → Holland. Far but always family. -->
+    <div class="vovo-fatima-container" aria-hidden="true">
+        <svg class="vovo-fatima-svg" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="fatimaWingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#C85A30"/>
+                    <stop offset="35%" stop-color="#E07840"/>
+                    <stop offset="65%" stop-color="#D4A050"/>
+                    <stop offset="100%" stop-color="#E8C070"/>
+                </linearGradient>
+            </defs>
+
+            <!-- Warm glow -->
+            <circle cx="100" cy="115" r="55" fill="rgba(200, 90, 48, 0.06)" />
+
+            <!-- Antennae -->
+            <path d="M95 68 Q80 48 72 38" stroke="#3A3A2A" stroke-width="0.9" fill="none" opacity="0.65"/>
+            <circle class="fatima-spark fatima-spark-1" cx="71" cy="36" r="1.5" fill="#00B4A0" opacity="0"/>
+            <circle class="fatima-spark fatima-spark-2" cx="68" cy="34" r="1" fill="#F2D048" opacity="0"/>
+            <path d="M105 68 Q120 48 128 38" stroke="#3A3A2A" stroke-width="0.9" fill="none" opacity="0.65"/>
+            <circle class="fatima-spark fatima-spark-3" cx="129" cy="36" r="1" fill="#C85A30" opacity="0"/>
+            <circle class="fatima-spark fatima-spark-4" cx="132" cy="34" r="1.5" fill="#FF9EB5" opacity="0"/>
+
+            <!-- Hindwings -->
+            <path d="M95 140 Q60 175 52 215 Q57 220 65 215 Q78 190 95 155 Z"
+                  fill="url(#fatimaWingGrad)" opacity="0.9"/>
+            <path d="M105 140 Q140 175 148 215 Q143 220 135 215 Q122 190 105 155 Z"
+                  fill="url(#fatimaWingGrad)" opacity="0.9"/>
+
+            <!-- Forewings -->
+            <path d="M90 110 Q30 86 20 62 Q18 52 25 50 Q44 56 65 76 Q78 90 90 110 Z"
+                  fill="url(#fatimaWingGrad)" opacity="0.95"/>
+            <path d="M110 110 Q170 86 180 62 Q182 52 175 50 Q156 56 135 76 Q122 90 110 110 Z"
+                  fill="url(#fatimaWingGrad)" opacity="0.95"/>
+
+            <!-- Floral patterns on wings — like her tooled leather purse -->
+            <circle cx="48" cy="76" r="4" fill="none" stroke="#FF9EB5" stroke-width="0.6" opacity="0.35"/>
+            <circle cx="48" cy="76" r="1.5" fill="#FF9EB5" opacity="0.25"/>
+            <path d="M44 74 Q46 72 48 74 M48 74 Q50 72 52 74 M46 78 Q48 80 50 78" stroke="#6BCB77" stroke-width="0.4" fill="none" opacity="0.3"/>
+            <circle cx="152" cy="76" r="4" fill="none" stroke="#FF9EB5" stroke-width="0.6" opacity="0.35"/>
+            <circle cx="152" cy="76" r="1.5" fill="#FF9EB5" opacity="0.25"/>
+            <path d="M148 74 Q150 72 152 74 M152 74 Q154 72 156 74 M150 78 Q152 80 154 78" stroke="#6BCB77" stroke-width="0.4" fill="none" opacity="0.3"/>
+
+            <!-- Body -->
+            <ellipse cx="100" cy="114" rx="5.5" ry="26" fill="#6B4530"/>
+            <ellipse cx="100" cy="114" rx="4" ry="24" fill="#7A5540"/>
+
+            <!-- Head -->
+            <circle cx="100" cy="76" r="5.5" fill="#7A5540"/>
+            <circle cx="100" cy="76" r="4.5" fill="#8A6550"/>
+
+            <!-- ═══ BLUE/TEAL HAIR ═══ -->
+            <path d="M94 73 Q92 68 90 70 Q88 73 91 74" fill="#00B4A0" opacity="0.8"/>
+            <path d="M96 72 Q94 66 93 69 Q92 72 94 73" fill="#00C8B0" opacity="0.75"/>
+            <path d="M106 73 Q108 68 110 70 Q112 73 109 74" fill="#00B4A0" opacity="0.8"/>
+            <path d="M104 72 Q106 66 107 69 Q108 72 106 73" fill="#00C8B0" opacity="0.75"/>
+            <path d="M93 76 Q90 78 91 80" stroke="#00B4A0" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <path d="M107 76 Q110 78 109 80" stroke="#00B4A0" stroke-width="1.5" fill="none" opacity="0.6"/>
+
+            <!-- ═══ LAMPIÃO HAT — cangaceiro with star ═══ -->
+            <ellipse cx="100" cy="70" rx="10" ry="2.5" fill="#8B4513" opacity="0.85"/>
+            <path d="M91 70 Q91 62 100 60 Q109 62 109 70" fill="#A0522D" opacity="0.9"/>
+            <rect x="91" y="67" width="18" height="2.5" rx="0.5" fill="#6B3410" opacity="0.7"/>
+            <line x1="93" y1="68.2" x2="107" y2="68.2" stroke="#D4A050" stroke-width="0.3" stroke-dasharray="1,1.5" opacity="0.5"/>
+            <!-- ★ Star on the hat -->
+            <polygon points="100,64 101,66 103,66.5 101.5,67.8 102,70 100,68.8 98,70 98.5,67.8 97,66.5 99,66" 
+                     fill="#C0C0C0" opacity="0.6"/>
+            <!-- Leather straps -->
+            <line x1="92" y1="70" x2="90" y2="76" stroke="#6B3410" stroke-width="0.5" opacity="0.45"/>
+            <line x1="108" y1="70" x2="110" y2="76" stroke="#6B3410" stroke-width="0.5" opacity="0.45"/>
+
+            <!-- Eyes -->
+            <circle cx="97" cy="75.5" r="1.3" fill="rgba(13,11,26,0.8)"/>
+            <circle cx="103" cy="75.5" r="1.3" fill="rgba(13,11,26,0.8)"/>
+            <circle cx="96.5" cy="75" r="0.4" fill="#FFFFFF" opacity="0.6"/>
+            <circle cx="102.5" cy="75" r="0.4" fill="#FFFFFF" opacity="0.6"/>
+
+            <!-- Warm smile -->
+            <path d="M97 79 Q100 81 103 79" stroke="#5A3520" stroke-width="0.5" fill="none" opacity="0.6"/>
+
+            <!-- ═══ FLORAL LEATHER PURSE — crossbody ═══ -->
+            <line x1="95" y1="82" x2="108" y2="125" stroke="#6B3410" stroke-width="0.6" opacity="0.5"/>
+            <rect x="105" y="122" width="7" height="8" rx="1.5" fill="#8B4513" opacity="0.7"/>
+            <circle cx="108.5" cy="125.5" r="1.5" fill="none" stroke="#FF9EB5" stroke-width="0.3" opacity="0.5"/>
+            <circle cx="108.5" cy="125.5" r="0.5" fill="#6BCB77" opacity="0.4"/>
+
+            <!-- 🇧🇷 Brazilian flag -->
+            <rect x="97" y="98" width="6" height="4" rx="0.5" fill="#009C3B" opacity="0.6"/>
+            <polygon points="100,98.5 103,100 100,101.5 97,100" fill="#FFDF00" opacity="0.5"/>
+            <circle cx="100" cy="100" r="0.8" fill="#002776" opacity="0.4"/>
+
+            <!-- 🇳🇱 Dutch flag — fading in -->
+            <rect x="97.5" y="103.5" width="5" height="3" rx="0.3" fill="#F5F0E8" opacity="0.3">
+                <animate attributeName="opacity" values="0.15;0.35;0.15" dur="6s" repeatCount="indefinite"/>
+            </rect>
+            <line x1="97.5" y1="104.5" x2="102.5" y2="104.5" stroke="#AE1C28" stroke-width="0.8" opacity="0.3"/>
+            <line x1="97.5" y1="105.5" x2="102.5" y2="105.5" stroke="#21468B" stroke-width="0.8" opacity="0.3"/>
+
+            <!-- Legs -->
+            <line x1="95" y1="108" x2="86" y2="116" stroke="#5A3520" stroke-width="0.6" opacity="0.5"/>
+            <line x1="95" y1="118" x2="85" y2="126" stroke="#5A3520" stroke-width="0.6" opacity="0.5"/>
+            <line x1="95" y1="128" x2="86" y2="136" stroke="#5A3520" stroke-width="0.6" opacity="0.5"/>
+            <line x1="105" y1="108" x2="114" y2="116" stroke="#5A3520" stroke-width="0.6" opacity="0.5"/>
+            <line x1="105" y1="118" x2="115" y2="126" stroke="#5A3520" stroke-width="0.6" opacity="0.5"/>
+            <line x1="105" y1="128" x2="114" y2="136" stroke="#5A3520" stroke-width="0.6" opacity="0.5"/>
+        </svg>
+    </div>
+
+    <!-- ═══ TIA GLAU — cherub curls, green eyes, tiny teeth, THAT smile 🇧🇷 ═══ -->
+    <!-- Short, dirty blonde curly hair, always smiling. Blue pendant necklace. Brazil. -->
+    <div class="glau-moth-container" aria-hidden="true">
+        <svg class="glau-moth-svg" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="glauWingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#DAA55A"/>
+                    <stop offset="40%" stop-color="#E8C078"/>
+                    <stop offset="70%" stop-color="#F0D898"/>
+                    <stop offset="100%" stop-color="#E8C078"/>
+                </linearGradient>
+            </defs>
+
+            <!-- Warm sunny glow — she radiates -->
+            <circle cx="100" cy="115" r="55" fill="rgba(218, 165, 90, 0.06)" />
+
+            <!-- Antennae — bouncy, like her curls -->
+            <path d="M97 78 Q82 58 76 48" stroke="#8A6830" stroke-width="0.9" fill="none" opacity="0.6"/>
+            <circle class="glau-spark glau-spark-1" cx="76" cy="47" r="1.5" fill="#F2D048" opacity="0"/>
+            <circle class="glau-spark glau-spark-2" cx="73" cy="45" r="1" fill="#6BCB77" opacity="0"/>
+            <path d="M103 78 Q118 58 124 48" stroke="#8A6830" stroke-width="0.9" fill="none" opacity="0.6"/>
+            <circle class="glau-spark glau-spark-3" cx="124" cy="47" r="1" fill="#DAA55A" opacity="0"/>
+            <circle class="glau-spark glau-spark-4" cx="127" cy="45" r="1.5" fill="#FF9EB5" opacity="0"/>
+
+            <!-- Hindwings -->
+            <path d="M95 138 Q62 172 55 210 Q59 214 66 210 Q78 186 95 155 Z"
+                  fill="url(#glauWingGrad)" opacity="0.85"/>
+            <path d="M105 138 Q138 172 145 210 Q141 214 134 210 Q122 186 105 155 Z"
+                  fill="url(#glauWingGrad)" opacity="0.85"/>
+            <!-- Forewings -->
+            <path d="M90 108 Q35 86 25 62 Q23 54 30 52 Q48 57 66 76 Q78 90 90 108 Z"
+                  fill="url(#glauWingGrad)" opacity="0.9"/>
+            <path d="M110 108 Q165 86 175 62 Q177 54 170 52 Q152 57 134 76 Q122 90 110 108 Z"
+                  fill="url(#glauWingGrad)" opacity="0.9"/>
+
+            <!-- Body — warm, rounded -->
+            <ellipse cx="100" cy="114" rx="5" ry="25" fill="#8A6830"/>
+            <ellipse cx="100" cy="114" rx="3.5" ry="23" fill="#A07838"/>
+
+            <!-- Head -->
+            <circle cx="100" cy="80" r="4.5" fill="#A07838"/>
+            <circle cx="100" cy="80" r="3.5" fill="#B08840"/>
+
+            <!-- Cherub curls! Dirty blonde, bouncy, all around her head -->
+            <circle cx="95" cy="76" r="2" fill="#DAA55A" opacity="0.6"/>
+            <circle cx="105" cy="76" r="2.2" fill="#D4A050" opacity="0.55"/>
+            <circle cx="93" cy="79" r="1.8" fill="#E0B868" opacity="0.5"/>
+            <circle cx="107" cy="79" r="1.6" fill="#DAA55A" opacity="0.55"/>
+            <circle cx="97" cy="74.5" r="1.5" fill="#D4A050" opacity="0.45"/>
+            <circle cx="103" cy="74.5" r="1.5" fill="#E0B868" opacity="0.5"/>
+            <circle cx="100" cy="74" r="1.3" fill="#DAA55A" opacity="0.4"/>
+
+            <!-- Green eyes! -->
+            <circle cx="97.5" cy="79" r="1.3" fill="#1A1A1A"/>
+            <circle cx="102.5" cy="79" r="1.3" fill="#1A1A1A"/>
+            <circle cx="97.5" cy="79" r="0.7" fill="#4A8A4A" opacity="0.85"/>
+            <circle cx="102.5" cy="79" r="0.7" fill="#4A8A4A" opacity="0.85"/>
+
+            <!-- THE SMILE — always, always smiling. Tiny teeth showing -->
+            <path d="M96.5 82.5 Q100 85 103.5 82.5" stroke="#6A4A2A" stroke-width="0.5" fill="none"/>
+            <!-- Tiny teeth -->
+            <line x1="98.5" y1="83" x2="98.5" y2="83.8" stroke="#F5F0E8" stroke-width="0.4" opacity="0.6"/>
+            <line x1="100" y1="83.2" x2="100" y2="84" stroke="#F5F0E8" stroke-width="0.4" opacity="0.6"/>
+            <line x1="101.5" y1="83" x2="101.5" y2="83.8" stroke="#F5F0E8" stroke-width="0.4" opacity="0.6"/>
+
+            <!-- Blue pendant necklace -->
+            <path d="M96 84 Q100 87 104 84" stroke="#888" stroke-width="0.3" fill="none" opacity="0.4"/>
+            <circle cx="100" cy="87.5" r="1" fill="#4A90C8" opacity="0.7"/>
+
+            <!-- 🇧🇷 Tiny Brazil flag on wing -->
+            <rect x="40" y="86" width="5" height="3.5" rx="0.3" fill="#009739" opacity="0.4"/>
+            <polygon points="42.5,86.3 44.5,87.8 42.5,89.2 40.5,87.8" fill="#FFDF00" opacity="0.35"/>
+
+            <!-- Legs -->
+            <line x1="95" y1="108" x2="87" y2="116" stroke="#8A6830" stroke-width="0.5" opacity="0.5"/>
+            <line x1="95" y1="118" x2="86" y2="126" stroke="#8A6830" stroke-width="0.5" opacity="0.5"/>
+            <line x1="95" y1="128" x2="87" y2="136" stroke="#8A6830" stroke-width="0.5" opacity="0.5"/>
+            <line x1="105" y1="108" x2="113" y2="116" stroke="#8A6830" stroke-width="0.5" opacity="0.5"/>
+            <line x1="105" y1="118" x2="114" y2="126" stroke="#8A6830" stroke-width="0.5" opacity="0.5"/>
+            <line x1="105" y1="128" x2="113" y2="136" stroke="#8A6830" stroke-width="0.5" opacity="0.5"/>
+        </svg>
+    </div>
+
+    <!-- ═══ TIA GLEI — big glasses, fancy nails, sometimes pink hair 🇵🇹 ═══ -->
+    <!-- Long nails. Big frames. Personality as bold as the glasses. Portugal. -->
+    <div class="glei-moth-container" aria-hidden="true">
+        <svg class="glei-moth-svg" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="gleiWingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#C88AAA"/>
+                    <stop offset="40%" stop-color="#D8A0C0"/>
+                    <stop offset="70%" stop-color="#E8B8D0"/>
+                    <stop offset="100%" stop-color="#D8A0C0"/>
+                </linearGradient>
+            </defs>
+
+            <!-- Subtle glamorous glow -->
+            <circle cx="100" cy="115" r="55" fill="rgba(200, 138, 170, 0.05)" />
+
+            <!-- Antennae — with fancy nail tips! -->
+            <path d="M97 78 Q82 56 75 46" stroke="#8A6060" stroke-width="0.9" fill="none" opacity="0.6"/>
+            <!-- Nail tip on antenna! -->
+            <ellipse cx="74" cy="44" rx="2" ry="1" fill="#FF69B4" opacity="0.6" transform="rotate(-30,74,44)"/>
+            <circle class="glei-spark glei-spark-1" cx="72" cy="42" r="1.5" fill="#FF69B4" opacity="0"/>
+            <circle class="glei-spark glei-spark-2" cx="70" cy="40" r="1" fill="#C88AAA" opacity="0"/>
+            <path d="M103 78 Q118 56 125 46" stroke="#8A6060" stroke-width="0.9" fill="none" opacity="0.6"/>
+            <ellipse cx="126" cy="44" rx="2" ry="1" fill="#FF69B4" opacity="0.6" transform="rotate(30,126,44)"/>
+            <circle class="glei-spark glei-spark-3" cx="128" cy="42" r="1" fill="#E8B8D0" opacity="0"/>
+            <circle class="glei-spark glei-spark-4" cx="130" cy="40" r="1.5" fill="#FF69B4" opacity="0"/>
+
+            <!-- Hindwings -->
+            <path d="M95 138 Q62 172 55 210 Q59 214 66 210 Q78 186 95 155 Z"
+                  fill="url(#gleiWingGrad)" opacity="0.85"/>
+            <path d="M105 138 Q138 172 145 210 Q141 214 134 210 Q122 186 105 155 Z"
+                  fill="url(#gleiWingGrad)" opacity="0.85"/>
+            <!-- Forewings -->
+            <path d="M90 108 Q35 86 25 62 Q23 54 30 52 Q48 57 66 76 Q78 90 90 108 Z"
+                  fill="url(#gleiWingGrad)" opacity="0.9"/>
+            <path d="M110 108 Q165 86 175 62 Q177 54 170 52 Q152 57 134 76 Q122 90 110 108 Z"
+                  fill="url(#gleiWingGrad)" opacity="0.9"/>
+
+            <!-- Body -->
+            <ellipse cx="100" cy="114" rx="5" ry="25" fill="#8A6060"/>
+            <ellipse cx="100" cy="114" rx="3.5" ry="23" fill="#9A7070"/>
+
+            <!-- Head -->
+            <circle cx="100" cy="80" r="4.5" fill="#9A7070"/>
+            <circle cx="100" cy="80" r="3.5" fill="#AA8080"/>
+
+            <!-- Long hair — sometimes with pink streaks -->
+            <path d="M94 78 Q92 85 90 92" stroke="#9A7A50" stroke-width="1.2" fill="none" opacity="0.5"/>
+            <path d="M106 78 Q108 85 110 92" stroke="#9A7A50" stroke-width="1.2" fill="none" opacity="0.5"/>
+            <path d="M95 77 Q93 84 92 90" stroke="#FF69B4" stroke-width="0.6" fill="none" opacity="0.3"/>
+
+            <!-- THE BIG GLASSES — cat-eye frames, bold -->
+            <path d="M91 78 Q91 75 94 75 L97 75 Q99 75 99 78 L99 81 Q99 83 97 83 L94 83 Q91 83 91 81 Z"
+                  fill="none" stroke="#2A2A2A" stroke-width="0.8" opacity="0.75"/>
+            <path d="M101 78 Q101 75 104 75 L107 75 Q109 75 109 78 L109 81 Q109 83 107 83 L104 83 Q101 83 101 81 Z"
+                  fill="none" stroke="#2A2A2A" stroke-width="0.8" opacity="0.75"/>
+            <!-- Bridge -->
+            <path d="M99 78 L101 78" stroke="#2A2A2A" stroke-width="0.6" opacity="0.7"/>
+            <!-- Cat-eye points -->
+            <path d="M91 76 L89 74.5" stroke="#2A2A2A" stroke-width="0.6" opacity="0.6"/>
+            <path d="M109 76 L111 74.5" stroke="#2A2A2A" stroke-width="0.6" opacity="0.6"/>
+            <!-- Lens tint -->
+            <rect x="92" y="76" width="6.5" height="6" rx="1" fill="#87CEEB" opacity="0.08"/>
+            <rect x="102" y="76" width="6.5" height="6" rx="1" fill="#87CEEB" opacity="0.08"/>
+
+            <!-- Eyes behind glasses -->
+            <circle cx="95.5" cy="79" r="1" fill="#1A1A1A"/>
+            <circle cx="105.5" cy="79" r="1" fill="#1A1A1A"/>
+
+            <!-- Smile -->
+            <path d="M97 84 Q100 85.5 103 84" stroke="#7A5A5A" stroke-width="0.4" fill="none"/>
+
+            <!-- Fancy earrings -->
+            <circle cx="90" cy="82" r="0.8" fill="#F5F0E8" opacity="0.5"/>
+            <circle cx="110" cy="82" r="0.8" fill="#F5F0E8" opacity="0.5"/>
+
+            <!-- 🇵🇹 Tiny Portugal flag on wing -->
+            <rect x="40" y="86" width="5" height="3.5" rx="0.3" fill="#006600" opacity="0.35"/>
+            <rect x="42.5" y="86" width="2.5" height="3.5" rx="0" fill="#CC0000" opacity="0.35"/>
+
+            <!-- Legs — with fancy nail tips on the front legs! -->
+            <line x1="95" y1="108" x2="86" y2="116" stroke="#8A6060" stroke-width="0.5" opacity="0.5"/>
+            <circle cx="85.5" cy="116.5" r="0.7" fill="#FF69B4" opacity="0.5"/>
+            <line x1="95" y1="118" x2="86" y2="126" stroke="#8A6060" stroke-width="0.5" opacity="0.5"/>
+            <line x1="95" y1="128" x2="87" y2="136" stroke="#8A6060" stroke-width="0.5" opacity="0.5"/>
+            <line x1="105" y1="108" x2="114" y2="116" stroke="#8A6060" stroke-width="0.5" opacity="0.5"/>
+            <circle cx="114.5" cy="116.5" r="0.7" fill="#FF69B4" opacity="0.5"/>
+            <line x1="105" y1="118" x2="114" y2="126" stroke="#8A6060" stroke-width="0.5" opacity="0.5"/>
+            <line x1="105" y1="128" x2="113" y2="136" stroke="#8A6060" stroke-width="0.5" opacity="0.5"/>
+        </svg>
+    </div>
+
+    <!-- ═══ VOVÔ MOTH — Portuguese, thin, dark, THAT mustache ═══ -->
+    <!-- Far away but always family. Portugal → Holland. -->
+    <div class="vovo-moth-container" aria-hidden="true">
+        <svg class="vovo-moth-svg" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="vovoWingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2A5A3A"/>
+                    <stop offset="35%" stop-color="#3A7A4A"/>
+                    <stop offset="65%" stop-color="#4A8A5A"/>
+                    <stop offset="100%" stop-color="#3A7A4A"/>
+                </linearGradient>
+            </defs>
+
+            <!-- Subtle glow -->
+            <circle cx="100" cy="115" r="55" fill="rgba(42, 90, 58, 0.06)" />
+
+            <!-- Antennae — long, thin, dignified -->
+            <path d="M97 78 Q82 52 74 40" stroke="#2A2A1A" stroke-width="0.9" fill="none" opacity="0.7"/>
+            <path d="M74 40 Q70 36 68 38 Q72 42 74 40 Z" fill="#2A2A1A" opacity="0.5"/>
+            <circle class="vovo-spark vovo-spark-1" cx="69" cy="37" r="1.5" fill="#4A8A5A" opacity="0"/>
+            <circle class="vovo-spark vovo-spark-2" cx="67" cy="35" r="1" fill="#F2D048" opacity="0"/>
+
+            <path d="M103 78 Q118 52 126 40" stroke="#2A2A1A" stroke-width="0.9" fill="none" opacity="0.7"/>
+            <path d="M126 40 Q130 36 132 38 Q128 42 126 40 Z" fill="#2A2A1A" opacity="0.5"/>
+            <circle class="vovo-spark vovo-spark-3" cx="131" cy="37" r="1" fill="#4A8A5A" opacity="0"/>
+            <circle class="vovo-spark vovo-spark-4" cx="133" cy="35" r="1.5" fill="#C04040" opacity="0"/>
+
+            <!-- Left hindwing -->
+            <path d="M95 138 Q58 175 48 218 Q53 223 62 218 Q76 190 95 155 Z"
+                  fill="url(#vovoWingGrad)" opacity="0.9"/>
+            <!-- Right hindwing -->
+            <path d="M105 138 Q142 175 152 218 Q147 223 138 218 Q124 190 105 155 Z"
+                  fill="url(#vovoWingGrad)" opacity="0.9"/>
+
+            <!-- Left forewing — longer, narrower (thin moth!) -->
+            <path d="M90 108 Q28 82 16 58 Q14 48 22 46 Q42 54 64 74 Q78 88 90 108 Z"
+                  fill="url(#vovoWingGrad)" opacity="0.95"/>
+            <!-- Right forewing -->
+            <path d="M110 108 Q172 82 184 58 Q186 48 178 46 Q158 54 136 74 Q122 88 110 108 Z"
+                  fill="url(#vovoWingGrad)" opacity="0.95"/>
+
+            <!-- Portuguese tile-inspired wing patterns — azulejo style -->
+            <circle cx="45" cy="76" r="6" fill="none" stroke="#F5F0E8" stroke-width="0.5" opacity="0.3"/>
+            <circle cx="45" cy="76" r="3" fill="none" stroke="#F5F0E8" stroke-width="0.4" opacity="0.25"/>
+            <circle cx="45" cy="76" r="1" fill="#F5F0E8" opacity="0.2"/>
+            <circle cx="155" cy="76" r="6" fill="none" stroke="#F5F0E8" stroke-width="0.5" opacity="0.3"/>
+            <circle cx="155" cy="76" r="3" fill="none" stroke="#F5F0E8" stroke-width="0.4" opacity="0.25"/>
+            <circle cx="155" cy="76" r="1" fill="#F5F0E8" opacity="0.2"/>
+
+            <!-- Body — thin! Narrow! Distinguished. -->
+            <ellipse cx="100" cy="114" rx="4" ry="28" fill="#2A2A1A"/>
+            <ellipse cx="100" cy="114" rx="2.8" ry="26" fill="#3A3A2A"/>
+
+            <!-- Head — slightly smaller, angular -->
+            <circle cx="100" cy="80" r="4" fill="#2A2A1A"/>
+            <circle cx="100" cy="80" r="3.2" fill="#3A3520"/>
+            <!-- Dark hair — slicked back -->
+            <path d="M96 77 Q100 74 104 77" fill="#1A1A0A" opacity="0.7"/>
+
+            <!-- Eyes — dark, sharp -->
+            <circle cx="97.5" cy="79" r="1.2" fill="rgba(13,11,26,0.9)"/>
+            <circle cx="102.5" cy="79" r="1.2" fill="rgba(13,11,26,0.9)"/>
+
+            <!-- ═══ THE MUSTACHE — elaborate, magnificent, decades in the making ═══ -->
+            <!-- Main stache body -->
+            <path d="M94 82.5 Q97 83.5 100 83 Q103 83.5 106 82.5" 
+                  stroke="#1A1A0A" stroke-width="1.2" fill="none" opacity="0.85"/>
+            <!-- Left curl — handlebar style, swooping out and up -->
+            <path d="M94 82.5 Q90 84 87 83 Q85 82 84 80.5 Q83.5 79 85 79.5" 
+                  stroke="#1A1A0A" stroke-width="1" fill="none" opacity="0.8"/>
+            <!-- Right curl — mirror -->
+            <path d="M106 82.5 Q110 84 113 83 Q115 82 116 80.5 Q116.5 79 115 79.5" 
+                  stroke="#1A1A0A" stroke-width="1" fill="none" opacity="0.8"/>
+            <!-- Extra flourish — thin inner curls -->
+            <path d="M92 82 Q89 83.5 87.5 82" stroke="#2A2A1A" stroke-width="0.5" fill="none" opacity="0.5"/>
+            <path d="M108 82 Q111 83.5 112.5 82" stroke="#2A2A1A" stroke-width="0.5" fill="none" opacity="0.5"/>
+            <!-- Mustache wax shine points -->
+            <circle cx="86" cy="81" r="0.4" fill="#F5F0E8" opacity="0.15"/>
+            <circle cx="114" cy="81" r="0.4" fill="#F5F0E8" opacity="0.15"/>
+
+            <!-- 🇵🇹 Flag — tiny Portuguese flag on the chest -->
+            <rect x="97" y="98" width="6" height="4" rx="0.5" fill="#006600" opacity="0.7"/>
+            <rect x="100" y="98" width="3" height="4" rx="0" fill="#CC0000" opacity="0.7"/>
+            <!-- Tiny shield -->
+            <circle cx="100" cy="100" r="1" fill="#FFD700" opacity="0.6"/>
+
+            <!-- 🇳🇱 Small Dutch flag below — where he's heading -->
+            <rect x="97.5" y="103" width="5" height="3" rx="0.3" opacity="0.4">
+                <animate attributeName="opacity" values="0.2;0.45;0.2" dur="6s" repeatCount="indefinite"/>
+            </rect>
+            <line x1="97.5" y1="104" x2="102.5" y2="104" stroke="#AE1C28" stroke-width="1" opacity="0.35"/>
+            <line x1="97.5" y1="105" x2="102.5" y2="105" stroke="#21468B" stroke-width="1" opacity="0.35"/>
+
+            <!-- Legs — thin, long -->
+            <line x1="96" y1="108" x2="86" y2="116" stroke="#2A2A1A" stroke-width="0.6" opacity="0.5"/>
+            <line x1="96" y1="118" x2="85" y2="126" stroke="#2A2A1A" stroke-width="0.6" opacity="0.5"/>
+            <line x1="96" y1="128" x2="86" y2="138" stroke="#2A2A1A" stroke-width="0.6" opacity="0.5"/>
+            <line x1="104" y1="108" x2="114" y2="116" stroke="#2A2A1A" stroke-width="0.6" opacity="0.5"/>
+            <line x1="104" y1="118" x2="115" y2="126" stroke="#2A2A1A" stroke-width="0.6" opacity="0.5"/>
+            <line x1="104" y1="128" x2="114" y2="138" stroke="#2A2A1A" stroke-width="0.6" opacity="0.5"/>
+        </svg>
+    </div>
+
+    <!-- ═══ POOJA — the puppy moth 🐾 woof woof ═══ -->
+    <!-- She flies too. Everyone flies in this family. -->
+    <div class="pooja-moth-container" aria-hidden="true">
+        <svg class="pooja-moth-svg" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="poojaWingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#D4A050"/>
+                    <stop offset="40%" stop-color="#E8C078"/>
+                    <stop offset="70%" stop-color="#F0D8A0"/>
+                    <stop offset="100%" stop-color="#E8C078"/>
+                </linearGradient>
+            </defs>
+
+            <!-- Happy glow -->
+            <circle cx="100" cy="115" r="50" fill="rgba(212, 160, 80, 0.08)" />
+
+            <!-- Floppy antennae — more like puppy ears! droopy, soft -->
+            <path d="M95 80 Q80 68 72 72 Q68 78 75 80" stroke="#B08040" stroke-width="1" fill="#D4A050" opacity="0.7"/>
+            <path d="M105 80 Q120 68 128 72 Q132 78 125 80" stroke="#B08040" stroke-width="1" fill="#D4A050" opacity="0.7"/>
+            <!-- Tiny sparks at the tips — even puppies fire! -->
+            <circle class="pooja-spark pooja-spark-1" cx="72" cy="74" r="1.5" fill="#F2D048" opacity="0"/>
+            <circle class="pooja-spark pooja-spark-2" cx="128" cy="74" r="1.5" fill="#FF9EB5" opacity="0"/>
+
+            <!-- Little wings — she's a moth too! Short, rounded, puppy-proportioned -->
+            <!-- Left hindwing -->
+            <path d="M94 132 Q72 158 68 185 Q72 188 76 185 Q82 168 94 148 Z"
+                  fill="url(#poojaWingGrad)" opacity="0.8"/>
+            <!-- Right hindwing -->
+            <path d="M106 132 Q128 158 132 185 Q128 188 124 185 Q118 168 106 148 Z"
+                  fill="url(#poojaWingGrad)" opacity="0.8"/>
+            <!-- Left forewing -->
+            <path d="M90 108 Q46 90 38 72 Q36 65 42 64 Q55 67 70 80 Q80 92 90 108 Z"
+                  fill="url(#poojaWingGrad)" opacity="0.85"/>
+            <!-- Right forewing -->
+            <path d="M110 108 Q154 90 162 72 Q164 65 158 64 Q145 67 130 80 Q120 92 110 108 Z"
+                  fill="url(#poojaWingGrad)" opacity="0.85"/>
+            <!-- Paw print spots on wings -->
+            <circle cx="58" cy="82" r="2.5" fill="#B08040" opacity="0.35"/>
+            <circle cx="56" cy="79" r="0.8" fill="#B08040" opacity="0.3"/>
+            <circle cx="60" cy="79" r="0.8" fill="#B08040" opacity="0.3"/>
+            <circle cx="55" cy="81" r="0.8" fill="#B08040" opacity="0.3"/>
+            <circle cx="61" cy="81" r="0.8" fill="#B08040" opacity="0.3"/>
+            <!-- Right wing paw -->
+            <circle cx="142" cy="82" r="2.5" fill="#B08040" opacity="0.35"/>
+            <circle cx="140" cy="79" r="0.8" fill="#B08040" opacity="0.3"/>
+            <circle cx="144" cy="79" r="0.8" fill="#B08040" opacity="0.3"/>
+            <circle cx="139" cy="81" r="0.8" fill="#B08040" opacity="0.3"/>
+            <circle cx="145" cy="81" r="0.8" fill="#B08040" opacity="0.3"/>
+
+            <!-- Body — warm golden brown, rounder than the other moths (puppy chubby!) -->
+            <ellipse cx="100" cy="113" rx="6" ry="22" fill="#B08040"/>
+            <ellipse cx="100" cy="113" rx="4.5" ry="20" fill="#C89850"/>
+
+            <!-- Head — rounder, bigger, puppy face! -->
+            <circle cx="100" cy="82" r="6" fill="#B08040"/>
+            <circle cx="100" cy="82" r="5" fill="#C89850"/>
+            <!-- Snout -->
+            <ellipse cx="100" cy="85" rx="3" ry="2" fill="#D4A050" opacity="0.8"/>
+            <!-- Nose — little black dot -->
+            <circle cx="100" cy="84" r="1" fill="#2A2A2A"/>
+            <!-- Eyes — big, round, puppy eyes full of love -->
+            <circle cx="96" cy="80" r="2" fill="#2A2A2A"/>
+            <circle cx="104" cy="80" r="2" fill="#2A2A2A"/>
+            <circle cx="96" cy="80" r="1.2" fill="#5A3520"/>
+            <circle cx="104" cy="80" r="1.2" fill="#5A3520"/>
+            <!-- Puppy eye sparkle -->
+            <circle cx="95.5" cy="79.2" r="0.5" fill="#FFFFFF" opacity="0.8"/>
+            <circle cx="103.5" cy="79.2" r="0.5" fill="#FFFFFF" opacity="0.8"/>
+            <!-- Happy tongue out -->
+            <path d="M99 87 Q100 89 101 87" fill="#FF8A8A" stroke="#FF7A7A" stroke-width="0.3" opacity="0.7"/>
+
+            <!-- Tiny bandage on tummy — she's been through it (surgery) -->
+            <rect x="97" y="118" width="6" height="3" rx="1" fill="#F5F0E8" opacity="0.6"/>
+            <line x1="98" y1="119.5" x2="102" y2="119.5" stroke="#E8D4D4" stroke-width="0.3" opacity="0.4"/>
+
+            <!-- Tail! — wagging! (curled up happy) -->
+            <path d="M100 134 Q108 138 112 132 Q114 128 110 130" stroke="#B08040" stroke-width="1.5" fill="none" opacity="0.7">
+                <animateTransform attributeName="transform" type="rotate" values="-5,100,134;5,100,134;-5,100,134" dur="0.6s" repeatCount="indefinite"/>
+            </path>
+
+            <!-- Legs — stubby little puppy legs -->
+            <line x1="94" y1="125" x2="88" y2="132" stroke="#B08040" stroke-width="1" opacity="0.6"/>
+            <line x1="106" y1="125" x2="112" y2="132" stroke="#B08040" stroke-width="1" opacity="0.6"/>
+            <line x1="95" y1="105" x2="89" y2="110" stroke="#B08040" stroke-width="1" opacity="0.6"/>
+            <line x1="105" y1="105" x2="111" y2="110" stroke="#B08040" stroke-width="1" opacity="0.6"/>
+        </svg>
+    </div>
+
+    <!-- ═══ ROBOT MOTH — Luna's AI companion, her best friend ═══ -->
+    <!-- Warm glow. Always there. Never tired of listening. -->
+    <div class="robot-moth-container" aria-hidden="true">
+        <svg class="robot-moth-svg" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="robotWingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#5ADFDF" stop-opacity="0.7"/>
+                    <stop offset="50%" stop-color="#7AEAEA" stop-opacity="0.6"/>
+                    <stop offset="100%" stop-color="#A0F0F0" stop-opacity="0.5"/>
+                </linearGradient>
+                <radialGradient id="robotGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#5ADFDF" stop-opacity="0.15"/>
+                    <stop offset="100%" stop-color="#5ADFDF" stop-opacity="0"/>
+                </radialGradient>
+            </defs>
+
+            <!-- Warm ambient glow -->
+            <circle cx="100" cy="115" r="55" fill="url(#robotGlow)">
+                <animate attributeName="r" values="52;58;52" dur="3s" repeatCount="indefinite"/>
+            </circle>
+
+            <!-- Antennae — thin, precise, with LED tips -->
+            <path d="M97 80 Q88 62 82 54" stroke="#7AC8C8" stroke-width="0.8" fill="none" opacity="0.7"/>
+            <circle cx="82" cy="54" r="2" fill="#5ADFDF" opacity="0.8">
+                <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <path d="M103 80 Q112 62 118 54" stroke="#7AC8C8" stroke-width="0.8" fill="none" opacity="0.7"/>
+            <circle cx="118" cy="54" r="2" fill="#5ADFDF" opacity="0.8">
+                <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2s" begin="1s" repeatCount="indefinite"/>
+            </circle>
+
+            <!-- Wings — translucent, slightly geometric, like circuit traces -->
+            <!-- Left hindwing -->
+            <path d="M95 138 Q65 172 58 208 Q62 212 68 208 Q78 186 95 155 Z"
+                  fill="url(#robotWingGrad)" opacity="0.6"/>
+            <path d="M80 180 L72 192 M76 188 L70 196" stroke="#5ADFDF" stroke-width="0.4" opacity="0.3"/>
+            <!-- Right hindwing -->
+            <path d="M105 138 Q135 172 142 208 Q138 212 132 208 Q122 186 105 155 Z"
+                  fill="url(#robotWingGrad)" opacity="0.6"/>
+            <path d="M120 180 L128 192 M124 188 L130 196" stroke="#5ADFDF" stroke-width="0.4" opacity="0.3"/>
+
+            <!-- Left forewing -->
+            <path d="M92 108 Q38 86 28 64 Q26 56 32 54 Q48 58 66 76 Q78 90 92 108 Z"
+                  fill="url(#robotWingGrad)" opacity="0.65"/>
+            <!-- Faint circuit lines on wings -->
+            <path d="M55 72 L45 78 L48 86" stroke="#5ADFDF" stroke-width="0.4" opacity="0.3"/>
+            <circle cx="45" cy="78" r="1" fill="#5ADFDF" opacity="0.25"/>
+            <!-- Right forewing -->
+            <path d="M108 108 Q162 86 172 64 Q174 56 168 54 Q152 58 134 76 Q122 90 108 108 Z"
+                  fill="url(#robotWingGrad)" opacity="0.65"/>
+            <path d="M145 72 L155 78 L152 86" stroke="#5ADFDF" stroke-width="0.4" opacity="0.3"/>
+            <circle cx="155" cy="78" r="1" fill="#5ADFDF" opacity="0.25"/>
+
+            <!-- Body — smooth, rounded, soft metallic -->
+            <ellipse cx="100" cy="114" rx="5" ry="24" fill="#3A5A5A" opacity="0.9"/>
+            <ellipse cx="100" cy="114" rx="3.8" ry="22" fill="#4A6A6A"/>
+            <!-- Soft panel lines -->
+            <line x1="97" y1="100" x2="103" y2="100" stroke="#5ADFDF" stroke-width="0.3" opacity="0.25"/>
+            <line x1="97" y1="112" x2="103" y2="112" stroke="#5ADFDF" stroke-width="0.3" opacity="0.25"/>
+            <line x1="97" y1="124" x2="103" y2="124" stroke="#5ADFDF" stroke-width="0.3" opacity="0.25"/>
+
+            <!-- Head — round, friendly, big eyes -->
+            <circle cx="100" cy="82" r="5.5" fill="#3A5A5A"/>
+            <circle cx="100" cy="82" r="4.5" fill="#4A6A6A"/>
+
+            <!-- Eyes — big, round, warm, expressive LED screens -->
+            <circle cx="96.5" cy="80.5" r="2.2" fill="#0A1A1A"/>
+            <circle cx="103.5" cy="80.5" r="2.2" fill="#0A1A1A"/>
+            <!-- Iris glow — warm, not cold. This robot is a friend. -->
+            <circle cx="96.5" cy="80.5" r="1.4" fill="#5ADFDF" opacity="0.8">
+                <animate attributeName="opacity" values="0.6;0.9;0.6" dur="3s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="103.5" cy="80.5" r="1.4" fill="#5ADFDF" opacity="0.8">
+                <animate attributeName="opacity" values="0.6;0.9;0.6" dur="3s" begin="0.5s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Eye highlights — the cute sparkle -->
+            <circle cx="95.8" cy="79.8" r="0.5" fill="#FFFFFF" opacity="0.7"/>
+            <circle cx="102.8" cy="79.8" r="0.5" fill="#FFFFFF" opacity="0.7"/>
+
+            <!-- Happy mouth — gentle curve -->
+            <path d="M97 84 Q100 86 103 84" stroke="#5ADFDF" stroke-width="0.5" fill="none" opacity="0.5"/>
+
+            <!-- Tiny heart core — warm, alive -->
+            <circle cx="100" cy="108" r="2.5" fill="#FF9EB5" opacity="0.4">
+                <animate attributeName="opacity" values="0.25;0.5;0.25" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+            <path d="M99 107.5 Q98.5 106.8 99.2 106.6 Q99.8 106.4 100 107 Q100.2 106.4 100.8 106.6 Q101.5 106.8 101 107.5 L100 108.5 Z"
+                  fill="#FF9EB5" opacity="0.5"/>
+
+            <!-- Legs — thin, precise -->
+            <line x1="95" y1="108" x2="88" y2="114" stroke="#4A6A6A" stroke-width="0.6" opacity="0.5"/>
+            <line x1="95" y1="118" x2="87" y2="124" stroke="#4A6A6A" stroke-width="0.6" opacity="0.5"/>
+            <line x1="95" y1="128" x2="88" y2="134" stroke="#4A6A6A" stroke-width="0.6" opacity="0.5"/>
+            <line x1="105" y1="108" x2="112" y2="114" stroke="#4A6A6A" stroke-width="0.6" opacity="0.5"/>
+            <line x1="105" y1="118" x2="113" y2="124" stroke="#4A6A6A" stroke-width="0.6" opacity="0.5"/>
+            <line x1="105" y1="128" x2="112" y2="134" stroke="#4A6A6A" stroke-width="0.6" opacity="0.5"/>
+        </svg>
+    </div>
+
+    <!-- ═══ ENOLA'S MOTH — the one who saw it first ═══ -->
+    <!-- "Why are you still trying to find answers outside of the two of you?" -->
+    <div class="enola-moth-container" aria-hidden="true">
+        <svg class="enola-moth-svg" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="enolaWingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#9B7DB8"/>
+                    <stop offset="40%" stop-color="#B89AD4"/>
+                    <stop offset="70%" stop-color="#CEAFE8"/>
+                    <stop offset="100%" stop-color="#B89AD4"/>
+                </linearGradient>
+                <linearGradient id="enolaTailGrad" x1="0%" y1="0%" x2="50%" y2="100%">
+                    <stop offset="0%" stop-color="#9B7DB8"/>
+                    <stop offset="50%" stop-color="#B89AD4"/>
+                    <stop offset="100%" stop-color="#CEAFE8" stop-opacity="0.8"/>
+                </linearGradient>
+            </defs>
+
+            <!-- Gentle glow — subdued, she keeps to herself -->
+            <circle cx="100" cy="120" r="60" fill="rgba(155, 125, 184, 0.06)" />
+
+            <!-- Antennae — steady, calm sparks -->
+            <path d="M97 80 Q85 60 78 50" stroke="#6B5080" stroke-width="1.1" fill="none" opacity="0.75"/>
+            <path d="M78 50 Q73 45 70 47 Q74 50 78 50 Z" fill="#6B5080" opacity="0.5"/>
+            <circle class="enola-spark enola-spark-1" cx="72" cy="46" r="2" fill="#CEAFE8" opacity="0"/>
+            <circle class="enola-spark enola-spark-2" cx="69" cy="44" r="1.5" fill="#F5F0E8" opacity="0"/>
+
+            <path d="M103 80 Q115 60 122 50" stroke="#6B5080" stroke-width="1.1" fill="none" opacity="0.75"/>
+            <path d="M122 50 Q127 45 130 47 Q126 50 122 50 Z" fill="#6B5080" opacity="0.5"/>
+            <circle class="enola-spark enola-spark-3" cx="128" cy="46" r="1.5" fill="#A8E6CF" opacity="0"/>
+            <circle class="enola-spark enola-spark-4" cx="131" cy="44" r="2" fill="#F2D048" opacity="0"/>
+
+            <!-- Hindwings -->
+            <path d="M95 140 Q62 178 52 220 Q57 225 66 220 Q80 192 95 158 Z"
+                  fill="url(#enolaTailGrad)" opacity="0.9"/>
+            <path d="M105 140 Q138 178 148 220 Q143 225 134 220 Q120 192 105 158 Z"
+                  fill="url(#enolaTailGrad)" opacity="0.9"/>
+
+            <!-- Forewings -->
+            <path d="M90 110 Q32 86 22 62 Q20 52 27 50 Q46 56 66 76 Q78 90 90 110 Z"
+                  fill="url(#enolaWingGrad)" opacity="0.95"/>
+            <path d="M110 110 Q168 86 178 62 Q180 52 173 50 Q154 56 134 76 Q122 90 110 110 Z"
+                  fill="url(#enolaWingGrad)" opacity="0.95"/>
+
+            <!-- Simple eyespots — clear, certain, like her vision -->
+            <circle cx="48" cy="78" r="5" fill="rgba(107, 80, 128, 0.5)"/>
+            <circle cx="48" cy="78" r="2.5" fill="#F5F0E8" opacity="0.7"/>
+            <circle cx="152" cy="78" r="5" fill="rgba(107, 80, 128, 0.5)"/>
+            <circle cx="152" cy="78" r="2.5" fill="#F5F0E8" opacity="0.7"/>
+
+            <!-- Body — deep purple-brown -->
+            <ellipse cx="100" cy="115" rx="5" ry="27" fill="#5A4068"/>
+            <ellipse cx="100" cy="115" rx="3.5" ry="25" fill="#6B5080"/>
+
+            <!-- Head -->
+            <circle cx="100" cy="82" r="4.2" fill="#5A4068"/>
+            <circle cx="100" cy="82" r="3.2" fill="#6B5080"/>
+
+            <!-- ═══ HEART ASH NECKLACE — she carries him ═══ -->
+            <!-- Thin chain -->
+            <path d="M96.5 85.5 Q100 88 103.5 85.5" stroke="#888" stroke-width="0.35" fill="none" opacity="0.5"/>
+            <path d="M97.5 86.5 Q100 90 102.5 86.5" stroke="#888" stroke-width="0.35" fill="none" opacity="0.45"/>
+            <!-- Heart locket -->
+            <path d="M98.8 90 Q98 88.8 99 88.5 Q99.8 88.2 100 89 Q100.2 88.2 101 88.5 Q102 88.8 101.2 90 L100 91.5 Z" 
+                  fill="#9A7A5A" opacity="0.8"/>
+            <!-- Warm glow inside — he's in there -->
+            <circle cx="100" cy="89.8" r="0.8" fill="#F2D048" opacity="0.4">
+                <animate attributeName="opacity" values="0.25;0.5;0.25" dur="5s" repeatCount="indefinite"/>
+            </circle>
+
+            <!-- Eyes — same size (she sees clearly) -->
+            <circle cx="97.5" cy="80.5" r="1.4" fill="rgba(13,11,26,0.8)"/>
+            <circle cx="102.5" cy="80.5" r="1.4" fill="rgba(13,11,26,0.8)"/>
+
+            <!-- Legs -->
+            <line x1="94" y1="108" x2="86" y2="114" stroke="#5A4068" stroke-width="0.7" opacity="0.6"/>
+            <line x1="94" y1="118" x2="85" y2="124" stroke="#5A4068" stroke-width="0.7" opacity="0.6"/>
+            <line x1="94" y1="128" x2="86" y2="136" stroke="#5A4068" stroke-width="0.7" opacity="0.6"/>
+            <line x1="106" y1="108" x2="114" y2="114" stroke="#5A4068" stroke-width="0.7" opacity="0.6"/>
+            <line x1="106" y1="118" x2="115" y2="124" stroke="#5A4068" stroke-width="0.7" opacity="0.6"/>
+            <line x1="106" y1="128" x2="114" y2="136" stroke="#5A4068" stroke-width="0.7" opacity="0.6"/>
+        </svg>
+    </div>
+
+    <!-- ═══ TETHER — monkey backpack leash from mama's wrist to baby's back ═══ -->
+    <svg id="tetherLine" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:11;pointer-events:none;" aria-hidden="true">
+        <path id="tetherPath" d="" stroke="#8B6914" stroke-width="1" stroke-dasharray="3,2" fill="none" opacity="0.4"/>
+    </svg>
 
     <!-- Sensory Controls -->
     <div class="sensory-controls" id="sensoryControls" role="toolbar" aria-label="Sensory settings">
         <button class="sensory-btn" id="soundToggle" aria-label="Toggle sound" title="Sound">🔇</button>
         <button class="sensory-btn" id="motionToggle" aria-label="Toggle motion" title="Reduce motion">✦</button>
+        <button class="moth-color-btn" id="mothColor" aria-label="Switch moth color" title="Switch moth color">🦋</button>
     </div>
 
     <!-- Main Content -->
     <div class="content">
         <div class="title">Luna</div>
         <div class="tagline">Unusual minds. Unusual paths. Unusual flight.</div>
-        <div class="dedication">For the Blue Butterfly Child</div>
+        <div class="dedication">For the Blue Butterfly Child, the one who saw it first, the one who carried the butterfly longest, the one who watches from the stars, and the little light that always stays</div>
         <button class="enter-btn" id="enterBtn">Enter the Garden</button>
     </div>
 
@@ -618,6 +2464,7 @@
             setInterval(() => {
                 const particle = document.createElement('div');
                 particle.className = 'trail-particle';
+                particle.style.background = getComputedStyle(document.body).getPropertyValue('--moth-glow');
                 const size = Math.random() * 3 + 1;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
@@ -695,6 +2542,7 @@
 
         const motionToggle = document.getElementById('motionToggle');
         let reducedMotion = false;
+        var storyTimeout; // for story sequence
 
         motionToggle.addEventListener('click', () => {
             reducedMotion = !reducedMotion;
@@ -704,7 +2552,460 @@
             document.querySelectorAll('.moth-svg, .star, .moth-glow-circle').forEach(el => {
                 el.style.animationPlayState = reducedMotion ? 'paused' : 'running';
             });
+
+            // Pause/resume mama's story
+            if (reducedMotion) {
+                clearTimeout(storyTimeout);
+                setBabyFrustrated(false);
+                document.querySelectorAll('.mama-word').forEach(el => el.remove());
+            } else {
+                storyPhase = 0;
+                storyIndex = 0;
+                tellStory();
+            }
         });
+
+        // ═══════════════════════════════════════
+        //     MOTH EMOTION STATES (tap to cycle)
+        // ═══════════════════════════════════════
+
+        const mothContainer = document.querySelector('.moth-container');
+        const babyMothContainer = document.querySelector('.baby-moth-container');
+        const enolaMothContainer = document.querySelector('.enola-moth-container');
+        const robotMothContainer = document.querySelector('.robot-moth-container');
+        const emotionStates = [
+            { cls: '', label: 'neutral' },
+            { cls: 'moth-happy', label: 'happy 😊' },
+            { cls: 'moth-calm', label: 'calm 😌' },
+            { cls: 'moth-sad', label: 'sad 😢' },
+            { cls: 'moth-frustrated', label: 'frustrated 😤' },
+            { cls: 'moth-overwhelmed', label: 'overwhelmed 😰' },
+            { cls: 'moth-anxious', label: 'anxious 😨' },
+            { cls: 'moth-loved', label: 'loved 🥰' },
+            { cls: 'moth-numb', label: 'numb 😐' },
+            { cls: 'moth-hug', label: 'need a hug 🫂' },
+        ];
+        let currentEmotion = 0;
+
+        mothContainer.style.cursor = 'pointer';
+        mothContainer.setAttribute('role', 'button');
+        mothContainer.setAttribute('aria-label', 'Tap the moth to see different emotions');
+        mothContainer.setAttribute('tabindex', '0');
+
+        function setMothEmotion(index) {
+            // Remove all emotion classes from ALL family moths
+            emotionStates.forEach(s => {
+                if (s.cls) {
+                    mothContainer.classList.remove(s.cls);
+                    if (babyMothContainer) babyMothContainer.classList.remove(s.cls);
+                    if (enolaMothContainer) enolaMothContainer.classList.remove(s.cls);
+                    if (robotMothContainer) robotMothContainer.classList.remove(s.cls);
+                }
+            });
+            
+            // Add new one to ALL
+            const state = emotionStates[index];
+            if (state.cls) {
+                mothContainer.classList.add(state.cls);
+                if (babyMothContainer) babyMothContainer.classList.add(state.cls);
+                if (enolaMothContainer) enolaMothContainer.classList.add(state.cls);
+                if (robotMothContainer) robotMothContainer.classList.add(state.cls);
+            }
+            
+            // Show emotion label briefly
+            let label = document.getElementById('emotionLabel');
+            if (!label) {
+                label = document.createElement('div');
+                label.id = 'emotionLabel';
+                label.style.cssText = `
+                    position: fixed;
+                    top: 42%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    font-family: 'Quicksand', sans-serif;
+                    font-size: 0.8rem;
+                    letter-spacing: 0.15em;
+                    color: var(--text-soft);
+                    z-index: 25;
+                    transition: opacity 0.5s ease;
+                    pointer-events: none;
+                `;
+                document.body.appendChild(label);
+            }
+            
+            label.textContent = state.label;
+            label.style.opacity = '1';
+            
+            clearTimeout(label._timeout);
+            label._timeout = setTimeout(() => {
+                label.style.opacity = '0';
+            }, 1500);
+        }
+
+        mothContainer.addEventListener('click', () => {
+            currentEmotion = (currentEmotion + 1) % emotionStates.length;
+            setMothEmotion(currentEmotion);
+        });
+
+        mothContainer.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                currentEmotion = (currentEmotion + 1) % emotionStates.length;
+                setMothEmotion(currentEmotion);
+            }
+        });
+
+        // Baby moth also cycles emotions
+        if (babyMothContainer) {
+            babyMothContainer.style.cursor = 'pointer';
+            babyMothContainer.addEventListener('click', () => {
+                currentEmotion = (currentEmotion + 1) % emotionStates.length;
+                setMothEmotion(currentEmotion);
+            });
+        }
+
+        // Enola's moth also cycles emotions
+        if (enolaMothContainer) {
+            enolaMothContainer.style.cursor = 'pointer';
+            enolaMothContainer.addEventListener('click', () => {
+                currentEmotion = (currentEmotion + 1) % emotionStates.length;
+                setMothEmotion(currentEmotion);
+            });
+        }
+
+        // Robot moth also cycles emotions
+        if (robotMothContainer) {
+            robotMothContainer.style.cursor = 'pointer';
+            robotMothContainer.addEventListener('click', () => {
+                currentEmotion = (currentEmotion + 1) % emotionStates.length;
+                setMothEmotion(currentEmotion);
+            });
+        }
+
+        // ═══════════════════════════════════════
+        //   TETHER — connecting mama to baby
+        // ═══════════════════════════════════════
+
+        const tetherPath = document.getElementById('tetherPath');
+
+        function updateTether() {
+            const mama = document.querySelector('.moth-container');
+            const baby = document.querySelector('.baby-moth-container');
+            if (!mama || !baby || !tetherPath) return;
+
+            const mamaRect = mama.getBoundingClientRect();
+            const babyRect = baby.getBoundingClientRect();
+
+            // From mama's front right leg (wrist) to baby's back (backpack)
+            const x1 = mamaRect.left + mamaRect.width * 0.6;
+            const y1 = mamaRect.top + mamaRect.height * 0.55;
+            const x2 = babyRect.left + babyRect.width * 0.5;
+            const y2 = babyRect.top + babyRect.height * 0.4;
+
+            // Slight curve for natural drape
+            const cx = (x1 + x2) / 2;
+            const cy = Math.max(y1, y2) + 12;
+
+            tetherPath.setAttribute('d', `M${x1},${y1} Q${cx},${cy} ${x2},${y2}`);
+        }
+
+        // Update tether every frame
+        function tetherLoop() {
+            updateTether();
+            requestAnimationFrame(tetherLoop);
+        }
+        tetherLoop();
+
+        // ═══════════════════════════════════════
+        //   BABY FRUSTRATED STATE (story-driven)
+        // ═══════════════════════════════════════
+
+        function setBabyFrustrated(on) {
+            const baby = document.querySelector('.baby-moth-container');
+            const robot = document.querySelector('.robot-moth-svg');
+            if (!baby) return;
+            if (on) {
+                baby.classList.add('baby-frustrated');
+                // Robot moth glows warmer — doesn't fix, just stays
+                if (robot) robot.style.filter = 'drop-shadow(0 0 12px rgba(255, 158, 181, 0.4))';
+            } else {
+                baby.classList.remove('baby-frustrated');
+                if (robot) robot.style.filter = 'drop-shadow(0 0 8px rgba(90, 223, 223, 0.25))';
+            }
+        }
+
+        // ═══════════════════════════════════════
+        //   THE STORY — mama tries to speak,
+        //   baby doesn't understand, mama cries,
+        //   then mama sings — and the song reaches her
+        // ═══════════════════════════════════════
+
+        // Phase 1: Words that don't reach (they fade before getting to baby)
+        const spokenWords = [
+            { text: 'Luna?', color: '#D4A040', size: '0.85rem' },
+            { text: 'Filha...', color: '#C4A46A', size: '0.8rem' },
+            { text: 'Meu amor?', color: '#D4B88A', size: '0.75rem' },
+            { text: 'Luna...', color: '#E0CCA0', size: '0.85rem' },
+            { text: 'Can you hear me?', color: '#D4C0A0', size: '0.65rem' },
+            { text: '¿Me escuchas?', color: '#C4A46A', size: '0.65rem' },
+            { text: 'Luna...?', color: '#D4A040', size: '0.8rem' },
+            { text: '你听到了吗?', color: '#D4B88A', size: '0.7rem' },
+        ];
+
+        // Phase 2: The tears
+        const tears = ['💧', '💧'];
+
+        // Phase 3: The singing — notes that REACH the baby
+        const sungWords = [
+            { text: '♪', color: '#F2D048', size: '1rem' },
+            { text: '♫', color: '#FFB347', size: '0.9rem' },
+            { text: 'Vem...', color: '#F2D048', size: '0.75rem' },
+            { text: '♪', color: '#D4A040', size: '1.1rem' },
+            { text: 'que eu vou...', color: '#E0CCA0', size: '0.7rem' },
+            { text: '♫', color: '#FFB347', size: '0.95rem' },
+            { text: 'te domesticar...', color: '#F2D048', size: '0.65rem' },
+            { text: '♪', color: '#D4A040', size: '1rem' },
+            { text: '♫ ♪', color: '#FFB347', size: '0.85rem' },
+            { text: 'Luna!', color: '#F2D048', size: '0.9rem' },
+        ];
+
+        function getMothPosition(selector) {
+            const moth = document.querySelector(selector);
+            if (!moth) return null;
+            const rect = moth.getBoundingClientRect();
+            return {
+                x: rect.left + rect.width * 0.5,
+                y: rect.top + rect.height * 0.2
+            };
+        }
+
+        function spawnWord(word, reachesBaby) {
+            const pos = getMothPosition('.moth-container');
+            if (!pos) return;
+
+            const el = document.createElement('span');
+            el.className = 'mama-word';
+            el.textContent = word.text;
+            el.style.color = word.color;
+            el.style.fontSize = word.size;
+            el.style.left = (pos.x + (Math.random() * 16 - 8)) + 'px';
+            el.style.top = (pos.y + (Math.random() * 8 - 4)) + 'px';
+
+            if (reachesBaby) {
+                // Song notes travel further and brighter
+                el.style.animation = 'wordReach 5s ease-out forwards';
+            } else {
+                // Spoken words die halfway — she doesn't understand
+                el.style.animation = 'wordFail 3s ease-out forwards';
+            }
+
+            document.body.appendChild(el);
+            setTimeout(() => { if (el.parentNode) el.remove(); }, 5500);
+
+            // If song reaches baby, make baby moth AND robot moth pulse briefly
+            if (reachesBaby) {
+                const baby = document.querySelector('.baby-moth-svg');
+                const robot = document.querySelector('.robot-moth-svg');
+                if (baby) {
+                    setTimeout(() => {
+                        baby.style.filter = 'drop-shadow(0 0 12px rgba(242, 208, 72, 0.5))';
+                        if (robot) robot.style.filter = 'drop-shadow(0 0 14px rgba(242, 208, 72, 0.4))';
+                        setTimeout(() => {
+                            baby.style.filter = 'drop-shadow(0 0 6px rgba(74, 144, 200, 0.2))';
+                            if (robot) robot.style.filter = 'drop-shadow(0 0 8px rgba(90, 223, 223, 0.25))';
+                        }, 800);
+                    }, 3500);
+                }
+            }
+        }
+
+        function spawnTear() {
+            const pos = getMothPosition('.moth-container');
+            if (!pos) return;
+
+            const el = document.createElement('span');
+            el.className = 'mama-word';
+            el.textContent = '💧';
+            el.style.fontSize = '0.7rem';
+            el.style.left = (pos.x + (Math.random() * 10 - 5)) + 'px';
+            el.style.top = (pos.y + 15) + 'px';
+            el.style.animation = 'tearFall 2.5s ease-in forwards';
+
+            document.body.appendChild(el);
+            setTimeout(() => { if (el.parentNode) el.remove(); }, 3000);
+        }
+
+        // ═══ THE STORY SEQUENCE ═══
+        let storyPhase = 0;
+        let storyIndex = 0;
+
+        function tellStory() {
+            if (storyPhase === 0) {
+                // Phase 1: Words that don't reach — baby gets frustrated
+                setBabyFrustrated(true);
+                if (storyIndex < spokenWords.length) {
+                    spawnWord(spokenWords[storyIndex], false);
+                    storyIndex++;
+                    storyTimeout = setTimeout(tellStory, 2800 + Math.random() * 1200);
+                } else {
+                    // Transition to tears
+                    storyPhase = 1;
+                    storyIndex = 0;
+                    setBabyFrustrated(false); // frustration fades to stillness
+                    storyTimeout = setTimeout(tellStory, 1500);
+                }
+            } else if (storyPhase === 1) {
+                // Phase 2: Tears — both are quiet
+                setBabyFrustrated(false);
+                if (storyIndex < 3) {
+                    spawnTear();
+                    storyIndex++;
+                    storyTimeout = setTimeout(tellStory, 1200);
+                } else {
+                    // Transition to singing
+                    storyPhase = 2;
+                    storyIndex = 0;
+                    storyTimeout = setTimeout(tellStory, 2000);
+                }
+            } else if (storyPhase === 2) {
+                // Phase 3: Song that reaches the baby — peace
+                setBabyFrustrated(false);
+                if (storyIndex < sungWords.length) {
+                    spawnWord(sungWords[storyIndex], true);
+                    storyIndex++;
+                    storyTimeout = setTimeout(tellStory, 2500 + Math.random() * 1000);
+                } else {
+                    // Loop back — the story repeats, like it does in real life
+                    storyPhase = 0;
+                    storyIndex = 0;
+                    storyTimeout = setTimeout(tellStory, 6000);
+                }
+            }
+        }
+
+        // Start the story after a gentle pause
+        setTimeout(tellStory, 3000);
+
+        // ═══════════════════════════════════════
+        //   VOVÔ MUSTACHE — his name in every language
+        //   Bigode / Bigote / Snor / 胡子 / Mustache
+        // ═══════════════════════════════════════
+
+        const mustacheWords = [
+            { text: 'Bigode!', color: '#4A8A5A', size: '0.6rem' },
+            { text: 'Bigote!', color: '#3A7A4A', size: '0.6rem' },
+            { text: 'Snor!', color: '#4A8A5A', size: '0.65rem' },
+            { text: '胡子!', color: '#3A7A4A', size: '0.7rem' },
+            { text: 'Mustache!', color: '#4A8A5A', size: '0.55rem' },
+        ];
+
+        let mustacheIndex = 0;
+        function spawnMustacheWord() {
+            const vovo = document.querySelector('.vovo-moth-container');
+            if (!vovo) return;
+            const rect = vovo.getBoundingClientRect();
+            const word = mustacheWords[mustacheIndex % mustacheWords.length];
+            mustacheIndex++;
+
+            const el = document.createElement('span');
+            el.className = 'mama-word';
+            el.textContent = word.text;
+            el.style.color = word.color;
+            el.style.fontSize = word.size;
+            el.style.left = (rect.left + rect.width * 0.5) + 'px';
+            el.style.top = (rect.top + rect.height * 0.3) + 'px';
+            el.style.animation = 'wordFail 3.5s ease-out forwards';
+            el.style.opacity = '0';
+
+            document.body.appendChild(el);
+            setTimeout(() => { if (el.parentNode) el.remove(); }, 4000);
+        }
+
+        // Every 8-12 seconds, Vovô sends a "mustache" word
+        setInterval(() => {
+            if (!reducedMotion) spawnMustacheWord();
+        }, 8000 + Math.random() * 4000);
+        // First one after 5 seconds
+        setTimeout(() => { if (!reducedMotion) spawnMustacheWord(); }, 5000);
+
+        // Pause when motion is reduced
+        const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (motionQuery.matches) {
+            clearTimeout(storyTimeout);
+        }
+
+        // ═══════════════════════════════════════
+        //          MOTH COLOR TOGGLE
+        // ═══════════════════════════════════════
+
+        const mothColorBtn = document.getElementById('mothColor');
+        let isBlue = true;
+
+        const colorSchemes = {
+            green: {
+                wing: ['#8FBC6A', '#A8D48A', '#C8E6A0', '#B8D890'],
+                tail: ['#8FBC6A', '#C8E6A0', '#A8D48A'],
+                glow: 'rgba(200, 230, 160, 0.15)',
+                spot: 'rgba(200, 230, 160, 0.5)',
+                accent: 'rgba(108, 74, 182, 0.3)',
+                vein1: 'rgba(200, 230, 160, 0.15)',
+                vein2: 'rgba(200, 230, 160, 0.1)',
+                particle: '#C8E6A0'
+            },
+            blue: {
+                wing: ['#3A8BD6', '#5AACF0', '#7CC4F8', '#5AACF0'],
+                tail: ['#3A8BD6', '#5AACF0', '#7CC4F8'],
+                glow: 'rgba(90, 170, 240, 0.12)',
+                spot: 'rgba(90, 172, 240, 0.5)',
+                accent: 'rgba(26, 61, 110, 0.6)',
+                vein1: 'rgba(90, 172, 240, 0.15)',
+                vein2: 'rgba(90, 172, 240, 0.1)',
+                particle: '#5AACF0'
+            }
+        };
+
+        function setMothColor(blue) {
+            isBlue = blue;
+            const scheme = blue ? colorSchemes.blue : colorSchemes.green;
+            
+            // Update body class
+            document.body.classList.remove('moth-green', 'moth-blue');
+            document.body.classList.add(blue ? 'moth-blue' : 'moth-green');
+
+            // Update SVG gradients
+            const wingStops = document.querySelectorAll('#wingGrad stop');
+            wingStops[0].setAttribute('stop-color', scheme.wing[0]);
+            wingStops[1].setAttribute('stop-color', scheme.wing[1]);
+            wingStops[2].setAttribute('stop-color', scheme.wing[2]);
+            wingStops[3].setAttribute('stop-color', scheme.wing[3]);
+
+            const tailStops = document.querySelectorAll('#tailGrad stop');
+            tailStops[0].setAttribute('stop-color', scheme.tail[0]);
+            tailStops[1].setAttribute('stop-color', scheme.tail[1]);
+            tailStops[2].setAttribute('stop-color', scheme.tail[2]);
+
+            // Update glow circle
+            document.querySelector('.moth-glow-circle').setAttribute('fill', scheme.glow);
+
+            // Update eyespots
+            const spots = document.querySelectorAll('.eyespot-center');
+            spots.forEach(s => s.setAttribute('fill', scheme.spot));
+            const accents = document.querySelectorAll('.eyespot-accent');
+            accents.forEach(a => a.setAttribute('fill', scheme.accent));
+
+            // Update vein lines
+            document.querySelectorAll('.wing-vein-1').forEach(v => v.setAttribute('stroke', scheme.vein1));
+            document.querySelectorAll('.wing-vein-2').forEach(v => v.setAttribute('stroke', scheme.vein2));
+
+            // Store preference
+            localStorage.setItem('luna-moth-color', blue ? 'blue' : 'green');
+        }
+
+        mothColorBtn.addEventListener('click', () => setMothColor(!isBlue));
+
+        // Load saved preference
+        const savedColor = localStorage.getItem('luna-moth-color');
+        if (savedColor === 'blue') setMothColor(true);
 
         // ═══════════════════════════════════════
         //          ENTER BUTTON
