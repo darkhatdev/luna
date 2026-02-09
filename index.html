@@ -1,740 +1,753 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Luna 🦋 Family Language Bridge</title>
-<meta name="description" content="Luna — Learn Dutch, English, Portuguese & Spanish together as a family">
-<meta name="theme-color" content="#0D0B1A">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#0D0B1A;--bg1:#151229;--bg2:#1E1A3A;--bg3:#2A2450;
-  --purple:#6C4AB6;--purpleL:#9C5EFF;--purpleD:#2D1B69;
-  --green:#A8E6CF;--gold:#FFD700;--goldS:#F5DEB3;--silver:#C0C5CE;
-  --text:#E8E6F0;--text2:#A8A4C0;--textL:#A8E6CF;
-  --ok:#A8E6CF;--err:#FF6B8A;--warn:#FFB86C;--info:#82B1FF;
-  --font:'Fredoka',sans-serif;--body:'Noto Sans',sans-serif;--hand:'Caveat',cursive;
-  --rad:16px;--radS:10px;
-}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.6;overflow:hidden}
-button{font-family:var(--font);cursor:pointer;border:none;outline:none;-webkit-user-select:none;user-select:none}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0D0B1A">
+    <meta name="description" content="Luna — Multilingual emotional intelligence for the unusually minded">
+    <title>Luna 🦋</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Quicksand:wght@300;400;500;600&display=swap');
 
-/* ═══ APP SHELL ═══ */
-.app{width:100%;height:100%;display:flex;flex-direction:column;max-width:480px;margin:0 auto;position:relative;overflow:hidden}
-.screen{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s;transform:translateY(20px);overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
-.screen.active{opacity:1;pointer-events:auto;transform:translateY(0)}
-.screen::-webkit-scrollbar{width:0}
+        :root {
+            --void: #0D0B1A;
+            --deep: #110F24;
+            --night: #1A1735;
+            --twilight: #2A2650;
+            --moth-glow: #C8E6A0;
+            --moth-wing: #8FBC6A;
+            --moth-body: #D4C99E;
+            --moon: #F5F0E8;
+            --moonlight: rgba(245, 240, 232, 0.08);
+            --star: #E8E4D9;
+            --purple-soft: #6C4AB6;
+            --purple-glow: rgba(108, 74, 182, 0.3);
+            --green-safe: #A8E6CF;
+            --warmth: #F5DEB3;
+            --text-primary: #E8E4D9;
+            --text-soft: rgba(232, 228, 217, 0.7);
+            --text-whisper: rgba(232, 228, 217, 0.4);
+        }
 
-/* ═══ HEADER BAR ═══ */
-.hbar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:var(--bg1);border-bottom:1px solid #ffffff08;min-height:56px;flex-shrink:0;z-index:10}
-.hbar .back{background:none;color:var(--text2);font-size:22px;padding:4px 8px;border-radius:8px}
-.hbar .back:active{background:#ffffff10}
-.hbar .title{font-family:var(--font);font-weight:600;font-size:17px;color:var(--text)}
-.hbar .xp-pill{display:flex;align-items:center;gap:6px;background:var(--bg2);padding:4px 12px;border-radius:20px;font-family:var(--font);font-size:14px;font-weight:600;color:var(--gold)}
-.hbar .xp-pill svg{width:16px;height:16px;fill:var(--gold)}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* ═══ HOME SCREEN ═══ */
-.home-pad{padding:20px 20px 100px;flex:1}
-.moth-hero{text-align:center;padding:20px 0 10px}
-.moth-svg{width:140px;height:140px;margin:0 auto;animation:mothFloat 4s ease-in-out infinite}
-@keyframes mothFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.moth-speech{position:relative;background:var(--bg2);border:2px solid var(--purple);border-radius:20px 20px 20px 4px;padding:14px 18px;margin:12px 20px 0;font-family:var(--hand);font-size:20px;color:var(--green);text-align:center;line-height:1.4}
-.moth-speech::before{content:'';position:absolute;bottom:-10px;left:20px;border:10px solid transparent;border-top-color:var(--purple);border-right-color:var(--purple)}
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            background: var(--void);
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-primary);
+            cursor: default;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
 
-.moon-progress{text-align:center;margin:20px 0}
-.moon-wrap{position:relative;width:80px;height:80px;margin:0 auto}
-.moon-ring{width:80px;height:80px;border-radius:50%;border:3px solid var(--bg3);position:relative}
-.moon-fill{position:absolute;inset:0;border-radius:50%;border:3px solid var(--gold);border-color:var(--gold) transparent transparent transparent;transform:rotate(-45deg);transition:all .5s}
-.moon-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--font);font-size:22px;font-weight:700;color:var(--gold)}
-.moon-text small{font-size:10px;color:var(--text2);font-weight:500;letter-spacing:1px}
-.moon-label{font-family:var(--font);font-size:13px;color:var(--text2);margin-top:6px}
+        /* ═══════════════════════════════════════ */
+        /*           STARFIELD BACKGROUND          */
+        /* ═══════════════════════════════════════ */
 
-.stats-row{display:flex;justify-content:center;gap:24px;margin:16px 0}
-.stat{text-align:center}
-.stat .num{font-family:var(--font);font-size:24px;font-weight:700;color:var(--gold)}
-.stat .lbl{font-size:11px;color:var(--text2);letter-spacing:1px;text-transform:uppercase}
+        .starfield {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+        }
 
-.section-title{font-family:var(--font);font-size:15px;font-weight:600;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin:24px 0 12px;padding-left:4px}
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--star);
+        }
 
-/* ═══ CATEGORY CARDS ═══ */
-.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.cat-card{background:var(--bg2);border:1px solid #ffffff08;border-radius:var(--rad);padding:20px 14px;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
-.cat-card:active{transform:scale(.96);background:var(--bg3)}
-.cat-card .emoji{font-size:36px;margin-bottom:8px;display:block}
-.cat-card .cname{font-family:var(--font);font-size:15px;font-weight:600;color:var(--text)}
-.cat-card .ccount{font-size:12px;color:var(--text2);margin-top:2px}
-.cat-card .cprog{width:100%;height:3px;background:var(--bg);border-radius:2px;margin-top:10px;overflow:hidden}
-.cat-card .cprog-fill{height:100%;background:var(--green);border-radius:2px;transition:width .5s}
-.cat-card.done{border-color:var(--green)}
-.cat-card.done::after{content:'✓';position:absolute;top:8px;right:10px;color:var(--green);font-size:16px;font-weight:bold}
+        /* ═══════════════════════════════════════ */
+        /*              MOON                       */
+        /* ═══════════════════════════════════════ */
 
-/* ═══ LESSON SCREEN ═══ */
-.lesson-pad{padding:20px;flex:1;display:flex;flex-direction:column}
-.lang-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
-.lang-tab{padding:6px 14px;border-radius:20px;font-family:var(--font);font-size:13px;font-weight:600;background:var(--bg2);color:var(--text2);transition:all .3s}
-.lang-tab.active{background:var(--purple);color:white}
-.lang-tab:active{transform:scale(.95)}
+        .moon {
+            position: fixed;
+            top: 8%;
+            right: 12%;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 40%, var(--moon), #D4CFC4);
+            box-shadow:
+                0 0 40px rgba(245, 240, 232, 0.15),
+                0 0 80px rgba(245, 240, 232, 0.08),
+                0 0 160px rgba(245, 240, 232, 0.04);
+            z-index: 1;
+            opacity: 0;
+            animation: moonrise 3s ease-out 0.5s forwards;
+        }
 
-.card-area{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px}
+        .moon::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(180, 175, 165, 0.3);
+        }
 
-/* ═══ FLASHCARD ═══ */
-.flashcard{width:100%;max-width:360px;min-height:280px;background:var(--bg2);border:2px solid var(--bg3);border-radius:var(--rad);padding:30px 24px;text-align:center;cursor:pointer;transition:all .3s;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
-.flashcard:active{transform:scale(.97);border-color:var(--purple)}
-.flashcard .flag{font-size:28px}
-.flashcard .word{font-family:var(--font);font-size:clamp(28px,6vw,40px);font-weight:700;color:var(--text);line-height:1.3}
-.flashcard .pron{font-family:var(--hand);font-size:20px;color:var(--purpleL);margin-top:2px}
-.flashcard .trans{font-size:15px;color:var(--text2);margin-top:6px;min-height:22px}
-.flashcard .tap-hint{font-size:12px;color:var(--text2);opacity:.5;margin-top:12px;letter-spacing:1px}
-.flashcard .speak-btn{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:22px;transition:all .2s}
-.flashcard .speak-btn:active{background:var(--purple);transform:scale(.9)}
+        .moon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 55%;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(180, 175, 165, 0.2);
+        }
 
-.card-nav{display:flex;gap:12px;margin-top:20px;width:100%;max-width:360px}
-.card-nav button{flex:1;padding:14px;border-radius:var(--radS);font-family:var(--font);font-size:15px;font-weight:600;transition:all .2s}
-.card-nav button:active{transform:scale(.96)}
-.btn-prev{background:var(--bg2);color:var(--text2)}
-.btn-next{background:var(--purple);color:white}
-.btn-quiz{background:var(--green);color:var(--bg)}
+        @keyframes moonrise {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-.card-dots{display:flex;gap:6px;margin-top:14px;justify-content:center}
-.card-dots .dot{width:8px;height:8px;border-radius:50%;background:var(--bg3);transition:all .3s}
-.card-dots .dot.active{background:var(--purple);transform:scale(1.2)}
-.card-dots .dot.done{background:var(--green)}
+        /* ═══════════════════════════════════════ */
+        /*           LUNA MOTH (SVG)               */
+        /* ═══════════════════════════════════════ */
 
-/* ═══ FOUR LANGUAGE VIEW ═══ */
-.four-lang{width:100%;max-width:360px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.lang-cell{background:var(--bg2);border:1px solid #ffffff08;border-radius:var(--radS);padding:16px 14px;text-align:center;cursor:pointer;transition:all .2s}
-.lang-cell:active{transform:scale(.96);border-color:var(--purple)}
-.lang-cell .lflag{font-size:22px}
-.lang-cell .lword{font-family:var(--font);font-size:18px;font-weight:700;color:var(--text);margin-top:4px;line-height:1.3}
-.lang-cell .lpron{font-family:var(--hand);font-size:15px;color:var(--purpleL);margin-top:2px}
-.lang-cell .llang{font-size:11px;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-top:4px}
+        .moth-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+            z-index: 10;
+            opacity: 0;
+            animation: mothAppear 2s ease-out 1.5s forwards;
+        }
 
-/* ═══ QUIZ MODE ═══ */
-.quiz-area{flex:1;display:flex;flex-direction:column;align-items:center;padding:20px}
-.quiz-q{font-family:var(--font);font-size:14px;color:var(--text2);text-align:center;margin-bottom:8px}
-.quiz-word{font-family:var(--font);font-size:clamp(28px,7vw,42px);font-weight:700;color:var(--text);text-align:center;margin-bottom:6px}
-.quiz-hint{font-family:var(--hand);font-size:18px;color:var(--purpleL);text-align:center;margin-bottom:24px}
-.quiz-opts{width:100%;max-width:360px;display:flex;flex-direction:column;gap:10px}
-.quiz-opt{width:100%;padding:16px 20px;background:var(--bg2);border:2px solid var(--bg3);border-radius:var(--radS);font-family:var(--font);font-size:16px;font-weight:600;color:var(--text);text-align:left;transition:all .2s}
-.quiz-opt:active{transform:scale(.98)}
-.quiz-opt.correct{border-color:var(--ok);background:#A8E6CF15;color:var(--ok)}
-.quiz-opt.wrong{border-color:var(--err);background:#FF6B8A15;color:var(--err)}
-.quiz-opt.disabled{pointer-events:none;opacity:.5}
-.quiz-result{text-align:center;margin-top:16px;font-family:var(--font);font-size:15px;min-height:24px}
-.quiz-result.yay{color:var(--ok)}
-.quiz-result.nay{color:var(--warn)}
-.quiz-score{margin-top:20px;text-align:center}
-.quiz-score .big{font-family:var(--font);font-size:36px;font-weight:700;color:var(--gold)}
-.quiz-score .lbl{font-size:13px;color:var(--text2)}
-.quiz-next{margin-top:16px;padding:14px 40px;background:var(--purple);color:white;border-radius:var(--radS);font-family:var(--font);font-size:15px;font-weight:600}
+        @keyframes mothAppear {
+            from { opacity: 0; transform: translate(-50%, -55%) scale(0.8); }
+            to { opacity: 1; transform: translate(-50%, -60%) scale(1); }
+        }
 
-/* ═══ CULTURE TIPS ═══ */
-.culture-card{background:var(--bg2);border-left:4px solid var(--purpleL);border-radius:0 var(--radS) var(--radS) 0;padding:16px 18px;margin:12px 0}
-.culture-card .ctitle{font-family:var(--font);font-size:14px;font-weight:600;color:var(--purpleL);margin-bottom:6px}
-.culture-card .ctext{font-size:14px;color:var(--text2);line-height:1.6}
+        .moth-svg {
+            width: 180px;
+            height: 220px;
+            filter: drop-shadow(0 0 30px rgba(200, 230, 160, 0.25));
+            animation: mothFloat 6s ease-in-out infinite;
+        }
 
-/* ═══ NAV BAR ═══ */
-.navbar{display:flex;background:var(--bg1);border-top:1px solid #ffffff08;padding:8px 0;padding-bottom:max(8px,env(safe-area-inset-bottom));flex-shrink:0;position:relative;z-index:20}
-.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px;background:none;color:var(--text2);font-size:11px;font-family:var(--font);transition:all .2s}
-.nav-btn.active{color:var(--green)}
-.nav-btn svg{width:24px;height:24px;fill:currentColor}
-.nav-btn:active{transform:scale(.9)}
+        @keyframes mothFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-8px) rotate(0.5deg); }
+            50% { transform: translateY(-3px) rotate(-0.5deg); }
+            75% { transform: translateY(-10px) rotate(0.3deg); }
+        }
 
-/* ═══ SETTINGS ═══ */
-.settings-pad{padding:20px 20px 100px;flex:1}
-.setting-group{margin-bottom:24px}
-.setting-group h3{font-family:var(--font);font-size:14px;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
-.setting-row{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--bg2);border-radius:var(--radS);margin-bottom:6px}
-.setting-row label{font-size:15px;color:var(--text)}
-.toggle{width:48px;height:28px;border-radius:14px;background:var(--bg3);position:relative;cursor:pointer;transition:background .3s}
-.toggle.on{background:var(--green)}
-.toggle::after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:white;transition:transform .3s}
-.toggle.on::after{transform:translateX(20px)}
+        .moth-wing-left, .moth-wing-right {
+            animation: wingBreathe 4s ease-in-out infinite;
+            transform-origin: center;
+        }
 
-/* ═══ STARS BG ═══ */
-.stars{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.star{position:absolute;width:2px;height:2px;background:white;border-radius:50%;animation:twinkle 3s ease-in-out infinite}
-@keyframes twinkle{0%,100%{opacity:.1}50%{opacity:.6}}
+        .moth-wing-right {
+            animation-delay: 0.1s;
+        }
 
-/* ═══ XP TOAST ═══ */
-.xp-toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);background:var(--bg2);border:1px solid var(--gold);border-radius:20px;padding:8px 20px;font-family:var(--font);font-size:15px;font-weight:700;color:var(--gold);z-index:100;opacity:0;transition:all .4s;pointer-events:none}
-.xp-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+        @keyframes wingBreathe {
+            0%, 100% { transform: scaleX(1); }
+            50% { transform: scaleX(0.97); }
+        }
 
-/* ═══ RESPONSIVE ═══ */
-@media(max-width:360px){.cat-grid{gap:8px}.flashcard{padding:20px 16px;min-height:240px}}
-@media(min-width:481px){.app{border-left:1px solid #ffffff08;border-right:1px solid #ffffff08}}
-</style>
+        .moth-glow-circle {
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.15; r: 70; }
+            50% { opacity: 0.25; r: 80; }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*         GOLDEN TRAIL PARTICLES          */
+        /* ═══════════════════════════════════════ */
+
+        .trail-particle {
+            position: fixed;
+            border-radius: 50%;
+            background: var(--moth-glow);
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*              TEXT CONTENT               */
+        /* ═══════════════════════════════════════ */
+
+        .content {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 12vh;
+            z-index: 20;
+        }
+
+        .title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 3.5rem;
+            letter-spacing: 0.3em;
+            color: var(--moon);
+            opacity: 0;
+            animation: textFadeIn 2s ease-out 2.5s forwards;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-soft);
+            letter-spacing: 0.15em;
+            margin-top: 1rem;
+            opacity: 0;
+            animation: textFadeIn 2s ease-out 3.5s forwards;
+        }
+
+        .dedication {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 300;
+            font-size: 0.75rem;
+            color: var(--text-whisper);
+            letter-spacing: 0.2em;
+            margin-top: 2rem;
+            opacity: 0;
+            animation: textFadeIn 2s ease-out 4.5s forwards;
+            text-transform: uppercase;
+        }
+
+        @keyframes textFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*             ENTER BUTTON                */
+        /* ═══════════════════════════════════════ */
+
+        .enter-btn {
+            margin-top: 2.5rem;
+            padding: 0.8rem 2.5rem;
+            background: transparent;
+            border: 1px solid rgba(200, 230, 160, 0.3);
+            border-radius: 30px;
+            color: var(--moth-glow);
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 400;
+            font-size: 0.85rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            cursor: pointer;
+            opacity: 0;
+            animation: textFadeIn 2s ease-out 5.5s forwards;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enter-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(200, 230, 160, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .enter-btn:hover {
+            border-color: rgba(200, 230, 160, 0.6);
+            box-shadow: 0 0 25px rgba(200, 230, 160, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .enter-btn:hover::before {
+            opacity: 1;
+        }
+
+        .enter-btn:active {
+            transform: translateY(0);
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*          HAND TOGGLE (L/R)              */
+        /* ═══════════════════════════════════════ */
+
+        .hand-toggle {
+            position: fixed;
+            bottom: 20px;
+            z-index: 30;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: textFadeIn 2s ease-out 6s forwards;
+        }
+
+        .hand-toggle.left-mode {
+            left: 20px;
+        }
+
+        .hand-toggle.right-mode {
+            right: 20px;
+        }
+
+        .hand-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: var(--text-whisper);
+            text-transform: uppercase;
+        }
+
+        .toggle-switch {
+            width: 44px;
+            height: 24px;
+            background: var(--night);
+            border: 1px solid rgba(200, 230, 160, 0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--moth-glow);
+            transition: transform 0.3s ease;
+            box-shadow: 0 0 8px rgba(200, 230, 160, 0.3);
+        }
+
+        .toggle-switch.right::after {
+            transform: translateX(20px);
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*           SENSORY CONTROLS              */
+        /* ═══════════════════════════════════════ */
+
+        .sensory-controls {
+            position: fixed;
+            top: 20px;
+            z-index: 30;
+            display: flex;
+            gap: 12px;
+            opacity: 0;
+            animation: textFadeIn 2s ease-out 6s forwards;
+        }
+
+        .left-mode .sensory-controls {
+            right: 20px;
+        }
+
+        .right-mode .sensory-controls {
+            left: 20px;
+        }
+
+        .sensory-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(26, 23, 53, 0.8);
+            border: 1px solid rgba(200, 230, 160, 0.15);
+            color: var(--text-whisper);
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .sensory-btn:hover {
+            border-color: rgba(200, 230, 160, 0.4);
+            color: var(--moth-glow);
+        }
+
+        .sensory-btn.active {
+            border-color: rgba(200, 230, 160, 0.5);
+            color: var(--moth-glow);
+            background: rgba(200, 230, 160, 0.08);
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*          REDUCE MOTION                  */
+        /* ═══════════════════════════════════════ */
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .moth-svg {
+                animation: none;
+            }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*           RESPONSIVE                    */
+        /* ═══════════════════════════════════════ */
+
+        @media (max-width: 600px) {
+            .title {
+                font-size: 2.5rem;
+                letter-spacing: 0.2em;
+            }
+            .tagline {
+                font-size: 0.95rem;
+                padding: 0 2rem;
+                text-align: center;
+            }
+            .moth-svg {
+                width: 140px;
+                height: 170px;
+            }
+            .moon {
+                width: 50px;
+                height: 50px;
+                top: 6%;
+                right: 8%;
+            }
+            .content {
+                padding-bottom: 10vh;
+            }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /*         SCREEN READER ONLY              */
+        /* ═══════════════════════════════════════ */
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+    </style>
 </head>
 <body>
-<div class="stars" id="stars"></div>
-<div class="app" id="app">
+    <h1 class="sr-only">Luna — Multilingual emotional intelligence for the unusually minded</h1>
 
-<!-- ═══ HOME ═══ -->
-<div class="screen active" id="homeScreen">
-  <div class="hbar">
-    <div class="title">🦋 Luna</div>
-    <div class="xp-pill"><svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg><span id="totalXP">0</span> XP</div>
-  </div>
-  <div class="home-pad">
-    <div class="moth-hero">
-      <div class="moth-svg" id="mothSVG"></div>
-      <div class="moth-speech" id="mothSpeech">Hoi! I'm Luna 🦋 Tap a lesson to start learning together!</div>
+    <!-- Starfield -->
+    <div class="starfield" id="starfield" aria-hidden="true"></div>
+
+    <!-- Moon -->
+    <div class="moon" aria-hidden="true"></div>
+
+    <!-- Luna Moth -->
+    <div class="moth-container" aria-hidden="true">
+        <svg class="moth-svg" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+            <!-- Glow -->
+            <circle class="moth-glow-circle" cx="100" cy="120" r="70" fill="rgba(200, 230, 160, 0.15)" />
+
+            <!-- Left hindwing (tail) -->
+            <g class="moth-wing-left">
+                <path d="M95 140 Q60 180 50 220 Q55 225 65 220 Q80 195 95 160 Z"
+                      fill="url(#tailGrad)" opacity="0.9"/>
+            </g>
+
+            <!-- Right hindwing (tail) -->
+            <g class="moth-wing-right">
+                <path d="M105 140 Q140 180 150 220 Q145 225 135 220 Q120 195 105 160 Z"
+                      fill="url(#tailGrad)" opacity="0.9"/>
+            </g>
+
+            <!-- Left forewing -->
+            <g class="moth-wing-left">
+                <path d="M90 110 Q30 85 20 60 Q18 50 25 48 Q45 55 65 75 Q78 90 90 110 Z"
+                      fill="url(#wingGrad)" opacity="0.95"/>
+                <!-- Wing eyespot -->
+                <circle cx="50" cy="72" r="8" fill="rgba(13, 11, 26, 0.4)"/>
+                <circle cx="50" cy="72" r="5" fill="rgba(108, 74, 182, 0.3)"/>
+                <circle cx="50" cy="72" r="2" fill="rgba(200, 230, 160, 0.5)"/>
+                <!-- Wing vein lines -->
+                <path d="M88 108 Q55 88 28 55" stroke="rgba(200, 230, 160, 0.15)" stroke-width="0.5" fill="none"/>
+                <path d="M85 105 Q60 90 35 65" stroke="rgba(200, 230, 160, 0.1)" stroke-width="0.5" fill="none"/>
+            </g>
+
+            <!-- Right forewing -->
+            <g class="moth-wing-right">
+                <path d="M110 110 Q170 85 180 60 Q182 50 175 48 Q155 55 135 75 Q122 90 110 110 Z"
+                      fill="url(#wingGrad)" opacity="0.95"/>
+                <!-- Wing eyespot -->
+                <circle cx="150" cy="72" r="8" fill="rgba(13, 11, 26, 0.4)"/>
+                <circle cx="150" cy="72" r="5" fill="rgba(108, 74, 182, 0.3)"/>
+                <circle cx="150" cy="72" r="2" fill="rgba(200, 230, 160, 0.5)"/>
+                <!-- Wing vein lines -->
+                <path d="M112 108 Q145 88 172 55" stroke="rgba(200, 230, 160, 0.15)" stroke-width="0.5" fill="none"/>
+                <path d="M115 105 Q140 90 165 65" stroke="rgba(200, 230, 160, 0.1)" stroke-width="0.5" fill="none"/>
+            </g>
+
+            <!-- Body -->
+            <ellipse cx="100" cy="115" rx="6" ry="30" fill="var(--moth-body)"/>
+            <ellipse cx="100" cy="115" rx="4" ry="28" fill="url(#bodyGrad)"/>
+
+            <!-- Head -->
+            <circle cx="100" cy="82" r="5" fill="var(--moth-body)"/>
+
+            <!-- Antennae -->
+            <path d="M97 80 Q85 60 78 50" stroke="var(--moth-body)" stroke-width="1" fill="none" opacity="0.7"/>
+            <path d="M103 80 Q115 60 122 50" stroke="var(--moth-body)" stroke-width="1" fill="none" opacity="0.7"/>
+            <!-- Feathered tips -->
+            <path d="M78 50 Q73 45 70 47 Q74 50 78 50 Z" fill="var(--moth-body)" opacity="0.5"/>
+            <path d="M78 50 Q75 43 72 44 Q75 48 78 50 Z" fill="var(--moth-body)" opacity="0.4"/>
+            <path d="M122 50 Q127 45 130 47 Q126 50 122 50 Z" fill="var(--moth-body)" opacity="0.5"/>
+            <path d="M122 50 Q125 43 128 44 Q125 48 122 50 Z" fill="var(--moth-body)" opacity="0.4"/>
+
+            <!-- Eyes -->
+            <circle cx="97" cy="80" r="1.5" fill="rgba(13, 11, 26, 0.8)"/>
+            <circle cx="103" cy="80" r="1.5" fill="rgba(13, 11, 26, 0.8)"/>
+
+            <!-- Gradients -->
+            <defs>
+                <linearGradient id="wingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#8FBC6A"/>
+                    <stop offset="40%" stop-color="#A8D48A"/>
+                    <stop offset="70%" stop-color="#C8E6A0"/>
+                    <stop offset="100%" stop-color="#B8D890"/>
+                </linearGradient>
+                <linearGradient id="tailGrad" x1="0%" y1="0%" x2="50%" y2="100%">
+                    <stop offset="0%" stop-color="#8FBC6A"/>
+                    <stop offset="50%" stop-color="#C8E6A0"/>
+                    <stop offset="100%" stop-color="#A8D48A" stop-opacity="0.6"/>
+                </linearGradient>
+                <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#D4C99E"/>
+                    <stop offset="100%" stop-color="#BFB58A"/>
+                </linearGradient>
+            </defs>
+        </svg>
     </div>
-    <div class="moon-progress">
-      <div class="moon-wrap">
-        <div class="moon-ring"><div class="moon-fill" id="moonFill"></div></div>
-        <div class="moon-text"><span id="moonPct">0</span>%<small>COMPLETE</small></div>
-      </div>
-      <div class="moon-label">Today's Progress</div>
+
+    <!-- Sensory Controls -->
+    <div class="sensory-controls" id="sensoryControls" role="toolbar" aria-label="Sensory settings">
+        <button class="sensory-btn" id="soundToggle" aria-label="Toggle sound" title="Sound">🔇</button>
+        <button class="sensory-btn" id="motionToggle" aria-label="Toggle motion" title="Reduce motion">✦</button>
     </div>
-    <div class="stats-row">
-      <div class="stat"><div class="num" id="statWords">0</div><div class="lbl">Words</div></div>
-      <div class="stat"><div class="num" id="statSessions">0</div><div class="lbl">Sessions</div></div>
-      <div class="stat"><div class="num" id="statStreak">0</div><div class="lbl">Days</div></div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="title">Luna</div>
+        <div class="tagline">Unusual minds. Unusual paths. Unusual flight.</div>
+        <div class="dedication">For the Blue Butterfly Child</div>
+        <button class="enter-btn" id="enterBtn">Enter the Garden</button>
     </div>
-    <div class="section-title">Lessons</div>
-    <div class="cat-grid" id="catGrid"></div>
-  </div>
-  <div class="navbar">
-    <button class="nav-btn active" onclick="showScreen('homeScreen')"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home</button>
-    <button class="nav-btn" onclick="showScreen('cultureScreen')"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>Culture</button>
-    <button class="nav-btn" onclick="showScreen('settingsScreen')"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>Settings</button>
-  </div>
-</div>
 
-<!-- ═══ LESSON ═══ -->
-<div class="screen" id="lessonScreen">
-  <div class="hbar">
-    <button class="back" onclick="goHome()">←</button>
-    <div class="title" id="lessonTitle">Greetings</div>
-    <div class="xp-pill"><svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg><span id="lessonXP">0</span></div>
-  </div>
-  <div class="lesson-pad">
-    <div class="lang-tabs" id="langTabs"></div>
-    <div class="card-area" id="cardArea"></div>
-    <div class="card-dots" id="cardDots"></div>
-    <div class="card-nav">
-      <button class="btn-prev" onclick="prevCard()">← Back</button>
-      <button class="btn-next" onclick="nextCard()">Next →</button>
+    <!-- Hand Toggle -->
+    <div class="hand-toggle left-mode" id="handToggle">
+        <span class="hand-label" id="handLabel">Left</span>
+        <div class="toggle-switch" id="toggleSwitch" role="switch" aria-checked="true" aria-label="Switch between left-hand and right-hand layout" tabindex="0"></div>
     </div>
-    <button class="btn-quiz" style="width:100%;margin-top:12px;padding:14px;border-radius:var(--radS);font-family:var(--font);font-size:15px;font-weight:600;background:var(--green);color:var(--bg)" onclick="startQuiz()">🎮 Start Quiz</button>
-  </div>
-</div>
 
-<!-- ═══ QUIZ ═══ -->
-<div class="screen" id="quizScreen">
-  <div class="hbar">
-    <button class="back" onclick="endQuiz()">←</button>
-    <div class="title">Quiz Mode 🎮</div>
-    <div class="xp-pill"><svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg><span id="quizXPDisplay">0</span></div>
-  </div>
-  <div class="quiz-area" id="quizArea"></div>
-</div>
+    <script>
+        // ═══════════════════════════════════════
+        //           STARFIELD
+        // ═══════════════════════════════════════
 
-<!-- ═══ CULTURE ═══ -->
-<div class="screen" id="cultureScreen">
-  <div class="hbar">
-    <button class="back" onclick="showScreen('homeScreen')">←</button>
-    <div class="title">🇳🇱 Dutch Culture</div>
-    <div></div>
-  </div>
-  <div style="padding:20px 20px 100px;flex:1">
-    <div class="moth-speech" style="margin:0 0 20px;font-size:18px">Dutch people are super direct — it's honesty, not rudeness! Here's what you need to know 🦋</div>
-    <div id="cultureCards"></div>
-  </div>
-  <div class="navbar">
-    <button class="nav-btn" onclick="showScreen('homeScreen')"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home</button>
-    <button class="nav-btn active" onclick="showScreen('cultureScreen')"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>Culture</button>
-    <button class="nav-btn" onclick="showScreen('settingsScreen')"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>Settings</button>
-  </div>
-</div>
+        (function createStars() {
+            const field = document.getElementById('starfield');
+            const count = 120;
 
-<!-- ═══ SETTINGS ═══ -->
-<div class="screen" id="settingsScreen">
-  <div class="hbar">
-    <button class="back" onclick="showScreen('homeScreen')">←</button>
-    <div class="title">⚙️ Settings</div>
-    <div></div>
-  </div>
-  <div class="settings-pad">
-    <div class="setting-group">
-      <h3>Audio</h3>
-      <div class="setting-row"><label>Text-to-Speech</label><div class="toggle on" id="ttsToggle" onclick="toggleSetting(this)"></div></div>
-      <div class="setting-row"><label>Sound Effects</label><div class="toggle on" id="sfxToggle" onclick="toggleSetting(this)"></div></div>
-    </div>
-    <div class="setting-group">
-      <h3>Learning</h3>
-      <div class="setting-row"><label>Show Pronunciation</label><div class="toggle on" id="pronToggle" onclick="toggleSetting(this)"></div></div>
-      <div class="setting-row"><label>Show All 4 Languages</label><div class="toggle" id="fourLangToggle" onclick="toggleSetting(this)"></div></div>
-    </div>
-    <div class="setting-group">
-      <h3>Accessibility</h3>
-      <div class="setting-row"><label>Reduce Animations</label><div class="toggle" id="reduceMotion" onclick="toggleSetting(this)"></div></div>
-      <div class="setting-row"><label>Larger Text</label><div class="toggle" id="largeText" onclick="toggleSetting(this)"></div></div>
-    </div>
-    <div style="text-align:center;margin-top:30px">
-      <div style="font-family:var(--hand);font-size:24px;color:var(--green)">🦋 Luna v1.0</div>
-      <div style="font-size:13px;color:var(--text2);margin-top:4px">A DarkHatDev project for Luna</div>
-      <div style="font-size:12px;color:var(--text2);margin-top:2px">Built with love by 左手鬼</div>
-    </div>
-  </div>
-  <div class="navbar">
-    <button class="nav-btn" onclick="showScreen('homeScreen')"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home</button>
-    <button class="nav-btn" onclick="showScreen('cultureScreen')"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>Culture</button>
-    <button class="nav-btn active" onclick="showScreen('settingsScreen')"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>Settings</button>
-  </div>
-</div>
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 2 + 0.5;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.opacity = Math.random() * 0.6 + 0.1;
 
-</div>
-<div class="xp-toast" id="xpToast">+10 XP ⭐</div>
+                // Gentle twinkle
+                const duration = Math.random() * 4 + 3;
+                const delay = Math.random() * 5;
+                star.style.animation = `twinkle ${duration}s ease-in-out ${delay}s infinite`;
 
-<script>
-// ═══════════════════════════════════
-// 🦋 LUNA — Family Language Bridge
-// A DarkHatDev project · 左手鬼
-// ═══════════════════════════════════
+                field.appendChild(star);
+            }
 
-// ═══ LESSON DATA ═══
-var CATS=[
-{id:'greet',name:'Greetings',emoji:'👋',words:[
-  {nl:'Hallo',en:'Hello',pt:'Olá',es:'Hola',pron:'HAH-loh'},
-  {nl:'Hoi',en:'Hi',pt:'Oi',es:'Hola',pron:'hoy'},
-  {nl:'Goedemorgen',en:'Good morning',pt:'Bom dia',es:'Buenos días',pron:'KHOO-duh-mor-khun'},
-  {nl:'Goedemiddag',en:'Good afternoon',pt:'Boa tarde',es:'Buenas tardes',pron:'KHOO-duh-mih-dahkh'},
-  {nl:'Goedenavond',en:'Good evening',pt:'Boa noite',es:'Buenas noches',pron:'KHOO-duh-nah-font'},
-  {nl:'Tot ziens',en:'Goodbye',pt:'Tchau',es:'Adiós',pron:'toht zeens'},
-  {nl:'Hoe gaat het?',en:'How are you?',pt:'Como vai?',es:'¿Cómo estás?',pron:'hoo KHAHT ut'},
-  {nl:'Goed, dank je',en:'Good, thanks',pt:'Bem, obrigado/a',es:'Bien, gracias',pron:'khoot, dahnk yuh'},
-  {nl:'Aangenaam',en:'Nice to meet you',pt:'Prazer',es:'Mucho gusto',pron:'ahn-khuh-NAHM'},
-  {nl:'Ik heet...',en:'My name is...',pt:'Meu nome é...',es:'Me llamo...',pron:'ik HAYT'},
-]},
-{id:'family',name:'Family',emoji:'👨‍👩‍👧',words:[
-  {nl:'Oma',en:'Grandma',pt:'Vovó',es:'Abuelita',pron:'OH-mah'},
-  {nl:'Opa',en:'Grandpa',pt:'Vovô',es:'Abuelito',pron:'OH-pah'},
-  {nl:'Moeder / Mama',en:'Mother / Mom',pt:'Mãe / Mamãe',es:'Madre / Mamá',pron:'MOO-dur / MAH-mah'},
-  {nl:'Vader / Papa',en:'Father / Dad',pt:'Pai / Papai',es:'Padre / Papá',pron:'FAH-dur / PAH-pah'},
-  {nl:'Zus',en:'Sister',pt:'Irmã',es:'Hermana',pron:'zuhs'},
-  {nl:'Broer',en:'Brother',pt:'Irmão',es:'Hermano',pron:'broor'},
-  {nl:'Ik hou van je',en:'I love you',pt:'Eu te amo',es:'Te quiero',pron:'ik HOW fahn yuh'},
-  {nl:'Ik mis je',en:'I miss you',pt:'Sinto saudades',es:'Te extraño',pron:'ik MIS yuh'},
-  {nl:'Familie',en:'Family',pt:'Família',es:'Familia',pron:'fah-MEE-lee'},
-  {nl:'Lieverd',en:'Sweetheart',pt:'Querido/a',es:'Cariño',pron:'LEE-vurt'},
-]},
-{id:'food',name:'Food & Dining',emoji:'🧀',words:[
-  {nl:'Brood',en:'Bread',pt:'Pão',es:'Pan',pron:'brohd'},
-  {nl:'Kaas',en:'Cheese',pt:'Queijo',es:'Queso',pron:'kahs'},
-  {nl:'Water',en:'Water',pt:'Água',es:'Agua',pron:'VAH-tur'},
-  {nl:'Koffie',en:'Coffee',pt:'Café',es:'Café',pron:'KOF-fee'},
-  {nl:'Melk',en:'Milk',pt:'Leite',es:'Leche',pron:'melk'},
-  {nl:'Ik heb honger',en:"I'm hungry",pt:'Estou com fome',es:'Tengo hambre',pron:'ik heb HOHNG-ur'},
-  {nl:'Lekker!',en:'Delicious!',pt:'Gostoso!',es:'¡Delicioso!',pron:'LEK-ur'},
-  {nl:'Eet smakelijk!',en:'Enjoy your meal!',pt:'Bom apetite!',es:'¡Buen provecho!',pron:'ayt SMAH-kuh-lik'},
-  {nl:'De rekening',en:'The bill',pt:'A conta',es:'La cuenta',pron:'duh RAY-kuh-ning'},
-  {nl:'Ontbijt',en:'Breakfast',pt:'Café da manhã',es:'Desayuno',pron:'ont-BAYT'},
-]},
-{id:'feel',name:'Feelings',emoji:'💚',words:[
-  {nl:'Blij',en:'Happy',pt:'Feliz',es:'Feliz',pron:'blay'},
-  {nl:'Verdrietig',en:'Sad',pt:'Triste',es:'Triste',pron:'fur-DREE-tikh'},
-  {nl:'Moe',en:'Tired',pt:'Cansado/a',es:'Cansado/a',pron:'moo'},
-  {nl:'Bang',en:'Scared',pt:'Com medo',es:'Asustado/a',pron:'bahng'},
-  {nl:'Boos',en:'Angry',pt:'Com raiva',es:'Enojado/a',pron:'bohs'},
-  {nl:'Enthousiast',en:'Excited',pt:'Empolgado/a',es:'Emocionado/a',pron:'en-too-zee-AHST'},
-  {nl:'Dankbaar',en:'Grateful',pt:'Agradecido/a',es:'Agradecido/a',pron:'DAHNK-bahr'},
-  {nl:'Ik voel me...',en:'I feel...',pt:'Eu me sinto...',es:'Me siento...',pron:'ik fool muh'},
-  {nl:'Gaat het goed?',en:'Are you okay?',pt:'Tudo bem?',es:'¿Estás bien?',pron:'khaht ut KHOOT'},
-  {nl:'Trots',en:'Proud',pt:'Orgulhoso/a',es:'Orgulloso/a',pron:'trohts'},
-]},
-{id:'shop',name:'Shopping',emoji:'🛍️',words:[
-  {nl:'Hoeveel kost dit?',en:'How much is this?',pt:'Quanto custa?',es:'¿Cuánto cuesta?',pron:'HOO-fayl KOHST dit'},
-  {nl:'Te duur',en:'Too expensive',pt:'Muito caro',es:'Muy caro',pron:'tuh DEWR'},
-  {nl:'Waar is...?',en:'Where is...?',pt:'Onde fica...?',es:'¿Dónde está...?',pron:'vahr iss'},
-  {nl:'Winkel',en:'Shop',pt:'Loja',es:'Tienda',pron:'VING-kul'},
-  {nl:'Supermarkt',en:'Supermarket',pt:'Supermercado',es:'Supermercado',pron:'SOO-pur-markt'},
-  {nl:'Pinnen',en:'Pay by card',pt:'Pagar com cartão',es:'Pagar con tarjeta',pron:'PIN-nun'},
-  {nl:'Contant',en:'Cash',pt:'Dinheiro',es:'Efectivo',pron:'kon-TAHNT'},
-  {nl:'Bonnetje',en:'Receipt',pt:'Recibo',es:'Recibo',pron:'BON-uh-tyuh'},
-  {nl:'Ik wil graag...',en:'I would like...',pt:'Eu gostaria de...',es:'Me gustaría...',pron:'ik vil KHRAHKH'},
-  {nl:'Korting',en:'Discount',pt:'Desconto',es:'Descuento',pron:'KOR-ting'},
-]},
-{id:'help',name:'Asking for Help',emoji:'🆘',words:[
-  {nl:'Help!',en:'Help!',pt:'Socorro!',es:'¡Ayuda!',pron:'help'},
-  {nl:'Kunt u mij helpen?',en:'Can you help me?',pt:'Pode me ajudar?',es:'¿Puede ayudarme?',pron:'kuhnt ew may HEL-pun'},
-  {nl:'Ik begrijp het niet',en:"I don't understand",pt:'Não entendo',es:'No entiendo',pron:'ik buh-KHRAYP ut neet'},
-  {nl:'Spreekt u Engels?',en:'Do you speak English?',pt:'Fala inglês?',es:'¿Habla inglés?',pron:'spraykt ew ENG-uhls'},
-  {nl:'Ik ben verdwaald',en:"I'm lost",pt:'Estou perdido/a',es:'Estoy perdido/a',pron:'ik ben fur-DVAHLT'},
-  {nl:'Ik heb een dokter nodig',en:'I need a doctor',pt:'Preciso de um médico',es:'Necesito un médico',pron:'ik heb un DOK-tur NOH-dikh'},
-  {nl:'Langzamer alstublieft',en:'Slower please',pt:'Mais devagar',es:'Más despacio',pron:'LAHNG-zah-mur ahlst-ew-BLEEFT'},
-  {nl:'Kunt u dat herhalen?',en:'Can you repeat that?',pt:'Pode repetir?',es:'¿Puede repetir?',pron:'kuhnt ew daht her-HAH-lun'},
-  {nl:'Dank u wel',en:'Thank you',pt:'Obrigado/a',es:'Gracias',pron:'dahnk ew VEHL'},
-  {nl:'Sorry',en:'Sorry',pt:'Desculpa',es:'Perdón',pron:'SAW-ree'},
-]},
-];
+            // Add twinkle keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes twinkle {
+                    0%, 100% { opacity: var(--start-opacity, 0.3); }
+                    50% { opacity: var(--end-opacity, 0.8); }
+                }
+            `;
+            document.head.appendChild(style);
 
-// ═══ CULTURE TIPS ═══
-var CULTURE=[
-  {t:'🗣️ Dutch Directness',d:"The Dutch say exactly what they mean. If your cooking is bad, they'll tell you. This is honesty (recht voor z'n raap), not rudeness. Respect it — and be direct back!"},
-  {t:'🎂 Birthday Rules',d:"On YOUR birthday, YOU bring cake to school/work (you treat others, not the reverse). Everyone says \"Gefeliciteerd!\" to you AND your family. The verjaardagskalender in the bathroom tracks everyone's birthdays."},
-  {t:'🚲 Cycling is Life',d:"More bikes than people! Get bikes immediately. Stay right on bike paths, use hand signals, have working lights after dark (it's the law), and ALWAYS lock your bike. A bike = fiets (feets)."},
-  {t:'🏠 Never Drop By Uninvited',d:"Always call or text before visiting. NEVER visit during dinner (~6-7 PM — sacred family time). Bring flowers when visiting (never chrysanthemums — those are for funerals). Open gifts immediately."},
-  {t:'🕯️ Gezelligheid',d:"The untranslatable heart of Dutch culture (say: khuh-ZEL-ikh-hite). It means cozy, warm, together, convivial. A candlelit dinner, coffee with friends, a rainy evening at home — all gezellig. Learn this word first!"},
-  {t:'🧀 Dutch Food Essentials',d:"Stamppot (mashed potatoes + veg + sausage), hagelslag (chocolate sprinkles on bread — yes, for breakfast, yes, adults too), stroopwafel (caramel waffle cookies), bitterballen (deep-fried meat snacks + mustard), and drop (licorice — beware dubbel zout!)."},
-  {t:'💰 Going Dutch',d:"Splitting bills equally (samen delen) is standard — it reflects fairness, not cheapness. Friends send Tikkie payment requests even for €2 coffee. Tipping is appreciated but NOT expected (5-10% for great service). Staff earn living wages."},
-  {t:'⏰ Punctuality & Schedule Culture',d:"Lateness is rude. Dutch plan social events weeks ahead — spontaneous hangouts are rare. Dinner is at 6 PM sharp. Coffee break at 10:30 with a koekje (cookie). Lunch is ALWAYS cold (sandwiches only)."},
-  {t:'🎅 Sinterklaas > Christmas',d:"December 5 is bigger than December 25 for Dutch kids. Sinterklaas arrives by steamboat from Spain. Families write funny poems (gedichten) teasing each other and exchange surprise gifts (surprises). Very important tradition!"},
-  {t:'⚠️ Dutch Language Trap',d:'NEVER say "opgewonden" for "excited" — it has a sexual meaning! Use "enthousiast" instead. Also: "half 6" means 5:30 (half TO six), not 6:30. And "morgen" means both "morning" AND "tomorrow."'},
-];
+            // Set random opacities for each star
+            field.querySelectorAll('.star').forEach(s => {
+                const start = parseFloat(s.style.opacity);
+                s.style.setProperty('--start-opacity', start);
+                s.style.setProperty('--end-opacity', Math.min(start + 0.4, 1));
+            });
+        })();
 
-// ═══ STATE ═══
-var state={xp:0,words:0,sessions:0,streak:0,seen:{},quizScores:{}};
-var curCat=0,curCard=0,curLang='nl',quizQ=0,quizScore=0,quizWords=[];
+        // ═══════════════════════════════════════
+        //        GOLDEN TRAIL PARTICLES
+        // ═══════════════════════════════════════
 
-// Load saved state
-try{var s=localStorage.getItem('luna_state');if(s)state=JSON.parse(s);}catch(e){}
-function save(){try{localStorage.setItem('luna_state',JSON.stringify(state));}catch(e){}}
+        (function createTrail() {
+            const mothContainer = document.querySelector('.moth-container');
+            
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'trail-particle';
+                const size = Math.random() * 3 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Position near the moth's tail area
+                const rect = mothContainer.getBoundingClientRect();
+                const x = rect.left + rect.width / 2 + (Math.random() - 0.5) * 30;
+                const y = rect.top + rect.height * 0.7 + Math.random() * 20;
+                
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                
+                document.body.appendChild(particle);
+                
+                // Animate
+                const drift = (Math.random() - 0.5) * 40;
+                const fall = Math.random() * 60 + 30;
+                
+                particle.animate([
+                    { opacity: 0.6, transform: 'translate(0, 0) scale(1)' },
+                    { opacity: 0, transform: `translate(${drift}px, ${fall}px) scale(0)` }
+                ], {
+                    duration: Math.random() * 2000 + 1500,
+                    easing: 'ease-out'
+                }).onfinish = () => particle.remove();
+                
+            }, 300);
+        })();
 
-// ═══ INIT ═══
-function init(){
-  makeStars();
-  makeMoth();
-  renderCats();
-  renderCulture();
-  updateHome();
-}
+        // ═══════════════════════════════════════
+        //           HAND TOGGLE (L/R)
+        // ═══════════════════════════════════════
 
-// ═══ STARS ═══
-function makeStars(){
-  var c=document.getElementById('stars'),h='';
-  for(var i=0;i<60;i++){
-    var x=Math.random()*100,y=Math.random()*100,d=Math.random()*5,s=1+Math.random()*2;
-    h+='<div class="star" style="left:'+x+'%;top:'+y+'%;animation-delay:'+d+'s;width:'+s+'px;height:'+s+'px"></div>';
-  }
-  c.innerHTML=h;
-}
+        const handToggle = document.getElementById('handToggle');
+        const toggleSwitch = document.getElementById('toggleSwitch');
+        const handLabel = document.getElementById('handLabel');
+        const sensoryControls = document.getElementById('sensoryControls');
+        let isLeftHand = true; // Default: left-hand
 
-// ═══ LUNA MOTH SVG ═══
-function makeMoth(){
-  document.getElementById('mothSVG').innerHTML=`
-  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <radialGradient id="wg" cx="50%" cy="50%"><stop offset="0%" stop-color="#A8E6CF"/><stop offset="100%" stop-color="#6C4AB6" stop-opacity=".3"/></radialGradient>
-      <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    </defs>
-    <!-- wings -->
-    <g filter="url(#glow)" opacity=".85">
-      <ellipse cx="66" cy="80" rx="48" ry="38" fill="url(#wg)" transform="rotate(-15,66,80)">
-        <animateTransform attributeName="transform" type="rotate" values="-15,66,80;-12,66,80;-15,66,80" dur="3s" repeatCount="indefinite"/>
-      </ellipse>
-      <ellipse cx="134" cy="80" rx="48" ry="38" fill="url(#wg)" transform="rotate(15,134,80)">
-        <animateTransform attributeName="transform" type="rotate" values="15,134,80;12,134,80;15,134,80" dur="3s" repeatCount="indefinite"/>
-      </ellipse>
-      <!-- lower wings -->
-      <ellipse cx="60" cy="115" rx="34" ry="28" fill="url(#wg)" opacity=".7" transform="rotate(-25,60,115)">
-        <animateTransform attributeName="transform" type="rotate" values="-25,60,115;-20,60,115;-25,60,115" dur="3s" repeatCount="indefinite"/>
-      </ellipse>
-      <ellipse cx="140" cy="115" rx="34" ry="28" fill="url(#wg)" opacity=".7" transform="rotate(25,140,115)">
-        <animateTransform attributeName="transform" type="rotate" values="25,140,115;20,140,115;25,140,115" dur="3s" repeatCount="indefinite"/>
-      </ellipse>
-    </g>
-    <!-- tail streamers -->
-    <path d="M85 140 Q70 170 55 190" stroke="#A8E6CF" stroke-width="2" fill="none" opacity=".4">
-      <animate attributeName="d" values="M85 140 Q70 170 55 190;M85 140 Q68 168 52 188;M85 140 Q70 170 55 190" dur="4s" repeatCount="indefinite"/>
-    </path>
-    <path d="M115 140 Q130 170 145 190" stroke="#A8E6CF" stroke-width="2" fill="none" opacity=".4">
-      <animate attributeName="d" values="M115 140 Q130 170 145 190;M115 140 Q132 168 148 188;M115 140 Q130 170 145 190" dur="4s" repeatCount="indefinite"/>
-    </path>
-    <!-- body -->
-    <ellipse cx="100" cy="100" rx="12" ry="30" fill="#2D1B69" stroke="#A8E6CF" stroke-width="1.5"/>
-    <!-- eyes -->
-    <circle cx="93" cy="78" r="7" fill="#0D0B1A"/><circle cx="107" cy="78" r="7" fill="#0D0B1A"/>
-    <circle cx="94" cy="77" r="4" fill="#A8E6CF"/><circle cx="108" cy="77" r="4" fill="#A8E6CF"/>
-    <circle cx="95" cy="76" r="1.5" fill="white"/>  <circle cx="109" cy="76" r="1.5" fill="white"/>
-    <!-- antennae -->
-    <path d="M95 70 Q88 50 78 42" stroke="#A8E6CF" stroke-width="1.5" fill="none"/>
-    <path d="M105 70 Q112 50 122 42" stroke="#A8E6CF" stroke-width="1.5" fill="none"/>
-    <circle cx="78" cy="42" r="3" fill="#A8E6CF" opacity=".6">
-      <animate attributeName="opacity" values=".3;.8;.3" dur="2s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="122" cy="42" r="3" fill="#A8E6CF" opacity=".6">
-      <animate attributeName="opacity" values=".3;.8;.3" dur="2s" repeatCount="indefinite" begin=".5s"/>
-    </circle>
-    <!-- wing eyespots -->
-    <circle cx="55" cy="80" r="8" fill="#6C4AB6" opacity=".5"/><circle cx="55" cy="80" r="4" fill="#9C5EFF" opacity=".4"/>
-    <circle cx="145" cy="80" r="8" fill="#6C4AB6" opacity=".5"/><circle cx="145" cy="80" r="4" fill="#9C5EFF" opacity=".4"/>
-    <!-- smile -->
-    <path d="M95 88 Q100 93 105 88" stroke="#A8E6CF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  </svg>`;
-}
+        function setHandMode(leftHand) {
+            isLeftHand = leftHand;
+            if (leftHand) {
+                handToggle.className = 'hand-toggle left-mode';
+                sensoryControls.style.right = '20px';
+                sensoryControls.style.left = 'auto';
+                handLabel.textContent = 'Left';
+                toggleSwitch.classList.remove('right');
+                toggleSwitch.setAttribute('aria-checked', 'true');
+            } else {
+                handToggle.className = 'hand-toggle right-mode';
+                sensoryControls.style.left = '20px';
+                sensoryControls.style.right = 'auto';
+                handLabel.textContent = 'Right';
+                toggleSwitch.classList.add('right');
+                toggleSwitch.setAttribute('aria-checked', 'false');
+            }
+            localStorage.setItem('luna-hand', leftHand ? 'left' : 'right');
+        }
 
-// ═══ RENDER HOME ═══
-function renderCats(){
-  var g=document.getElementById('catGrid'),h='';
-  CATS.forEach(function(c,i){
-    var seen=state.seen[c.id]||0,pct=Math.round((seen/c.words.length)*100);
-    h+='<div class="cat-card'+(pct>=100?' done':'')+'" onclick="openLesson('+i+')">';
-    h+='<span class="emoji">'+c.emoji+'</span>';
-    h+='<div class="cname">'+c.name+'</div>';
-    h+='<div class="ccount">'+c.words.length+' words</div>';
-    h+='<div class="cprog"><div class="cprog-fill" style="width:'+pct+'%"></div></div>';
-    h+='</div>';
-  });
-  g.innerHTML=h;
-}
+        toggleSwitch.addEventListener('click', () => setHandMode(!isLeftHand));
+        toggleSwitch.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setHandMode(!isLeftHand);
+            }
+        });
 
-function updateHome(){
-  document.getElementById('totalXP').textContent=state.xp;
-  document.getElementById('statWords').textContent=state.words;
-  document.getElementById('statSessions').textContent=state.sessions;
-  document.getElementById('statStreak').textContent=state.streak;
-  var total=0,done=0;
-  CATS.forEach(function(c){total+=c.words.length;done+=(state.seen[c.id]||0);});
-  var pct=total?Math.round((done/total)*100):0;
-  document.getElementById('moonPct').textContent=pct;
-  var deg=-45+(pct/100*360);
-  document.getElementById('moonFill').style.transform='rotate('+deg+'deg)';
-  renderCats();
-}
+        // Load saved preference
+        const savedHand = localStorage.getItem('luna-hand');
+        if (savedHand === 'right') setHandMode(false);
 
-// ═══ SPEECH ═══
-function speak(text,lang){
-  if(!document.getElementById('ttsToggle').classList.contains('on'))return;
-  var map={nl:'nl-NL',en:'en-US',pt:'pt-BR',es:'es-ES'};
-  if(!window.speechSynthesis)return;
-  window.speechSynthesis.cancel();
-  var u=new SpeechSynthesisUtterance(text);
-  u.lang=map[lang]||'en-US';
-  u.rate=0.75;
-  u.pitch=1;
-  // Try to find a good voice
-  var voices=window.speechSynthesis.getVoices();
-  var match=voices.find(function(v){return v.lang.startsWith(map[lang].split('-')[0]);});
-  if(match)u.voice=match;
-  window.speechSynthesis.speak(u);
-}
+        // ═══════════════════════════════════════
+        //          MOTION TOGGLE
+        // ═══════════════════════════════════════
 
-// ═══ SCREENS ═══
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
-  document.getElementById(id).classList.add('active');
-  // Update nav buttons
-  document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});
-}
+        const motionToggle = document.getElementById('motionToggle');
+        let reducedMotion = false;
 
-function goHome(){showScreen('homeScreen');updateHome();}
+        motionToggle.addEventListener('click', () => {
+            reducedMotion = !reducedMotion;
+            motionToggle.classList.toggle('active', reducedMotion);
+            document.body.style.setProperty('--motion', reducedMotion ? 'paused' : 'running');
+            
+            document.querySelectorAll('.moth-svg, .star, .moth-glow-circle').forEach(el => {
+                el.style.animationPlayState = reducedMotion ? 'paused' : 'running';
+            });
+        });
 
-// ═══ LESSON ═══
-function openLesson(idx){
-  curCat=idx;curCard=0;curLang='nl';
-  var cat=CATS[idx];
-  document.getElementById('lessonTitle').textContent=cat.emoji+' '+cat.name;
-  document.getElementById('lessonXP').textContent='0';
-  renderLangTabs();
-  renderCard();
-  renderDots();
-  showScreen('lessonScreen');
-  state.sessions++;
-  save();
-}
+        // ═══════════════════════════════════════
+        //          ENTER BUTTON
+        // ═══════════════════════════════════════
 
-function renderLangTabs(){
-  var langs=[{k:'nl',l:'🇳🇱 Dutch'},{k:'en',l:'🇺🇸 English'},{k:'pt',l:'🇧🇷 Português'},{k:'es',l:'🇪🇸 Español'},{k:'all',l:'All 4'}];
-  var h='';
-  langs.forEach(function(l){
-    h+='<button class="lang-tab'+(curLang===l.k?' active':'')+'" onclick="switchLang(\''+l.k+'\')">'+l.l+'</button>';
-  });
-  document.getElementById('langTabs').innerHTML=h;
-}
-
-function switchLang(l){curLang=l;renderLangTabs();renderCard();}
-
-function renderCard(){
-  var cat=CATS[curCat],w=cat.words[curCard],area=document.getElementById('cardArea');
-  if(curLang==='all'){
-    area.innerHTML=
-      '<div class="four-lang">'+
-      '<div class="lang-cell" onclick="speak(\''+esc(w.nl)+'\',\'nl\')"><div class="lflag">🇳🇱</div><div class="lword">'+w.nl+'</div><div class="lpron">'+w.pron+'</div><div class="llang">Nederlands</div></div>'+
-      '<div class="lang-cell" onclick="speak(\''+esc(w.en)+'\',\'en\')"><div class="lflag">🇺🇸</div><div class="lword">'+w.en+'</div><div class="llang">English</div></div>'+
-      '<div class="lang-cell" onclick="speak(\''+esc(w.pt)+'\',\'pt\')"><div class="lflag">🇧🇷</div><div class="lword">'+w.pt+'</div><div class="llang">Português</div></div>'+
-      '<div class="lang-cell" onclick="speak(\''+esc(w.es)+'\',\'es\')"><div class="lflag">🇪🇸</div><div class="lword">'+w.es+'</div><div class="llang">Español</div></div>'+
-      '</div>';
-  }else{
-    var flags={nl:'🇳🇱',en:'🇺🇸',pt:'🇧🇷',es:'🇪🇸'};
-    var trans='';
-    if(curLang==='nl')trans=w.en;
-    else if(curLang==='en')trans=w.nl+' (Dutch)';
-    else if(curLang==='pt')trans=w.nl+' (Dutch) · '+w.en;
-    else if(curLang==='es')trans=w.nl+' (Dutch) · '+w.en;
-    area.innerHTML=
-      '<div class="flashcard" onclick="speak(\''+esc(w[curLang])+'\',\''+curLang+'\')">'+
-      '<button class="speak-btn" onclick="event.stopPropagation();speak(\''+esc(w[curLang])+'\',\''+curLang+'\')">🔊</button>'+
-      '<div class="flag">'+flags[curLang]+'</div>'+
-      '<div class="word">'+w[curLang]+'</div>'+
-      (curLang==='nl'?'<div class="pron">'+w.pron+'</div>':'')+
-      '<div class="trans">'+trans+'</div>'+
-      '<div class="tap-hint">TAP TO HEAR</div>'+
-      '</div>';
-  }
-  // Track seen words
-  if(!state.seen[CATS[curCat].id])state.seen[CATS[curCat].id]=0;
-  if(curCard>=state.seen[CATS[curCat].id]){
-    state.seen[CATS[curCat].id]=curCard+1;
-    state.words=0;
-    CATS.forEach(function(c){state.words+=state.seen[c.id]||0;});
-    save();
-  }
-  renderDots();
-}
-
-function esc(s){return s.replace(/'/g,"\\'").replace(/"/g,'&quot;');}
-
-function renderDots(){
-  var cat=CATS[curCat],h='';
-  for(var i=0;i<cat.words.length;i++){
-    h+='<div class="dot'+(i===curCard?' active':'')+(i<curCard?' done':'')+'"></div>';
-  }
-  document.getElementById('cardDots').innerHTML=h;
-}
-
-function nextCard(){
-  var cat=CATS[curCat];
-  if(curCard<cat.words.length-1){curCard++;renderCard();addXP(5);}
-}
-function prevCard(){
-  if(curCard>0){curCard--;renderCard();}
-}
-
-function addXP(n){
-  state.xp+=n;
-  document.getElementById('lessonXP').textContent=parseInt(document.getElementById('lessonXP').textContent)+n;
-  save();
-  // Toast
-  var t=document.getElementById('xpToast');
-  t.textContent='+'+n+' XP ⭐';
-  t.classList.add('show');
-  setTimeout(function(){t.classList.remove('show');},1200);
-}
-
-// ═══ QUIZ ═══
-function startQuiz(){
-  var cat=CATS[curCat];
-  quizWords=cat.words.slice().sort(function(){return Math.random()-.5;});
-  quizQ=0;quizScore=0;
-  document.getElementById('quizXPDisplay').textContent='0';
-  showScreen('quizScreen');
-  renderQuizQ();
-}
-
-function renderQuizQ(){
-  var area=document.getElementById('quizArea');
-  if(quizQ>=quizWords.length){
-    // Quiz complete
-    var pct=Math.round((quizScore/quizWords.length)*100);
-    var xpEarned=quizScore*10;
-    addXP(xpEarned);
-    area.innerHTML=
-      '<div style="text-align:center;padding-top:40px">'+
-      '<div style="font-size:60px;margin-bottom:16px">'+(pct>=80?'🎉':pct>=50?'😊':'💪')+'</div>'+
-      '<div class="quiz-score"><div class="big">'+quizScore+'/'+quizWords.length+'</div><div class="lbl">CORRECT</div></div>'+
-      '<div style="font-family:var(--hand);font-size:22px;color:var(--green);margin-top:16px">+'+xpEarned+' XP earned!</div>'+
-      '<button class="quiz-next" onclick="endQuiz()" style="margin-top:24px">Back to Lesson</button>'+
-      '</div>';
-    return;
-  }
-  var w=quizWords[quizQ];
-  // Generate 4 options (1 correct + 3 wrong)
-  var opts=[w.nl];
-  var pool=CATS[curCat].words.filter(function(x){return x.nl!==w.nl;});
-  pool.sort(function(){return Math.random()-.5;});
-  for(var i=0;i<3&&i<pool.length;i++)opts.push(pool[i].nl);
-  opts.sort(function(){return Math.random()-.5;});
-
-  var h='<div class="quiz-q">What is the Dutch word for:</div>';
-  h+='<div class="quiz-word">'+w.en+'</div>';
-  h+='<div class="quiz-hint">('+(quizQ+1)+' of '+quizWords.length+')</div>';
-  h+='<div class="quiz-opts">';
-  opts.forEach(function(o){
-    h+='<button class="quiz-opt" onclick="checkQuiz(this,\''+esc(o)+'\',\''+esc(w.nl)+'\')">'+o+'</button>';
-  });
-  h+='</div>';
-  h+='<div class="quiz-result" id="quizResult"></div>';
-  area.innerHTML=h;
-}
-
-function checkQuiz(btn,picked,correct){
-  var btns=document.querySelectorAll('.quiz-opt');
-  btns.forEach(function(b){
-    b.classList.add('disabled');
-    if(b.textContent===correct)b.classList.add('correct');
-  });
-  var res=document.getElementById('quizResult');
-  if(picked===correct){
-    btn.classList.add('correct');
-    quizScore++;
-    res.className='quiz-result yay';
-    res.textContent='Correct! 🎉';
-    document.getElementById('quizXPDisplay').textContent=quizScore*10;
-    speak(correct,'nl');
-  }else{
-    btn.classList.add('wrong');
-    res.className='quiz-result nay';
-    res.textContent='Almost! It\'s: '+correct;
-  }
-  quizQ++;
-  setTimeout(renderQuizQ,1500);
-}
-
-function endQuiz(){showScreen('lessonScreen');}
-
-// ═══ CULTURE ═══
-function renderCulture(){
-  var c=document.getElementById('cultureCards'),h='';
-  CULTURE.forEach(function(t){
-    h+='<div class="culture-card"><div class="ctitle">'+t.t+'</div><div class="ctext">'+t.d+'</div></div>';
-  });
-  c.innerHTML=h;
-}
-
-// ═══ SETTINGS ═══
-function toggleSetting(el){el.classList.toggle('on');}
-
-// ═══ SWIPE SUPPORT ═══
-(function(){
-  var sx=0,sy=0;
-  document.getElementById('lessonScreen').addEventListener('touchstart',function(e){
-    sx=e.touches[0].clientX;sy=e.touches[0].clientY;
-  },{passive:true});
-  document.getElementById('lessonScreen').addEventListener('touchend',function(e){
-    var dx=e.changedTouches[0].clientX-sx;
-    var dy=e.changedTouches[0].clientY-sy;
-    if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>50){
-      if(dx<0)nextCard();else prevCard();
-    }
-  },{passive:true});
-})();
-
-// ═══ LOAD VOICES ═══
-if(window.speechSynthesis){
-  window.speechSynthesis.onvoiceschanged=function(){};
-  window.speechSynthesis.getVoices();
-}
-
-// ═══ MOTH SPEECH ROTATION ═══
-var mothMsgs=[
-  "Hoi! Ready to learn? 🦋","Let's bridge languages together!",
-  "Oma would be so proud 💚","Dutch is fun — trust me!",
-  "Every word brings family closer","Gezellig! Let's go! 🇳🇱",
-  "Tap a lesson to begin!","You're doing amazing 🌙",
-  "Saudades means missing someone with love 💚","Four languages, one family 🦋"
-];
-setInterval(function(){
-  var el=document.getElementById('mothSpeech');
-  if(el)el.textContent=mothMsgs[Math.floor(Math.random()*mothMsgs.length)];
-},8000);
-
-// ═══ GO ═══
-init();
-</script>
+        document.getElementById('enterBtn').addEventListener('click', () => {
+            // Future: transition to the garden / lesson screen
+            document.body.style.transition = 'opacity 1s ease';
+            document.body.style.opacity = '0';
+            
+            setTimeout(() => {
+                // Placeholder until we build the next screen
+                document.body.style.opacity = '1';
+                document.body.innerHTML = `
+                    <div style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100vh;
+                        background: #0D0B1A;
+                        font-family: 'Cormorant Garamond', serif;
+                        color: #E8E4D9;
+                        text-align: center;
+                        padding: 2rem;
+                    ">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🦋</div>
+                        <div style="font-size: 1.8rem; font-weight: 300; margin-bottom: 1rem;">
+                            The garden is growing.
+                        </div>
+                        <div style="font-size: 1rem; font-weight: 300; color: rgba(232,228,217,0.6); font-style: italic; max-width: 400px; line-height: 1.8;">
+                            Luna is being built with love, pattern recognition, and nylon strings.
+                        </div>
+                        <div style="margin-top: 2rem; font-size: 0.75rem; color: rgba(232,228,217,0.3); letter-spacing: 0.2em;">
+                            © 2026 MAXIMUS GLIXIA / DARKHATDEV
+                        </div>
+                        <div style="margin-top: 0.5rem; font-size: 0.65rem; color: rgba(200,230,160,0.4); letter-spacing: 0.15em;">
+                            非常道 — THE UNUSUAL PATH
+                        </div>
+                    </div>
+                `;
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
